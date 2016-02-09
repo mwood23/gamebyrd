@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+	<title>Skille</title>
+	<link rel="stylesheet" type="text/css" href="
+https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
+	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+
+	 <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+</head>
+<body>
+	<div ng-controller="main" class="main">
+<!--NAVBAR -->
+
+		<nav>
+		<div class="nav-wrapper deep-purple darken-4">
+			<a href="#!" class="brand-logo">Skille</a>
+			<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+			<ul class="side-nav collapsible collapsible-accordion" id="mobile-demo">
+				<li><a href="#">FAQ</a></li>
+				<li><a href="#">Products</a></li>				
+				<li>
+            	<a class="collapsible-header">Dropdown<i class="mdi-navigation-arrow-drop-down"></i></a>
+            		<div class="collapsible-body">
+              		<ul>
+		                <li><a href="#!">First</a></li>
+		                <li><a href="#!">Second</a></li>
+		                <li><a href="#!">Third</a></li>
+		                <li><a href="#!">Fourth</a></li>
+              		</ul>
+            		</div>
+          		</li>
+			</ul>
+		</div>
+		</nav>
+
+	<ul id="slide-out" class="side-nav fixed">
+      <li><a href="#!">First Sidebar Link</a></li>
+      <li><a href="#!">Second Sidebar Link</a></li>
+      <li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+          <li>
+            <a class="collapsible-header">Dropdown<i class="mdi-navigation-arrow-drop-down"></i></a>
+            <div class="collapsible-body">
+              <ul>
+                <li><a href="#!">First</a></li>
+                <li><a href="#!">Second</a></li>
+                <li><a href="#!">Third</a></li>
+                <li><a href="#!">Fourth</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+
+<!-- LANDING PAGE -->
+		<div class="container">
+			<div class="header-overlay">
+				<button class="toggle-video btn-floating btn-large waves-effect waves-light nav-wrapper deep-purple darken-4" id="vidpause"><i class="material-icons">pause</i></button>
+				<video autoplay loop poster="img/landingPageImage.jpg" id="bgvid">
+	   				 <source src="img/Smash.mp4" type="video/mp4">
+				</video>
+
+				<!-- [if lt IE 9]>
+				<script>
+					document.createElement('video');
+				</script>
+				<![endif] -->
+				<h1 class="flow-text white-text">Weclome to Skille</h1>
+				<h3 class="flow-text white-text">Entertainment to your door in 2 hours or less</h3>
+				<ul class="white-text">
+					<li>Choose from the classics to the current</li>
+					<li>Rent by the week</li>
+					<li>No late fees</li>
+				</ul>
+			</div>
+		</div>	
+
+<!-- HOW IT WORKS -->
+<!-- 		<div class="container">
+			<h2>How It Works</h2>
+			<div class="row">
+				<div class="col s4">
+					<p>Select the console, game, or bundle you want</p>
+				</div>
+				<div class="col s4">
+					<p>A delivery will be to your house within two hours</p>
+				</div>
+				<div class="col s4">
+					<p>When your ready to return let us know and we will pick it up</p>
+				</div>
+			</div>
+		</div> -->
+
+
+
+	</div>
+
+
+</div>
+
+
+
+	<!-- Placed at end of body so pages load faster -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+
+
+</body>
+</html>

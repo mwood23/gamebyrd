@@ -1,0 +1,56 @@
+/*LANDING PAGE*/
+
+video#bgvid { 
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    background: url(../img/landingPageImage.jpg), no-repeat;
+    background-size: cover; 
+}
+
+video { display: block; 
+}
+
+@media screen and (max-device-width: 800px) {
+    html {
+         background: url(../img/landingPageImage.jpg) #000 no-repeat center center fixed;
+    }
+    #bgvid {
+        display: none;
+    }
+}
+
+video#bgvid {
+    transition: 1s opacity;
+}
+.stopfade { opacity: .9; 
+}
+
+.header-overlay {
+	position: relative;
+}
+
+.toggle-video {
+	position: absolute;
+	top: 10px;
+	right: -75px;
+}
+
+    header, .main, footer {
+      padding-left: 240px;
+    }
+
+    @media only screen and (max-width : 992px) {
+      header, .main, footer {
+        padding-left: 0;
+      }
+    }
