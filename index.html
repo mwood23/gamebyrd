@@ -14,74 +14,60 @@ https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
 
 </head>
 <body>
-	<div ng-controller="main" class="main">
+	<div class="main">
 <!--NAVBAR -->
 
 		<nav>
-		<div class="nav-wrapper deep-purple darken-4">
-			<a href="#!" class="brand-logo">Skille</a>
+		<div class="nav-wrapper primary-color">
+			<a href="#!" class="brand-logo"></a>
+			<a href="#"><i class="material-icons shopping-cart">shopping_cart</i></a>
 			<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-			<ul class="side-nav collapsible collapsible-accordion" id="mobile-demo">
-				<li><a href="#">FAQ</a></li>
-				<li><a href="#">Products</a></li>				
-				<li>
-            	<a class="collapsible-header">Dropdown<i class="mdi-navigation-arrow-drop-down"></i></a>
-            		<div class="collapsible-body">
-              		<ul>
-		                <li><a href="#!">First</a></li>
-		                <li><a href="#!">Second</a></li>
-		                <li><a href="#!">Third</a></li>
-		                <li><a href="#!">Fourth</a></li>
-              		</ul>
-            		</div>
+			<ul class="side-nav" id="mobile-demo">
+				<li><a href="#">How It Works</a></li>
+				<li><a href="#">FAQs</a></li>				
+				<li class="no-padding">
+        	<ul class="collapsible collapsible-accordion">
+          		<li>
+	            	<a class="collapsible-header">Dropdown<i class="mdi-navigation-arrow-drop-down"></i></a>
+	            	<div class="collapsible-body">
+	              	<ul>
+		                <li ng-repeat="console in consoleLibrary"><a href="#!">{{console.name}}</a></li>
+	              	</ul>
+	            	</div>
           		</li>
 			</ul>
+			<li><a href="#">Contact Us</a></li>
 		</div>
 		</nav>
 
 	<ul id="slide-out" class="side-nav fixed">
-      <li><a href="#!">First Sidebar Link</a></li>
-      <li><a href="#!">Second Sidebar Link</a></li>
-      <li class="no-padding">
-        <ul class="collapsible collapsible-accordion">
-          <li>
-            <a class="collapsible-header">Dropdown<i class="mdi-navigation-arrow-drop-down"></i></a>
-            <div class="collapsible-body">
-              <ul>
-                <li><a href="#!">First</a></li>
-                <li><a href="#!">Second</a></li>
-                <li><a href="#!">Third</a></li>
-                <li><a href="#!">Fourth</a></li>
-              </ul>
+		<img src="http://placehold.it/150x150">
+    	<div class="search-wrapper-card searchbar">
+    		<input id="search">
+    		<i class="material-icons search-icon">search</i>
+    		<div class="search-results"></div>
+    	</div>
+    	<li><a href="#!">How It Works</a></li>
+    	<li><a href="#!">FAQs</a></li>
+    	<li class="no-padding">
+        	<ul class="collapsible collapsible-accordion">
+        	<li>
+        	<a class="collapsible-header">Consoles<i class="mdi-navigation-arrow-drop-down"></i></a>
+        	<div class="collapsible-body">
+            	<ul>
+                	<li ng-repeat="console in consoleLibrary"><a href="#!">{{console.name}}</a></li>
+            	</ul>
             </div>
-          </li>
-        </ul>
-      </li>
+          	</li>
+        	</ul>
+      	</li>
+      	<li><a href="#">Contact Us</a></li>
     </ul>
 
 
-<!-- LANDING PAGE -->
-		<div class="container">
-			<div class="header-overlay">
-				<button class="toggle-video btn-floating btn-large waves-effect waves-light nav-wrapper deep-purple darken-4" id="vidpause"><i class="material-icons">pause</i></button>
-				<video autoplay loop poster="img/landingPageImage.jpg" id="bgvid">
-	   				 <source src="img/Smash.mp4" type="video/mp4">
-				</video>
 
-				<!-- [if lt IE 9]>
-				<script>
-					document.createElement('video');
-				</script>
-				<![endif] -->
-				<h1 class="flow-text white-text">Weclome to Skille</h1>
-				<h3 class="flow-text white-text">Entertainment to your door in 2 hours or less</h3>
-				<ul class="white-text">
-					<li>Choose from the classics to the current</li>
-					<li>Rent by the week</li>
-					<li>No late fees</li>
-				</ul>
-			</div>
-		</div>	
+
+
 
 <!-- HOW IT WORKS -->
 <!-- 		<div class="container">
@@ -112,9 +98,11 @@ https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-route.js"></script>
 	<script type="text/javascript" src="js/app.js"></script>
+	<script type="text/javascript" src="js/config.js"></script>
+	
 	<script type="text/javascript" src="js/jquery.js"></script>
-	<script type="text/javascript" src="js/main.js"></script>
 
 
 </body>
