@@ -40,37 +40,37 @@ angular.
 				'Nintendo 64',
 				"Nintendo 64's popularity among younger gamers is no surprise. Well-respected games featuring such long-lived and much-loved personalities as Mario (of arcade classic Donkey Kong fame), Zelda, and Banjo-Kazooie are easy to learn and offer enormous replay value. But times are a' changin' and the system's ever-growing library of titles has expanded into every genre of games imaginable, including games better-suited for older gamers. In fact, some of the most acclaimed--in some cases, groundbreaking--games available on any platform today are packed onto N64's old-school cartridges.",
 				20,
-				'http://ecx.images-amazon.com/images/I/41wX7ndoOzL.jpg'
+				'http://vignette1.wikia.nocookie.net/ssb/images/f/fe/N64.png/revision/latest?cb=20111102152254'
 				)
 			var playstation4 = new Console(
 				'Playstation 4',
 				"The PlayStation 4 system opens the door to an incredible journey through immersive new gaming worlds and a deeply connected gaming community. PS4 puts gamers first with an astounding launch lineup and over 180 games in development. Play amazing top-tier blockbusters and innovative indie hits on PS4. Developer Inspired, Gamer Focused.",
 				25,
-				'https://images-na.ssl-images-amazon.com/images/G/01/img15/video-games/PS4/PS4-console-hero.jpg'
+				'http://www.sony.co.nz/microsite/bigsummer/images/ps4.png'
 				)
 			var xboxone = new Console(
 				'Xbox One',
 				"Introducing Xbox One. Where the best games, multiplayer, and your favorite movies, music, sports, and live TV come together in one place. Xbox One games look and feel incredibly real, with cinematic gameplay that rivals Hollywood. Watch TV or chat with friends on Skype while you play, and keep on playing while smarter matchmaking happens behind the scenes. With Xbox One, you can snap two things side-by-side on your TV, and switch from one to another instantly. Cloud-powered and built for the digital age, Xbox One is designed to keep getting better over time.* Xbox One delivers an all-new gaming and entertainment experience that will transform how you play. Xbox One brings together the best games, the most reliable service and rich entertainment all-in-one system that is built for today and tomorrow.",
 				25,
-				'http://g-ecx.images-amazon.com/images/G/01/aplusautomation/vendorimages/9e700249-cf1e-4312-98f7-1e978264320c._CB314073699__SR970,300_.jpg'
+				'http://vignette3.wikia.nocookie.net/lego-dimensions/images/0/07/Xbox-one-png.png/revision/latest?cb=20150922210422'
 				)
 			var supernintendo = new Console(
 				'Super Nintendo',
 				"After Sega unleashed the 16-bit Genesis, Nintendo was at a crossroads because their classic 8-bit Nintendo system was dying out. So Nintendo makes their own 16-bit system, but used a much better graphics and sound chip than the Genesis had, and remained the top system until Sony's Playstation came out in 1996. What made the Super NES kick so much was its outstanding library of games. The first party titles were out of this world, not to mention the system also had some of the best RPG's to date on any system. All in all, if you can find a Super NES anywhere, I highly recommend buying one, its a piece of video game history, and Nintendo has not been able to make a better system yet.",
 				10,
-				'http://ecx.images-amazon.com/images/I/31%2BFX0nFYRL._SX385_.jpg'
+				'https://upload.wikimedia.org/wikipedia/commons/0/0c/SNES-USA.png'
 				)
 			var playstation = new Console(
 				'Playstation',
 				"Sony's Original Playstation console revolutionized console gaming and brought a massive library of affordable games and hardware to the public. With it's release, Sony established itself as one of the biggest names in the gaming industry.",
 				15,
-				'http://ecx.images-amazon.com/images/I/61GjiXUw2HL._SX385_.jpg'
+				'http://vignette2.wikia.nocookie.net/lastlevel/images/0/0a/PlayStation.png/revision/latest?cb=20120814191011'
 				)
 			var wiiu = new Console(
 				'Wii U',
 				"Discover a world where you don't play video games, you live them where your friends, movies, TV shows and the Web all collide. Take entertainment into your own hands and eliminate the barriers between you and the gaming world with the Nintendo Wii U Console. The Wii U gives you a second window into the gaming world through the GamePad, a revolutionary controller which features an interactive touch screen for you to control your on-screen adventure.",
 				20,
-				'http://ecx.images-amazon.com/images/I/71oHatSEvBL._SL1500_.jpg'
+				'https://cdn02.nintendo-europe.com/media/images/08_content_images/systems_5/wiiu_12/hardware_features/packs/CI16_WiiU_Black_image600w.png'
 				)
 			
 			// Games
@@ -127,7 +127,8 @@ angular.
 				'Super Smash Bros. - Wii U',
 				"Battle it out as Nintendo's greatest heroes on the Wii U console Face off against the biggest roster of Nintendo all-stars ever assembled! Send your rivals flying with powerful attacks to earn all-new customizations and equipment that trick out your fighter's moves and stats. Then power-up and train intelligent amiibo figures* to take on your friends! The multiplayer showdown** you know and love is now on the Wii U console!",
 				wiiu.name,
-				'http://ecx.images-amazon.com/images/I/A1M9vDLg1DL._SL1500_.jpg'
+				15,
+				'http://www.gamestop.com/common/images/lbox/240274b.jpg'
 				)
 
 

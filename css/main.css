@@ -11,6 +11,9 @@
 	background-color: #19B52D;
 }
 
+.inline {
+	display: inline;
+}
 
 /*LANDING PAGE*/
 
@@ -77,18 +80,36 @@ header, .main, footer {
 .searchbar {
 	position: relative;
 	padding: 10px;
+	width: 95%;
+	margin: auto;
+}
+
+.searchbar input {
+	border-bottom: none;
+	margin: 0;
+	height: 100%;
 }
 
 .search-icon {
 	position: absolute;
-    top: 10px;
+    top: 7px;
     right: 10px;
     cursor: pointer;
 }
 
+.nav-logo {
+	padding-left: 4px;
+}
 /*TOP NAV*/
 .shopping-cart {
 	float: right;
 	padding-right: 12px;
 }
+
+/*CONSOLE PAGE*/
+.no-top-margin {
+	margin-top: 0px;
+}
+
+
 

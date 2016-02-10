@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="app">
 <head>
-	<title>Skille</title>
+	<title>GameByrd</title>
 	<link rel="stylesheet" type="text/css" href="
 https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
 	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -19,19 +19,28 @@ https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
 
 			<nav>
 			<div class="nav-wrapper primary-color">
-				<a href="#!" class="brand-logo"></a>
-				<a href="#/"><i class="material-icons shopping-cart">shopping_cart</i></a>
+				<a ng-href="#/"><i class="material-icons shopping-cart">shopping_cart</i></a>
 				<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
 				<ul class="side-nav" id="mobile-demo">
+					<img class="nav-logo" width="200px" src="img/gamebyrd.png">
+
+					<div class="search-wrapper-card searchbar z-depth-1">
+	    				<input id="search">
+	    				<i class="material-icons search-icon">search</i>
+	    			<div class="search-results"></div>
+	    	</div>
+
+
+
 					<li><a href="howitworks.html">How It Works</a></li>
 					<li><a href="#">FAQs</a></li>				
 					<li class="no-padding">
 	        	<ul class="collapsible collapsible-accordion">
 	          		<li>
-		            	<a class="collapsible-header">Dropdown<i class="mdi-navigation-arrow-drop-down"></i></a>
+		            	<a class="collapsible-header">Consoles<i class="mdi-navigation-arrow-drop-down"></i></a>
 		            	<div class="collapsible-body">
 		              	<ul>
-			                <li ng-repeat="console in consoleLibrary"><a href="#!">{{console.name}}</a></li>
+			                <li ng-repeat="console in consoleLibrary"><a ng-href="#/consoles/{{console.name}}">{{console.name}}</a></li>
 		              	</ul>
 		            	</div>
 	          		</li>
@@ -40,9 +49,9 @@ https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
 			</div>
 			</nav>
 
-		<ul id="slide-out" class="side-nav fixed">
-			<img src="http://placehold.it/150x150">
-	    	<div class="search-wrapper-card searchbar">
+		<ul id="slide-out" class="side-nav fixed z-depth-3">
+			<img class="nav-logo" width="200px" src="img/gamebyrd.png">
+	    	<div class="search-wrapper-card searchbar z-depth-1">
 	    		<input id="search">
 	    		<i class="material-icons search-icon">search</i>
 	    		<div class="search-results"></div>
@@ -55,7 +64,7 @@ https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
 	        	<a class="collapsible-header">Consoles<i class="mdi-navigation-arrow-drop-down"></i></a>
 	        	<div class="collapsible-body">
 	            	<ul>
-	                	<li ng-repeat="console in consoleLibrary"><a href="#!">{{console.name}}</a></li>
+	                	<li ng-repeat="console in consoleLibrary"><a ng-href="#/consoles/{{console.name}}">{{console.name}}</a></li>
 	            	</ul>
 	            </div>
 	          	</li>
@@ -67,6 +76,19 @@ https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
 	    <div ng-view></div>
 
     </div>
+
+<footer class="primary-color">
+		<div class="container center primary-color">
+
+
+			<a href="#" target="_blank"><img src="img/facebook.png" alt="Facebook"></a>
+			<a href="#" target="_blank"><img src="img/twitter.png" alt="Twitter"></a>
+
+		<p class="white-text">&copy; Copyright 2016</p>
+
+		</div><!--EndContainer-->
+
+	</footer>
 
 
 

@@ -1,7 +1,7 @@
 <!-- HEADER -->
 		<div class="section no-pad-bot primary-color">
 			<div class="container">
-				<h1 class="center-on-small-only white-text">Skille</h1>
+				<h1 class="center-on-small-only white-text">GameByrd</h1>
 				<div class="row center">
 					<h4 class="header col s12 light center white-text">Welcome to the first truly on demand game rental service</h4>
 				</div>
@@ -29,8 +29,8 @@
 				<h4>Top Rented Consoles</h4>
 				<ul class="collection">
 					<li ng-repeat="console in consoleLibrary" class="collection-item avatar">
-						<img src="{{console.image}}" class="circle">
-						<span class="title">{{console.name}}</span>
+						<a ng-href="#/consoles/{{console.name}}"><img src="{{console.image}}" class="circle"></a>
+						<a ng-href="#/consoles/{{console.name}}" class="title">{{console.name}}</a>
 						<p>${{console.price}}</p>
 						<a ng-href="#/consoles/{{console.name}}">Add to Cart</a>
 					</li>
