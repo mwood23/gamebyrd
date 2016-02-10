@@ -5,7 +5,7 @@ angular.
 			$routeProvider
 			.when('/',
 			{
-				templateUrl: "index.html",
+				templateUrl: "home.html",
 				controller: "main"
 			})
 
@@ -14,5 +14,11 @@ angular.
 				templateUrl: "howitworks.html",
 				controller: "howitworks"
 			})
+
+			.when('/consoles/:console',
+				{
+				templateUrl: "consoleTemplate.html",
+				controller: "main"
+				})
 
 		})

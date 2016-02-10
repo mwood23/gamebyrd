@@ -14,83 +14,61 @@ https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
 
 </head>
 <body>
-	<div class="main">
+	<div ng-controller="main" class="main">
 <!--NAVBAR -->
 
-		<nav>
-		<div class="nav-wrapper primary-color">
-			<a href="#!" class="brand-logo"></a>
-			<a href="#"><i class="material-icons shopping-cart">shopping_cart</i></a>
-			<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-			<ul class="side-nav" id="mobile-demo">
-				<li><a href="#">How It Works</a></li>
-				<li><a href="#">FAQs</a></li>				
-				<li class="no-padding">
-        	<ul class="collapsible collapsible-accordion">
-          		<li>
-	            	<a class="collapsible-header">Dropdown<i class="mdi-navigation-arrow-drop-down"></i></a>
-	            	<div class="collapsible-body">
-	              	<ul>
-		                <li ng-repeat="console in consoleLibrary"><a href="#!">{{console.name}}</a></li>
-	              	</ul>
-	            	</div>
-          		</li>
-			</ul>
-			<li><a href="#">Contact Us</a></li>
-		</div>
-		</nav>
-
-	<ul id="slide-out" class="side-nav fixed">
-		<img src="http://placehold.it/150x150">
-    	<div class="search-wrapper-card searchbar">
-    		<input id="search">
-    		<i class="material-icons search-icon">search</i>
-    		<div class="search-results"></div>
-    	</div>
-    	<li><a href="#!">How It Works</a></li>
-    	<li><a href="#!">FAQs</a></li>
-    	<li class="no-padding">
-        	<ul class="collapsible collapsible-accordion">
-        	<li>
-        	<a class="collapsible-header">Consoles<i class="mdi-navigation-arrow-drop-down"></i></a>
-        	<div class="collapsible-body">
-            	<ul>
-                	<li ng-repeat="console in consoleLibrary"><a href="#!">{{console.name}}</a></li>
-            	</ul>
-            </div>
-          	</li>
-        	</ul>
-      	</li>
-      	<li><a href="#">Contact Us</a></li>
-    </ul>
-
-
-
-
-
-
-<!-- HOW IT WORKS -->
-<!-- 		<div class="container">
-			<h2>How It Works</h2>
-			<div class="row">
-				<div class="col s4">
-					<p>Select the console, game, or bundle you want</p>
-				</div>
-				<div class="col s4">
-					<p>A delivery will be to your house within two hours</p>
-				</div>
-				<div class="col s4">
-					<p>When your ready to return let us know and we will pick it up</p>
-				</div>
+			<nav>
+			<div class="nav-wrapper primary-color">
+				<a href="#!" class="brand-logo"></a>
+				<a href="#/"><i class="material-icons shopping-cart">shopping_cart</i></a>
+				<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+				<ul class="side-nav" id="mobile-demo">
+					<li><a href="howitworks.html">How It Works</a></li>
+					<li><a href="#">FAQs</a></li>				
+					<li class="no-padding">
+	        	<ul class="collapsible collapsible-accordion">
+	          		<li>
+		            	<a class="collapsible-header">Dropdown<i class="mdi-navigation-arrow-drop-down"></i></a>
+		            	<div class="collapsible-body">
+		              	<ul>
+			                <li ng-repeat="console in consoleLibrary"><a href="#!">{{console.name}}</a></li>
+		              	</ul>
+		            	</div>
+	          		</li>
+				</ul>
+				<li><a href="#">Contact Us</a></li>
 			</div>
-		</div> -->
+			</nav>
+
+		<ul id="slide-out" class="side-nav fixed">
+			<img src="http://placehold.it/150x150">
+	    	<div class="search-wrapper-card searchbar">
+	    		<input id="search">
+	    		<i class="material-icons search-icon">search</i>
+	    		<div class="search-results"></div>
+	    	</div>
+	    	<li><a href="#/howitworks">How It Works</a></li>
+	    	<li><a href="#!">FAQs</a></li>
+	    	<li class="no-padding">
+	        	<ul class="collapsible collapsible-accordion">
+	        	<li>
+	        	<a class="collapsible-header">Consoles<i class="mdi-navigation-arrow-drop-down"></i></a>
+	        	<div class="collapsible-body">
+	            	<ul>
+	                	<li ng-repeat="console in consoleLibrary"><a href="#!">{{console.name}}</a></li>
+	            	</ul>
+	            </div>
+	          	</li>
+	        	</ul>
+	      	</li>
+	      	<li><a href="#">Contact Us</a></li>
+	    </ul>
+
+	    <div ng-view></div>
+
+    </div>
 
 
-
-	</div>
-
-
-</div>
 
 
 
@@ -100,9 +78,10 @@ https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-route.js"></script>
 	<script type="text/javascript" src="js/app.js"></script>
+	<script type="text/javascript" src="js/inventory.js"></script>
 	<script type="text/javascript" src="js/config.js"></script>
-	
 	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
 
 
 </body>
