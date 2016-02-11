@@ -21,7 +21,7 @@
 						<a ng-href="#/games/{{game.name}}"><img src="{{game.image}}" class="circle"></a>
 						<a ng-href="#/games/{{game.name}}" class="title">{{game.name}}</span></a>
 						<p>${{game.price}}</p>
-						<a href="#"><i class="material-icons addtocart">shopping_basket</i></a>
+						<button ng-click="addToOrder(game)" data-target="modal1" class="btn modal-trigger primary-color"><i class="material-icons addtocart">shopping_basket</i></button>
 					</li>
 				</ul>
 			</div>
@@ -32,7 +32,7 @@
 						<a ng-href="#/consoles/{{console.name}}"><img src="{{console.image}}" width="300px" class="circle"></a>
 						<a ng-href="#/consoles/{{console.name}}" class="title">{{console.name}}</a>
 						<p>${{console.price}}</p>
-						<a ng-href="#"><i class="material-icons addtocart">shopping_basket</i></a>
+						<button data-target="modal1" class="btn modal-trigger primary-color"><i class="material-icons addtocart">shopping_basket</i></button>
 					</li>
 				</ul>
 			</div>

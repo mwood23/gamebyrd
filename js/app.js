@@ -13,20 +13,47 @@ angular
 			$scope.consoleLibrary = inventory.consoleLibrary;
 			$scope.bundles = inventory.bundles;
 
-			console.log($routeParams)
+			// console.log($routeParams)
 
 			if($scope.$routeParams.console){
 			$scope.activeConsole = _.find($scope.consoleLibrary, function(item){
-				console.log(item)
-				console.log($scope.$routeParams)
+				// console.log(item)
+				// console.log($scope.$routeParams)
 				return item.name === $scope.$routeParams.console
 
 			})
 			}
-			console.log($scope.activeConsole)
+			// console.log($scope.activeConsole)
 			// console.log($scope.gamesLibrary)
 			// console.log($scope.consoleLibrary)
 			// console.log($scope.bundles)
+
+
+			// Add to Cart
+			$scope.orderBox = true;
+
+			$scope.basket = []
+			$scope.orderItem = {}
+			$scope.total = 0
+
+			$scope.addToOrder = function(item){
+				$scope.$parent.thisItem = item
+				console.log(item)
+			}
+
+			// Total Price
+			$scope.totalPrice = function() {
+			$scope.total = 0
+			for (var i=0; i < $scope.basket.length; i++) {
+				$scope.total += $scope.basket[i].price;
+			}
+				console.log($scope.total);
+				return $scope.total;
+			}
+
+
+
+
 
 
 		}])
@@ -85,4 +112,26 @@ angular
 			// console.log($scope.gamesLibrary)
 			// console.log($scope.consoleLibrary)
 			// console.log($scope.bundles)
+
+			// Add to Cart
+			$scope.orderBox = true;
+
+			$scope.basket = []
+			$scope.orderItem = {}
+			$scope.total = 0
+
+			$scope.addToOrder = function(item){
+				$scope.thisItem = item
+				console.log($scope.thisItem)
+			}
+
+			// Total Price
+			$scope.totalPrice = function() {
+			$scope.total = 0
+			for (var i=0; i < $scope.basket.length; i++) {
+				$scope.total += $scope.basket[i].price;
+			}
+				console.log($scope.total);
+				return $scope.total;
+			}
 		}])

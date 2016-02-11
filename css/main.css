@@ -25,6 +25,10 @@
 	width: 45px;
 }
 
+.relative {
+	position: relative;
+}
+
 /*LANDING PAGE*/
 
 video#bgvid { 
@@ -112,11 +116,11 @@ header, .main, footer {
 }
 /*TOP NAV*/
 .shopping-cart {
-	float: right;
-	padding-right: 12px;
+	position: absolute;
+	right: 12px;
 }
 
-/*CONSOLE PAGE*/
+CONSOLE PAGE
 .no-top-margin {
 	margin-top: 0px;
 }

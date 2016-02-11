@@ -12,13 +12,13 @@ https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
     </head>
 
 </head>
-<body>
+<body ng-cloak>
 	<div ng-controller="main" class="main">
 <!--NAVBAR -->
 
 			<nav>
-			<div class="nav-wrapper primary-color">
-				<a ng-href="#/"><i class="material-icons shopping-cart">shopping_cart</i></a>
+			<div class="nav-wrapper relative primary-color">
+				<a class="modal-trigger waves-effect waves-light shopping-cart" href="#modal2"><i class="material-icons">shopping_cart</i></a>
 				<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
 				<ul class="side-nav" id="mobile-demo">
 					<img class="nav-logo" width="200px" src="img/gamebyrd.png">
@@ -75,12 +75,40 @@ https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
 	    <div ng-view></div>
 
 
-
-
-
-
-
+<!-- Add To Cart -->
+  <div id="modal1" class="modal modal-fixed-footer" ng-show="orderBox">
+    <div class="modal-content">
+      <h4>Select add ons</h4>
+      <form>
+      	<ul>
+      		<li>
+      			{{thisItem.name}}
+      		</li>
+      	</ul>
+      </form>
     </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">At To Cart</a>
+    </div>
+  </div>
+
+
+<!-- Check Cart/Checkout -->
+   <div id="modal2" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <h4>Basket</h4>
+      <p>Plz</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Checkout</a>
+    </div>
+  </div>
+
+
+
+
+
+</div>
 
 
 
