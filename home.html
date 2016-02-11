@@ -6,20 +6,20 @@
 					<h4 class="header col s12 light center white-text">Welcome to the first truly on demand game rental service</h4>
 				</div>
 				<div class="row center padding-bottom">
-					<a href="#" class="btn-large waves-effect waves-light secondary-color">HOW IT WORKS</a>
+					<a ng-href="#/howitworks" class="btn-large waves-effect waves-light secondary-color">HOW IT WORKS</a>
 				</div>
 			</div>
 		</div>	
 
 <!-- TOP CHARTS -->
-	<div class="container">
+	<div class="container ">
 		<div class="row">
 			<div class="col m6">
 				<h4>Top Rented Games</h4>
 				<ul class="collection">
 					<li ng-repeat="game in gamesLibrary" class="collection-item avatar">
-						<img src="{{game.image}}" class="circle">
-						<span class="title">{{game.name}}</span>
+						<a ng-href="#/games/{{game.name}}"><img src="{{game.image}}" class="circle"></a>
+						<a ng-href="#/games/{{game.name}}" class="title">{{game.name}}</span></a>
 						<p>${{game.price}}</p>
 						<a href="#">Add to Cart</a>
 					</li>
@@ -28,11 +28,11 @@
 			<div class="col m6">
 				<h4>Top Rented Consoles</h4>
 				<ul class="collection">
-					<li ng-repeat="console in consoleLibrary" class="collection-item avatar">
-						<a ng-href="#/consoles/{{console.name}}"><img src="{{console.image}}" class="circle"></a>
+					<li ng-repeat="console in consoleLibrary" class="collection-item avatar ">
+						<a ng-href="#/consoles/{{console.name}}"><img src="{{console.image}}" width="300px" class="circle"></a>
 						<a ng-href="#/consoles/{{console.name}}" class="title">{{console.name}}</a>
 						<p>${{console.price}}</p>
-						<a ng-href="#/consoles/{{console.name}}">Add to Cart</a>
+						<a ng-href="#/consoles/{{console.name}}"><i class="material-icons addtocart">shopping_basket</i></a>
 					</li>
 				</ul>
 			</div>

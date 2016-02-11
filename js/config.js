@@ -18,13 +18,13 @@ angular.
 			.when('/consoles/:console',
 				{
 				templateUrl: "consoleTemplate.html",
-				controller: "item"
+				controller: "console"
 				})
 
 			.when('/games/:game',
 				{
-				templateUrl: "gameTemplate.html",
-				controller: "item"
+				templateUrl: "gamesTemplate.html",
+				controller: "game"
 				})
 
 		})

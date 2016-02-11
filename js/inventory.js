@@ -82,7 +82,7 @@ angular.
 				'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhZJQTGkB7UedsOhNzn4MiLbOZI7Zz1Awz-kxEpYqwkjchQ8zMiA'
 				)
 			var uncharted4collection = new Game(
-				'Uncharted: The Nathan Drake Collection = Playstation 4',
+				'Uncharted: The Nathan Drake Collection - Playstation 4',
 				"From the groundbreaking storytellers at Naughty Dog, comes the genre-defining epic that revolutionized adventure storytelling, rebuilt by Bluepoint Games with the power of the PS4 system. Experience one of the most revered game series of all time as you follow the perilous journey of Nathan Drake across the globe, from humble beginnings to extraordinary discoveries. Meet an unforgettable cast of characters as Drake puts life and friendship on the line in a race against ruthless enemies to uncover unimaginable treasure. UNCHARTED: The Nathan Drake Collection includes the single player campaigns for UNCHARTED: Drake's Fortune, UNCHARTED 2: Among Thieves, and UNCHARTED 3: Drake's Deception.",
 				playstation4.name,
 				10,				
@@ -93,7 +93,7 @@ angular.
 				"The Soviet invasion of Afghanistan has brought a new edge to the Cold War, and in 1984, a one-eyed man with a prosthetic arm appears in the country. Those who know him call him Snake; the legendary mercenary who was once swept from the stage of history and left in a coma by American private intelligence network Cipher. Snake is accompanied by Ocelot, an old friend who saved him from attack when he finally awoke. Now, Snake's former partner Kazuhira Miller is being held by the Soviet forces in Afghanistan. Snake must undertake a solo mission to rescue Miller and prove to the world that the legendary mercenary is not dead and gone. That first step will lead to a path of vengeance against the very Cipher that slaughtered so many of Snake's men, and to a battle that will embroil the whole world...",
 				[playstation4.name, xboxone.name],
 				10,
-				'http://ecx.images-amazon.com/images/I/91%2BwlIt-vDL._SL1500_.jpg'
+				'http://2.bp.blogspot.com/-3EHv1Pt9yXA/VbU9oexqfPI/AAAAAAAAAsM/eAe7lJBjjx4/s1600/MGSV%2BUS%2BCover%2B01.png'
 				)
 			var supermarioworld = new Game (
 				'Super Mario World',
@@ -114,7 +114,7 @@ angular.
 				"Mario experience of your dreams has arrived and is bursting with creativity…including yours! Play a near-limitless number of intensely creative Super Mario levels from players around the world. It’s easy enough to create your own levels with the Wii U GamePad controller that it may feel like you’re simply sketching out your ideas on paper, but you can now bring enemies and objects into a playable course in ways you could only dream of before. What was impossible in  traditional Mario games is now impossibly fun, so let your imagination run wild!",
 				wiiu.name,
 				15,
-				'http://ecx.images-amazon.com/images/I/817mJl8ozIL._SL1500_.jpg'
+				'http://www.gamestop.com/common/images/lbox/111959b1.jpg'
 				)
 			var mariokart8 = new Game (
 				'Mario Kart 8',

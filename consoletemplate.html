@@ -1,10 +1,8 @@
-
-
 <div class="section no-pad-bot primary-color">
 	<div class="container">
 		<h1 class="center-on-small-only white-text no-top-margin">{{activeConsole.name}}</h1>
 		<div class="row">
-			<img class="col m4" width="400px" src="{{activeConsole.image}}">
+			<img class="col m4 responsive-img" width="400px" src="{{activeConsole.image}}">
 			<div class="col m8 white-text">
 				<ul>
 					<li><h4>Product Description:</h4>{{activeConsole.description}}</li>
@@ -19,6 +17,25 @@
 </div>
 	<div class="container">
 		<h4>Product Reviews</h4>
+	</div>
+
+	<div class="container">
+		<h4>Top Games</h4>
+		<div class="row">
+        <div class="col s12 m6">
+          <div ng-repeat="game in gamesLibrary | filter : activeConsole.name" class="card small primary-color">
+            <div class="card-content white-text">
+            <img class="thumbnail" src="{{game.image}}">
+              <span class="card-title">{{game.name}}</span>
+              <p>{{game.description}}</p>
+            </div>
+            <div class="card-action">
+              <a href="#">This is a link</a>
+            </div>
+          </div>
+        </div>
+      </div>
+            
 	</div>
 
 	<div class="container">

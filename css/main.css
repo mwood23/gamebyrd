@@ -15,6 +15,16 @@
 	display: inline;
 }
 
+.thumbnail {
+	height: 100px;
+	width: 75px;
+}
+
+.minipic {
+	height: 60px;
+	width: 45px;
+}
+
 /*LANDING PAGE*/
 
 video#bgvid { 
@@ -109,6 +119,10 @@ header, .main, footer {
 /*CONSOLE PAGE*/
 .no-top-margin {
 	margin-top: 0px;
+}
+
+.addtocart {
+	float: right;
 }
 
 
