@@ -1,4 +1,4 @@
-angular.module('app', ['ngRoute']);
+angular.module('app', ['ngRoute', 'ngMaterial'] );
 
 
 angular
@@ -27,6 +27,8 @@ angular
 			// console.log($scope.gamesLibrary)
 			// console.log($scope.consoleLibrary)
 			// console.log($scope.bundles)
+
+
 		}])
 
 angular
