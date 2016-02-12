@@ -2,24 +2,23 @@
   <div id="modal1" class="modal modal-fixed-footer" ng-show="orderBox">
     <div class="modal-content">
       <h4>Select add ons</h4>
-      <img class="sm-pic" src="{{thisItem.image}}">
-      	<ul>
-      		<li>
-      			<h5>{{thisItem.name}}</h5>
-      		</li>
-      		<li>
-      			<p>${{thisItem.price}}</p>
-      		</li>
-      		<li>
-      			<p>Description: {{thisItem.description}}</p>
-      		</li>
-      	</ul>
+      
+      <div class="row">
+            <div class="col m5 center-align">
+              <img class="md-pic" src="{{thisItem.image}}">
+            </div>
+      			<div class="col m7">
+              <h5>{{thisItem.name}}</h5>
+        			<p>${{thisItem.price}}</p>
+            </div>
+      </div>
+            <p><strong>Description:</strong> {{thisItem.description}}</p>
       	<form>
       		
       	</form>
     </div>
     <div class="modal-footer">
-      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">At To Cart</a>
+      <a href="" class="modal-action modal-close waves-effect waves-green btn-flat ">Add To Cart</a>
     </div>
   </div>
 
@@ -28,7 +27,7 @@
    <div id="modal2" class="modal modal-fixed-footer">
     <div class="modal-content">
       <h4>Basket</h4>
-      <p>Plz</p>
+      <p></p>
     </div>
     <div class="modal-footer">
       <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Checkout</a>
