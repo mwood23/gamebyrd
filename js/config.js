@@ -12,7 +12,7 @@ angular.
 			.when('/howitworks', 
 			{
 				templateUrl: "howitworks.html",
-				controller: "howitworks"
+				controller: "main"
 			})
 
 			.when('/consoles/:console',

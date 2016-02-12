@@ -77,14 +77,14 @@ angular.
 			var supersmashbros = new Game(
 				'Super Smash Brothers',
 				'Four-player action fighter, starring 12 Nintendo mascots, including Mario, Luigi, Fox, Link, Samus, Pikachu, Jigglypuff and Captain Falcon. All the action takes place on one screen, from a zoomed out third-person perspective more reminiscent of old-school platformers than traditional fighting games. The premise is as simple as the controls. Beat up you opponents and knock them off the fighting platform to score a point. The more damage your opponents sustain, the farther you can throw them. Apart from the quick, but explosive mayhem that ensues when more than one player has at gfit, the game manages to bring back many fond gaming memories by bombarding players with familiar items, power-ups and many classic tunes.',
-				nintendo64.name,
+				[nintendo64.name],
 				15,
 				'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhZJQTGkB7UedsOhNzn4MiLbOZI7Zz1Awz-kxEpYqwkjchQ8zMiA'
 				)
 			var uncharted4collection = new Game(
 				'Uncharted: The Nathan Drake Collection - Playstation 4',
 				"From the groundbreaking storytellers at Naughty Dog, comes the genre-defining epic that revolutionized adventure storytelling, rebuilt by Bluepoint Games with the power of the PS4 system. Experience one of the most revered game series of all time as you follow the perilous journey of Nathan Drake across the globe, from humble beginnings to extraordinary discoveries. Meet an unforgettable cast of characters as Drake puts life and friendship on the line in a race against ruthless enemies to uncover unimaginable treasure. UNCHARTED: The Nathan Drake Collection includes the single player campaigns for UNCHARTED: Drake's Fortune, UNCHARTED 2: Among Thieves, and UNCHARTED 3: Drake's Deception.",
-				playstation4.name,
+				[playstation4.name],
 				10,				
 				'http://ecx.images-amazon.com/images/I/91ymHXDTSuL._SL1500_.jpg'
 				)
@@ -98,35 +98,35 @@ angular.
 			var supermarioworld = new Game (
 				'Super Mario World',
 				"Mario's first team-up with Yoshi, and an absolutely magical first release on the greatest console generation we've seen in video game history thus far.",
-				supernintendo.name,
+				[supernintendo.name],
 				10,
 				'http://ecx.images-amazon.com/images/I/91z1reLFbHL._SL1500_.jpg'
 				)
 			var crashteamracing = new Game (
 				'Crash Team Racing',
 				"Crash Bandicoot is back to take on friends and foes in Crash Team Racing. Featuring outrageous kart racing, CTR includes 8 characters with unique racing capabilities. Journey through dozens of races, battle in the arena or take on 3 of your friends in awesome multiplayer action. Made in USA.",
-				playstation.name,
+				[playstation.name],
 				10,
 				'http://ecx.images-amazon.com/images/I/71IHOvJhwRL._SL1260_.jpg'
 				)
 			var supermariomaker = new Game (
 				'Super Mario Maker',
 				"Mario experience of your dreams has arrived and is bursting with creativity…including yours! Play a near-limitless number of intensely creative Super Mario levels from players around the world. It’s easy enough to create your own levels with the Wii U GamePad controller that it may feel like you’re simply sketching out your ideas on paper, but you can now bring enemies and objects into a playable course in ways you could only dream of before. What was impossible in  traditional Mario games is now impossibly fun, so let your imagination run wild!",
-				wiiu.name,
+				[wiiu.name],
 				15,
 				'http://www.gamestop.com/common/images/lbox/111959b1.jpg'
 				)
 			var mariokart8 = new Game (
 				'Mario Kart 8',
 				"Feel the rush as your kart rockets across the ceiling. Race upside-down and along walls on anti-gravity tracks in the most action-fueled Mario Kart game yet. Take on racers across the globe and share videos of your greatest moments via Mario Kart TV.",
-				wiiu.name,
+				[wiiu.name],
 				15,
 				'http://ecx.images-amazon.com/images/I/91LQiO6JrbL._SL1500_.jpg'
 				)
 			var supersmashbroswiiu = new Game (
 				'Super Smash Bros. - Wii U',
 				"Battle it out as Nintendo's greatest heroes on the Wii U console Face off against the biggest roster of Nintendo all-stars ever assembled! Send your rivals flying with powerful attacks to earn all-new customizations and equipment that trick out your fighter's moves and stats. Then power-up and train intelligent amiibo figures* to take on your friends! The multiplayer showdown** you know and love is now on the Wii U console!",
-				wiiu.name,
+				[wiiu.name],
 				15,
 				'http://www.gamestop.com/common/images/lbox/240274b.jpg'
 				)

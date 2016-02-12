@@ -37,8 +37,8 @@ angular
 			$scope.total = 0
 
 			$scope.addToOrder = function(item){
-				$scope.$parent.thisItem = item
-				console.log(item)
+				$scope.thisItem = item
+				console.log($scope)
 			}
 
 			// Total Price
@@ -80,6 +80,16 @@ angular
 
 			})}
 
+			if($scope.$routeParams.console){
+			$scope.gameList = _.filter($scope.gamesLibrary, function(item){
+				console.log(item)
+				console.log($scope.$routeParams)
+				return item.console.indexOf($scope.$routeParams.console) > -1
+
+			})}
+
+			console.log($scope)
+
 			console.log($scope.activeConsole)
 			// console.log($scope.gamesLibrary)
 			// console.log($scope.consoleLibrary)
@@ -120,18 +130,4 @@ angular
 			$scope.orderItem = {}
 			$scope.total = 0
 
-			$scope.addToOrder = function(item){
-				$scope.thisItem = item
-				console.log($scope.thisItem)
-			}
-
-			// Total Price
-			$scope.totalPrice = function() {
-			$scope.total = 0
-			for (var i=0; i < $scope.basket.length; i++) {
-				$scope.total += $scope.basket[i].price;
-			}
-				console.log($scope.total);
-				return $scope.total;
-			}
 		}])

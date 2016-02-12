@@ -1,3 +1,6 @@
+<!-- CART -->
+<ng-include src="'cart.html'"></ng-include>
+
 <!-- HEADER -->
 		<div class="section no-pad-bot primary-color">
 			<div class="container">
@@ -18,7 +21,7 @@
 				<h4>Top Rented Games</h4>
 				<ul class="collection">
 					<li ng-repeat="game in gamesLibrary" class="collection-item avatar">
-						<a ng-href="#/games/{{game.name}}"><img src="{{game.image}}" class="circle"></a>
+						<a ng-href="#/games/{{game.name}}"><img src="{{game.image}}" class="sm-pic"></a>
 						<a ng-href="#/games/{{game.name}}" class="title">{{game.name}}</span></a>
 						<p>${{game.price}}</p>
 						<button ng-click="addToOrder(game)" data-target="modal1" class="btn modal-trigger primary-color"><i class="material-icons addtocart">shopping_basket</i></button>
@@ -29,10 +32,10 @@
 				<h4>Top Rented Consoles</h4>
 				<ul class="collection">
 					<li ng-repeat="console in consoleLibrary" class="collection-item avatar ">
-						<a ng-href="#/consoles/{{console.name}}"><img src="{{console.image}}" width="300px" class="circle"></a>
+						<a ng-href="#/consoles/{{console.name}}"><img src="{{console.image}}" width="300px" class="sm-pic valign-wrapper"></a>
 						<a ng-href="#/consoles/{{console.name}}" class="title">{{console.name}}</a>
 						<p>${{console.price}}</p>
-						<button data-target="modal1" class="btn modal-trigger primary-color"><i class="material-icons addtocart">shopping_basket</i></button>
+						<button ng-click="addToOrder(game)" data-target="modal1" class="btn modal-trigger primary-color"><i class="material-icons addtocart">shopping_basket</i></button>
 					</li>
 				</ul>
 			</div>
