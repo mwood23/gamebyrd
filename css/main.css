@@ -59,7 +59,24 @@ video#bgvid {
     background-size: cover; 
 }
 
-video { display: block; 
+.darken {
+	position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -90;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    background-size: cover; 
+    background-color: gray;
+}
+video { 
+	display: block; 
 }
 
 /*@media screen and (max-device-width: 800px) {
@@ -84,7 +101,7 @@ video#bgvid {
 .toggle-video {
 	position: absolute;
 	top: 10px;
-	right: -75px;
+	right: -50px;
 }
 
 header, .main, footer {
@@ -96,6 +113,20 @@ header, .main, footer {
     padding-left: 0;
   }
 }
+
+.landingpage-text {
+	margin: 0;
+	width: 90%;
+}
+
+.landingpage-text h1 {
+	margin-top: 0;
+}
+
+.pattern {
+	z-index: 1000
+}
+
 
 /*SIDE NAV*/
 .side-nav {
