@@ -55,25 +55,10 @@ video#bgvid {
     -moz-transform: translateX(-50%) translateY(-50%);
     -webkit-transform: translateX(-50%) translateY(-50%);
     transform: translateX(-50%) translateY(-50%);
-    background: url(../img/landingPageImage.jpg), no-repeat;
+    background: url(../img/landingpageimg.png), no-repeat;
     background-size: cover; 
 }
 
-.darken {
-	position: fixed;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    z-index: -90;
-    -ms-transform: translateX(-50%) translateY(-50%);
-    -moz-transform: translateX(-50%) translateY(-50%);
-    -webkit-transform: translateX(-50%) translateY(-50%);
-    transform: translateX(-50%) translateY(-50%);
-    background-size: cover; 
-    background-color: gray;
 }
 video { 
 	display: block; 
@@ -176,5 +161,15 @@ header, .main, footer {
 	float: left;
 }
 
+/*TOP CHARTS*/
+.content {
+	padding-left: 30px !important;
+    overflow: hidden;
+}
+
+.content img {
+    margin-right: 15px;
+    float: left;
+}
 
 
