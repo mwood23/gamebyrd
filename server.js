@@ -172,7 +172,7 @@ app.get('/', function(req, res){
   // =>  Mi nombre es Brandon
 })
 
-app.get('/admin.html', function(req, res){
+app.get('/admin', function(req, res){
     res.sendFile("admin.html", {root: './public/html'})
 })
 

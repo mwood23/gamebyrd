@@ -1,8 +1,8 @@
-angular.module('app', ['ngRoute', 'ngMaterial'] );
+angular.module('cust', ['ngRoute', 'ngMaterial'] );
 
 
 angular
-	.module('app')
+	.module('cust')
 		.controller('main', ['$scope', 'inventory', '$route', '$routeParams', '$location', function($scope, inventory, $route, $routeParams, $location){
 
 			$scope.$route = $route;
@@ -59,7 +59,7 @@ angular
 		}])
 
 angular
-	.module('app')
+	.module('cust')
 		.controller('console', ['$scope', 'inventory', '$route', '$routeParams', '$location', function($scope, inventory, $route, $routeParams, $location){
 
 			$scope.$route = $route;
@@ -97,7 +97,7 @@ angular
 		}])
 
 angular
-	.module('app')
+	.module('cust')
 		.controller('game', ['$scope', 'inventory', '$route', '$routeParams', '$location', function($scope, inventory, $route, $routeParams, $location){
 
 			$scope.$route = $route;

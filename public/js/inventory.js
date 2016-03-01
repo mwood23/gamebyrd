@@ -1,5 +1,5 @@
 angular.
-	module('app').
+	module('cust').
 		factory('inventory', function() {
 
 			var gamesLibrary = []
