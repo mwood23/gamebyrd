@@ -1,3 +1,4 @@
+/*Cascading style for admin page since it uses a top navigation and the customer side uses a side nav. This fixes the padding for the site*/
 header, .main, footer {
   padding-left: 0px;
 }

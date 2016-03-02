@@ -23,10 +23,6 @@ app.use(app.sessionMiddleware)
 // Create and name database
 mongoose.connect('mongodb://localhost/translator')
 
-
-
-
-
 // All passport JS stuff
 var userSchema = mongoose.Schema({
     username: { type: String, required: true, unique: true },

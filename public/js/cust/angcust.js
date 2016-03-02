@@ -1,4 +1,4 @@
-angular.module('cust', ['ngRoute', 'ngMaterial'] );
+angular.module('cust', ['ngRoute', 'ngMaterial', 'util'] );
 
 
 angular

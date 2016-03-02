@@ -3,7 +3,6 @@ angular.
 		config(function ($routeProvider){
 
 			$routeProvider
-			// Admin Routes
 			.when('/',
 			{
 				templateUrl: "html/admin/dashboard.html",
