@@ -1,4 +1,4 @@
-angular.module('cust', ['ngRoute', 'ngMaterial', 'util'] );
+angular.module('cust', ['ngRoute', 'ngMaterial', 'ngMessages', 'util'] );
 
 
 angular
@@ -12,12 +12,6 @@ angular
 			$scope.gamesLibrary = inventory.gamesLibrary;
 			$scope.consoleLibrary = inventory.consoleLibrary;
 			$scope.bundles = inventory.bundles;
-
-			// Open Modals
-			$scope.openModal = function(){
-				$('.modal-trigger').leanModal();
-				$('.modal-trigger').openModal();
-			}
 
 			// console.log($routeParams)
 
@@ -34,6 +28,35 @@ angular
 			// console.log($scope.consoleLibrary)
 			// console.log($scope.bundles)
 
+			// MODALS MODALS MODALS
+			  $scope.showTabDialog = function(ev) {
+			    $mdDialog.show({
+			      controller: DialogController,
+			      templateUrl: '../../html/cust/modals/login.html',
+			      parent: angular.element(document.body),
+			      targetEvent: ev,
+			      clickOutsideToClose:true
+			    })
+			        // .then(function(answer) {
+			        //   $scope.status = 'You said the information was "' + answer + '".';
+			        // }, function() {
+			        //   $scope.status = 'You cancelled the dialog.';
+			        // });
+			  };
+
+			function DialogController($scope, $mdDialog) {
+			  $scope.hide = function() {
+			    $mdDialog.hide();
+			  };
+
+			  $scope.cancel = function() {
+			    $mdDialog.cancel();
+			  };
+
+			  // $scope.answer = function(answer) {
+			  //   $mdDialog.hide(answer);
+			  // };
+			}
 
 			// Add to Cart
 			$scope.orderBox = true;
@@ -59,6 +82,7 @@ angular
 
 		// Login and SignUp
 		$scope.signup = function(){
+			console.log('sign up before AJAX')
             $http({
                 method : 'POST',
                 url    : '/signup',

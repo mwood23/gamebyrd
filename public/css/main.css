@@ -40,6 +40,11 @@
 	position: relative;
 }
 
+/* Centering the Modals due to nav*/
+.md-dialog-container {
+	padding-left: 210px;
+}
+
 /*LANDING PAGE*/
 
 video#bgvid { 
@@ -97,6 +102,10 @@ header, .main, footer {
   header, .main, footer {
     padding-left: 0;
   }
+  .md-dialog-container {
+	padding-left: 0px;
+}
+
 }
 
 .landingpage-text {
@@ -171,18 +180,5 @@ header, .main, footer {
     margin-right: 15px;
     float: left;
 }
-
-
-
-/*MATERIAL MODAL*/
-.dialogdemoBasicUsage #popupContainer {
-  position: relative; }
-.dialogdemoBasicUsage .footer {
-  width: 100%;
-  text-align: center;
-  margin-left: 20px; }
-.dialogdemoBasicUsage .footer, .dialogdemoBasicUsage .footer > code {
-  font-size: 0.8em;
-  margin-top: 50px; }
 
 

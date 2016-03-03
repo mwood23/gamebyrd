@@ -1,0 +1,44 @@
+<md-dialog aria-label="Mango (Fruit)">
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools primary-color">
+        <h2>Login/Signup</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <i class="material-icons">close</i>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content style="max-width:800px;max-height:810px; ">
+      <md-tabs md-dynamic-height md-border-bottom>
+        <md-tab label="Login">
+          <md-content class="md-padding">
+            <form ng-submit="login()">
+              <input type="text" ng-model="loginForm.username" placeholder="Username"/>
+              <input type="password" ng-model="loginForm.password" placeholder="Password"/>
+            <input type="submit"/>
+        </form>
+          </md-content>
+        </md-tab>
+        <md-tab label="Sign Up">
+          <md-content class="md-padding">
+            <form ng-submit="signup()">
+                <input type="text" ng-model="signupForm.username" placeholder="Username"/>
+                <input type="password" ng-model="signupForm.password" placeholder="Password"/>
+                <input type="submit"/>
+            </form>
+          </md-content>
+        </md-tab>
+      </md-tabs>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <span flex></span>
+      <md-button ng-click="answer('not useful')" >
+        Not Useful
+      </md-button>
+      <md-button ng-click="answer('useful')" style="margin-right:20px;" >
+        Useful
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>
