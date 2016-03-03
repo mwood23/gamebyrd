@@ -24,7 +24,8 @@
 						<a ng-href="#/games/{{game.name}}"><img src="{{game.image}}" class="sm-pic"></a>
 						<a ng-href="#/games/{{game.name}}" class="title">{{game.name}}</span></a>
 						<p>${{game.price}}</p>
-						<button ng-click="addToOrder(game)" data-target="modal1" class="btn modal-trigger primary-color"><i class="material-icons addtocart">shopping_basket</i></button>
+						<!-- <button ng-click="addToOrder(game)" data-target="modal1" class="btn modal-trigger primary-color"><i class="material-icons addtocart">shopping_basket</i></button> -->
+						<md-button ng-click="showTopItem($event, game)" class="btn primary-color"><i class="material-icons addtocart">shopping_basket</i></md-button>
 					</li>
 				</ul>
 			</div>

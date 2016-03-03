@@ -1,0 +1,35 @@
+<md-dialog ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>{{thisItem.name}}</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <i class="material-icons">close</i>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div class="md-dialog-content">
+         <h4>Select add ons</h4>
+      
+      <div class="row">
+            <div class="col m5 center-align">
+              <img class="md-pic" src="{{thisItem.image}}">
+            </div>
+            <div class="col m7">
+              <h5>{{thisItem.name}}</h5>
+              <p>${{thisItem.price}}</p>
+            </div>
+      </div>
+            <p><strong>Description:</strong> {{thisItem.description}}</p>
+        <form>
+          
+        </form>
+    </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <md-button ng-click="answer('useful')" style="margin-right:20px;">
+        Add to Cart
+      </md-button>
+    </md-dialog-actions>
+</md-dialog>

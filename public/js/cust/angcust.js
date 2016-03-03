@@ -29,22 +29,69 @@ angular
 			// console.log($scope.bundles)
 
 			// MODALS MODALS MODALS
-			  $scope.showTabDialog = function(ev) {
-			    $mdDialog.show({
-			      controller: DialogController,
-			      templateUrl: '../../html/cust/modals/login.html',
-			      parent: angular.element(document.body),
-			      targetEvent: ev,
-			      clickOutsideToClose:true
+			// For logging in
+			$scope.showLogin = function(ev) {
+				$mdDialog.show({
+					controller: loginController,
+					templateUrl: '../../html/cust/modals/login.html',
+					parent: angular.element(document.body),
+					targetEvent: ev,
+					clickOutsideToClose:true
 			    })
-			        // .then(function(answer) {
-			        //   $scope.status = 'You said the information was "' + answer + '".';
-			        // }, function() {
-			        //   $scope.status = 'You cancelled the dialog.';
-			        // });
-			  };
+			};
 
-			function DialogController($scope, $mdDialog) {
+
+
+			// For top charts
+			$scope.showTopItem = function(ev, item) {
+				$scope.thisItem = item
+				console.log($scope)
+				console.log($scope.thisItem)
+				
+				// This code make the modal full screen on small devices
+				var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
+				// This code right here
+
+			  
+			// Using locals to pass an object into the dialog
+			$mdDialog.show({
+				locals:{thisItem: $scope.thisItem},
+			    controller: topItemController,
+			    templateUrl: '../../html/cust/modals/topitem.html',
+			    parent: angular.element(document.body),
+			    targetEvent: ev,
+			    clickOutsideToClose:true,
+			    fullscreen: useFullScreen
+			})
+
+
+
+			$scope.$watch(function() {
+					return $mdMedia('xs') || $mdMedia('sm');
+				}, function(wantsFullScreen) {
+			    	$scope.customFullscreen = (wantsFullScreen === true);
+			  	});
+
+			};
+
+			// Injected this items to give me access to it on modal
+			function topItemController($scope, $mdDialog, thisItem) {
+			console.log(thisItem)
+
+			// Make thisItem available on the modal
+			$scope.thisItem = thisItem
+
+			$scope.hide = function() {
+			    $mdDialog.hide();
+			};
+
+			$scope.cancel = function() {
+			    $mdDialog.cancel();
+			};
+
+			}
+
+			function loginController($scope, $mdDialog) {
 			  $scope.hide = function() {
 			    $mdDialog.hide();
 			  };
@@ -53,9 +100,6 @@ angular
 			    $mdDialog.cancel();
 			  };
 
-			  // $scope.answer = function(answer) {
-			  //   $mdDialog.hide(answer);
-			  // };
 			}
 
 			// Add to Cart
@@ -68,6 +112,7 @@ angular
 			$scope.addToOrder = function(item){
 				$scope.thisItem = item
 				console.log($scope)
+				console.log($scope.thisItem)
 			}
 
 			// Total Price
@@ -103,11 +148,6 @@ angular
                 else { console.log(returnData)}
             })
         }
-
-
-
-
-
 
 		}])
 
