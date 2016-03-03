@@ -3,7 +3,7 @@ angular.module('cust', ['ngRoute', 'ngMaterial', 'util'] );
 
 angular
 	.module('cust')
-		.controller('main', ['$scope', 'inventory', '$route', '$routeParams', '$location', function($scope, inventory, $route, $routeParams, $location){
+		.controller('main', ['$scope', '$http', 'inventory', '$route', '$routeParams', '$location', '$mdDialog', '$mdMedia', function($scope, $http, inventory, $route, $routeParams, $location, $mdDialog, $mdMedia){
 
 			$scope.$route = $route;
 			$scope.$location = $location;
@@ -12,6 +12,12 @@ angular
 			$scope.gamesLibrary = inventory.gamesLibrary;
 			$scope.consoleLibrary = inventory.consoleLibrary;
 			$scope.bundles = inventory.bundles;
+
+			// Open Modals
+			$scope.openModal = function(){
+				$('.modal-trigger').leanModal();
+				$('.modal-trigger').openModal();
+			}
 
 			// console.log($routeParams)
 
@@ -50,6 +56,29 @@ angular
 				console.log($scope.total);
 				return $scope.total;
 			}
+
+		// Login and SignUp
+		$scope.signup = function(){
+            $http({
+                method : 'POST',
+                url    : '/signup',
+                data   : $scope.signupForm
+            }).then(function(returnData){
+                console.log(returnData)
+                if ( returnData.data.success ) { window.location.href="/dashboard" }
+            })
+        }
+
+        $scope.login = function(){
+            $http({
+                method : 'POST',
+                url    : '/login',
+                data   : $scope.loginForm
+            }).then(function(returnData){
+                if ( returnData.data.success ) { window.location.href="/dashboard" } 
+                else { console.log(returnData)}
+            })
+        }
 
 
 

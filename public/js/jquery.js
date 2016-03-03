@@ -11,5 +11,4 @@
     setTimeout(function(){
     	$('.modal-trigger').leanModal();
     },500)
-
   });
