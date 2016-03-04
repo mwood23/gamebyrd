@@ -1,0 +1,1 @@
+var Game = require('../models/videogame.js');

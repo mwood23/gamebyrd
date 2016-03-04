@@ -74,7 +74,8 @@ angular
 
 			};
 
-			// Injected this items to give me access to it on modal
+			// Controllers for MODALS MODALS MODALS
+			// Injected this item to give me access to it on modal
 			function topItemController($scope, $mdDialog, thisItem) {
 			console.log(thisItem)
 
@@ -100,7 +101,33 @@ angular
 			    $mdDialog.cancel();
 			  };
 
+	  		// Login and SignUp
+	  		$scope.signup = function(){
+	  			console.log('sign up before AJAX')
+	              $http({
+	                  method : 'POST',
+	                  url    : '/signup',
+	                  data   : $scope.signupForm
+	              }).then(function(returnData){
+	                  console.log(returnData)
+	                  if ( returnData.data.success ) { window.location.href="/dashboard" }
+	              })
+	          }
+
+	          $scope.login = function(){
+	              $http({
+	                  method : 'POST',
+	                  url    : '/login',
+	                  data   : $scope.loginForm
+	              }).then(function(returnData){
+	                  if ( returnData.data.success ) { window.location.href="/dashboard" } 
+	                  else { console.log(returnData)}
+	              })
+	          }
+
 			}
+
+			// End controller MODALS MODALS MODALS
 
 			// Add to Cart
 			$scope.orderBox = true;
@@ -125,29 +152,7 @@ angular
 				return $scope.total;
 			}
 
-		// Login and SignUp
-		$scope.signup = function(){
-			console.log('sign up before AJAX')
-            $http({
-                method : 'POST',
-                url    : '/signup',
-                data   : $scope.signupForm
-            }).then(function(returnData){
-                console.log(returnData)
-                if ( returnData.data.success ) { window.location.href="/dashboard" }
-            })
-        }
 
-        $scope.login = function(){
-            $http({
-                method : 'POST',
-                url    : '/login',
-                data   : $scope.loginForm
-            }).then(function(returnData){
-                if ( returnData.data.success ) { window.location.href="/dashboard" } 
-                else { console.log(returnData)}
-            })
-        }
 
 		}])
 
