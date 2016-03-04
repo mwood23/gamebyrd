@@ -9,10 +9,10 @@ angular.
 				controller: "main"
 			})
 
-			.when('/inventory',
+			.when('/additem',
 			{
-				templateUrl: "html/admin/inventory.html",
-				controller: "inventory"
+				templateUrl: "html/admin/additem.html",
+				controller: "additem"
 			})
 
 			.when('/receivables',

@@ -1,0 +1,190 @@
+<div ng-cloak>
+  <md-content>
+    <md-tabs md-dynamic-height md-border-bottom>
+      <md-tab label="Game">
+        <md-content class="md-padding">
+        <!-- Add Game Start -->
+          <div class="row">
+              <h1 class="md-display-2">Add Game</h1>
+              <form ng-submit="newGame()">
+                <div class="row col m12">
+                  <div class="input-field col m6 col s12">
+                    <input ng-model="addGame.name" id="name" type="text" class="validate">
+                    <label for="Name">Name</label>
+                  </div>
+                  <div class="input-field col m6 col s12">
+                    <input ng-model="addGame.alternative_name" id="alternative_name" type="text" class="validate">
+                    <label for="alternative_name">Alternative Name</label>
+                  </div>
+                </div>
+                <div class="row col m12">
+                  <div class="input-field col m6 col s12">
+                    <input ng-model="addGame.rating" id="rating" type="text" class="validate">
+                    <label for="rating">Rating</label>
+                  </div>
+                  <div class="input-field col m6 col s12">
+                    <input ng-model="addGame.release_dates" id="release_dates" type="text" class="validate">
+                    <label for="release_dates">Release Dates need to look at</label>
+                  </div>
+                </div>
+                <div class="row col m12">
+                  <div class="input-field col m4 col s12">
+                    <input ng-model="addGame.companies" id="companies" type="text" class="validate">
+                    <label for="companies">Companies</label>
+                  </div>
+                  <div class="input-field col m4 col s12">
+                    <input ng-model="addGame.cover" id="cover" type="text" class="validate">
+                    <label for="cover">Cover (img link)</label>
+                  </div>
+                  <div class="input-field col m4 col s12">
+                    <input ng-model="addGame.screenshots" id="screenshots" type="text" class="validate">
+                    <label for="screenshots">Screenshots (img links separated by commas)</label>
+                  </div>
+                </div>
+                <div class="row col m12">
+                  <div class="input-field col m4 col s12">
+                    <input ng-model="addGame.quantity" id="quantity" type="number" class="validate">
+                    <label for="quantity">Quantity</label>
+                  </div>
+                  <div class="input-field col m4 col s12">
+                    <input ng-model="addGame.received_by" id="received_by" type="text" class="validate">
+                    <label for="received_by">Received By</label>
+                  </div>
+                  <div class="input-field col m4 col s12">
+                    <input ng-model="addGame.received_date" id="received_date" type="text" class="validate">
+                    <label for="received_date">Received Date</label>
+                  </div>
+                </div>
+                <div class="row">
+                      <div class="row">
+                        <div class="input-field col s12">
+                          <textarea ng-model="addGame.comments" id="comments" class="materialize-textarea"></textarea>
+                          <label for="comments">Comments</label>
+                        </div>
+                      </div>
+                </div>
+                <input type="submit"/>
+              </form>
+            </div>
+        </md-content>
+      </md-tab>
+      <!-- Add Console Start -->
+      <md-tab label="Console">
+        <md-content class="md-padding">
+          <h1 class="md-display-2">Add Console</h1>
+          <form ng-submit="newConsole()">
+            <div class="row col m12">
+              <div class="input-field col m6 col s12">
+                <input ng-model="addConsole.name" id="name" type="text" class="validate">
+                <label for="Name">Name</label>
+              </div>
+              <div class="input-field col m6 col s12">
+                <input ng-model="addConsole.alternative_name" id="alternative_name" type="text" class="validate">
+                <label for="alternative_name">Alternative Name</label>
+              </div>
+            </div>
+            <div class="row col m12">
+              <div class="input-field col m6 col s12">
+                <input ng-model="addConsole.rating" id="rating" type="text" class="validate">
+                <label for="rating">Rating</label>
+              </div>
+              <div class="input-field col m6 col s12">
+                <input ng-model="addConsole.release_date" id="release_date" type="text" class="validate">
+                <label for="release_date">Release Date</label>
+              </div>
+            </div>
+            <div class="row col m12">
+              <div class="input-field col m4 col s12">
+                <input ng-model="addConsole.picture" id="picture" type="text" class="validate">
+                <label for="picture">Picture</label>
+              </div>
+              <div class="input-field col m4 col s12">
+                <input ng-model="addConsole.quantity" id="quantity" type="text" class="validate">
+                <label for="quantity">Quantity</label>
+              </div>
+              <div class="input-field col m4 col s12">
+                <input ng-model="addConsole.received_by" id="received_by" type="text" class="validate">
+                <label for="received_by">Received By</label>
+              </div>
+            </div>
+            <div class="row col m12">
+              <div class="input-field col m4 col s12">
+                <input ng-model="addConsole.received_date" id="received_date" type="text" class="validate">
+                <label for="received_date">Received Date</label>
+              </div>
+            </div>
+            <div class="row">
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <textarea ng-model="addConsole.comments" id="comments" class="materialize-textarea"></textarea>
+                      <label for="comments">Comments</label>
+                    </div>
+                  </div>
+            </div>
+            <input type="submit"/>
+          </form>
+        </md-content>
+      </md-tab>
+      <!-- Add Accessory Start -->
+      <md-tab label="Accessory">
+        <md-content class="md-padding">
+          <h1 class="md-display-2">Add Accessory</h1>
+          <form ng-submit="newAccessory()">
+            <div class="row col m12">
+              <div class="input-field col m6 col s12">
+                <input ng-model="addAccessory.name" id="name" type="text" class="validate">
+                <label for="Name">Name</label>
+              </div>
+              <div class="input-field col m6 col s12">
+                <input ng-model="addAccessory.alternative_name" id="alternative_name" type="text" class="validate">
+                <label for="alternative_name">Alternative Name</label>
+              </div>
+            </div>
+            <div class="row col m12">
+              <div class="input-field col m6 col s12">
+                <input ng-model="addAccessory.rating" id="rating" type="text" class="validate">
+                <label for="rating">Rating</label>
+              </div>
+              <div class="input-field col m6 col s12">
+                <input ng-model="addAccessory.release_date" id="release_date" type="text" class="validate">
+                <label for="release_date">Release Date</label>
+              </div>
+            </div>
+            <div class="row col m12">
+              <div class="input-field col m4 col s12">
+                <input ng-model="addAccessory.picture" id="picture" type="text" class="validate">
+                <label for="picture">Picture</label>
+              </div>
+              <div class="input-field col m4 col s12">
+                <input ng-model="addAccessory.quantity" id="quantity" type="text" class="validate">
+                <label for="quantity">Quantity</label>
+              </div>
+              <div class="input-field col m4 col s12">
+                <input ng-model="addAccessory.received_by" id="received_by" type="text" class="validate">
+                <label for="received_by">Received By</label>
+              </div>
+            </div>
+            <div class="row col m12">
+              <div class="input-field col m4 col s12">
+                <input ng-model="addAccessory.received_date" id="received_date" type="text" class="validate">
+                <label for="received_date">Received Date</label>
+              </div>
+              <div class="input-field col m4 col s12">
+                <input ng-model="addAccessory.console" id="console" type="text" class="validate">
+                <label for="console">console</label>
+              </div>
+            </div>
+            <div class="row">
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <textarea ng-model="addAccessory.comments" id="comments" class="materialize-textarea"></textarea>
+                      <label for="comments">Comments</label>
+                    </div>
+                  </div>
+            </div>
+            <input type="submit"/>
+          </form>
+      </md-tab>
+    </md-tabs>
+  </md-content>
+</div>

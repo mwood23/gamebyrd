@@ -94,6 +94,23 @@ app.get('/admin', function(req, res){
     res.sendFile("admin.html", {root: './public/html'})
 })
 
+// Routes to post new information to data base
+var videogameController = require("./controllers/videogameController.js")
+var consoleController = require("./controllers/consoleController.js")
+var accessoryController = require("./controllers/accessoryController.js")
+
+app.post('/api/addGame', videogameController.addGame)
+app.post('/api/addConsole', consoleController.addConsole)
+app.post('/api/addAccessory', accessoryController.addAccessory)
+
+
+
+
+
+
+
+
+
 var port = 3000
 app.listen(port, function(){
 	console.log('Server running on port ' + port)
