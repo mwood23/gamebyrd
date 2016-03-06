@@ -2,13 +2,12 @@ var Game = require('../models/videogamemodel.js');
 
 function addGame (req, res) {
 	var game = new Game ({
-		name : req.body.name,
-		alternative_name : req.body.alternative_name,
+		title : req.body.title,
+		keywordsT : req.body.keywords.split(", "),
 		rating : req.body.rating,
-		release_dates : req.body.release_dates,
-		companies : req.body.companies,
+		console : req.body.console,
 		cover : req.body.cover,
-		screenshots : req.body.screenshots,
+		screenshots : req.body.screenshots.split(", "),
 		quantity : req.body.quantity,
 		received_by : req.body.received_by,
 		received_date : req.body.received_date,
