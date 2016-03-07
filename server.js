@@ -20,7 +20,7 @@ app.use(app.sessionMiddleware)
 // End express session startup
 
 // Create and name database
-mongoose.connect('mongodb://localhost/translator')
+mongoose.connect('mongodb://localhost/gamebyrd')
 
 // Application configuration
 app.use(logger('dev'));
@@ -102,6 +102,14 @@ var accessoryController = require("./controllers/accessoryController.js")
 app.post('/api/addGame', videogameController.addGame)
 app.post('/api/addConsole', consoleController.addConsole)
 app.post('/api/addAccessory', accessoryController.addAccessory)
+
+// Routes to query database for information
+var custhomeController = require("./controllers/custhomeController.js")
+app.get('/getGamesList', custhomeController.getGamesList);
+app.get('/getConsolesList', custhomeController.getConsolesList);
+app.get('/getAccessoriesList', custhomeController.getAccessoriesList);
+app.get('/getTopGames', custhomeController.getTopGames);
+app.get('/getTopConsoles', custhomeController.getTopConsoles);
 
 
 

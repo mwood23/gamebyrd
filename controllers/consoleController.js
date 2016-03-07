@@ -1,5 +1,7 @@
 var GameConsole = require('../models/consolemodel.js');
 
+
+// need to fix
 function addConsole (req, res) {
 	var gameConsole = new GameConsole ({
 		name : req.body.name,

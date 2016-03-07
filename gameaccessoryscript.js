@@ -1,6 +1,6 @@
 var mongoose = require('mongoose')
 
-mongoose.connect('mongodb://localhost/translator')
+mongoose.connect('mongodb://localhost/gamebyrd')
 
 var Game = require('./models/videogamemodel.js')
 var Accessory = require('./models/accessorymodel.js')
@@ -15,8 +15,8 @@ var gameData = require('./games.json')
 	gameData.forEach(function(datum){
 		// console.log(datum)
 		GameConsole.findOne({name : datum.console}, function(err, foundConsole){
-			console.log(err, foundConsole, datum.console)
-			datum.console = foundConsole._id
+			console.log(err, foundConsole, datum.console);
+			datum.console = foundConsole._id;
 			(new Game(datum)).save(function(err, savedDatum){
 			console.log(err)
 		})
@@ -26,10 +26,10 @@ var gameData = require('./games.json')
 
 	accessoryData.forEach(function(datum){
 		// console.log(datum)
-		Accessory.findOne({name : datum.console}, function(err, foundConsole){
-			console.log(err, foundConsole, datum.console)
-			datum.console = foundConsole._id
-			(new Game(datum)).save(function(err, savedDatum){
+		GameConsole.findOne({name : datum.console}, function(err, foundConsole){
+			console.log(err, foundConsole, datum.console);
+			datum.console = foundConsole._id;
+			(new Accessory(datum)).save(function(err, savedDatum){
 			console.log(err)
 		})
 		})

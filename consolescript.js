@@ -1,6 +1,6 @@
 var mongoose = require('mongoose')
 
-mongoose.connect('mongodb://localhost/translator')
+mongoose.connect('mongodb://localhost/gamebyrd')
 
 var GameConsole = require('./models/consolemodel.js')
 

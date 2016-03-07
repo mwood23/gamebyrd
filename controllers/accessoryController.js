@@ -1,5 +1,7 @@
 var Accessory = require('../models/accessorymodel.js');
 
+
+// Need to fix
 function addAccessory (req, res) {
 	var accessory = new Accessory ({
 		name : req.body.name,

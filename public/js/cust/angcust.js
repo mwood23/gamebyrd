@@ -9,11 +9,28 @@ angular
 			$scope.$location = $location;
 			$scope.$routeParams = $routeParams;
 
-			$scope.gamesLibrary = inventory.gamesLibrary;
-			$scope.consoleLibrary = inventory.consoleLibrary;
-			$scope.bundles = inventory.bundles;
+			inventory.getGamesList().then(function(returnData){
+					$scope.gamesList = returnData.data
+					console.log($scope.gamesList)
+				})	
+			inventory.getConsolesList().then(function(returnData){
+					$scope.consolesList = returnData.data
+					console.log($scope.consolesList)
+				})	
 
-			// console.log($routeParams)
+			inventory.getTopGames().then(function(returnData){
+					$scope.topGames = returnData.data
+					console.log($scope.topGames)
+				})
+
+			inventory.getTopConsoles().then(function(returnData){
+					$scope.topConsoles = returnData.data
+					console.log($scope.topConsoles)
+				})
+
+
+			console.log($scope.topGames)
+			console.log($scope.topConsoles)
 
 			if($scope.$routeParams.console){
 			$scope.activeConsole = _.find($scope.consoleLibrary, function(item){
@@ -27,6 +44,16 @@ angular
 			// console.log($scope.gamesLibrary)
 			// console.log($scope.consoleLibrary)
 			// console.log($scope.bundles)
+
+			// $scope.getTopGames = function(req, res){
+			// 	$http.get('/getTopGames')
+			// 	.then(function(returnData){
+			// 		$scope.topGames = returnData.data
+			// 		console.log($scope.topGames)
+			// 	})
+			// }
+
+			// $scope.getTopGames()
 
 			// MODALS MODALS MODALS
 			// For logging in
@@ -164,31 +191,37 @@ angular
 			$scope.$location = $location;
 			$scope.$routeParams = $routeParams;
 
-			$scope.gamesLibrary = inventory.gamesLibrary;
-			$scope.consoleLibrary = inventory.consoleLibrary;
-			$scope.bundles = inventory.bundles;
-
 			console.log($routeParams)
 
+			inventory.getConsolesList().then(function(returnData){
+				$scope.consolesList = returnData.data
+				console.log($scope.consolesList)
+				})	
+			inventory.getGamesList().then(function(returnData){
+					$scope.gamesList = returnData.data
+					console.log($scope.gamesList)
+				})	
+
 			if($scope.$routeParams.console){
-			$scope.activeConsole = _.find($scope.consoleLibrary, function(item){
+			$scope.activeConsole = _.find($scope.consolesList, function(item){
 				console.log(item)
 				console.log($scope.$routeParams)
-				return item.name === $scope.$routeParams.console
+				return item._id === $scope.$routeParams.console
 
 			})}
 
 			if($scope.$routeParams.console){
-			$scope.gameList = _.filter($scope.gamesLibrary, function(item){
+			$scope.gameList = _.filter($scope.gamesList, function(item){
 				console.log(item)
 				console.log($scope.$routeParams)
 				return item.console.indexOf($scope.$routeParams.console) > -1
 
 			})}
 
-			console.log($scope)
+			console.log($scope.gamesList)
 
-			console.log($scope.activeConsole)
+			// console.log($scope)
+			// console.log($scope.activeConsole)
 			// console.log($scope.gamesLibrary)
 			// console.log($scope.consoleLibrary)
 			// console.log($scope.bundles)
@@ -202,17 +235,18 @@ angular
 			$scope.$location = $location;
 			$scope.$routeParams = $routeParams;
 
-			$scope.gamesLibrary = inventory.gamesLibrary;
-			$scope.consoleLibrary = inventory.consoleLibrary;
-			$scope.bundles = inventory.bundles;
-
 			console.log($routeParams)
 
+			inventory.getGamesList().then(function(returnData){
+					$scope.gamesList = returnData.data
+					console.log($scope.gamesList)
+				})	
+
 			if($scope.$routeParams.game){
-			$scope.activeGame = _.find($scope.gamesLibrary, function(item){
+			$scope.activeGame = _.find($scope.gamesList, function(item){
 				console.log(item)
 				console.log($scope.$routeParams)
-				return item.name === $scope.$routeParams.game
+				return item.title === $scope.$routeParams.game
 
 			})
 			}

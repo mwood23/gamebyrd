@@ -1,5 +1,7 @@
 var Game = require('../models/videogamemodel.js');
 
+
+// need to fix
 function addGame (req, res) {
 	var game = new Game ({
 		title : req.body.title,
