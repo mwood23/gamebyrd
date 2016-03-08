@@ -29,8 +29,8 @@ angular
 				})
 
 
-			console.log($scope.topGames)
-			console.log($scope.topConsoles)
+			// console.log($scope.topGames)
+			// console.log($scope.topConsoles)
 
 			if($scope.$routeParams.console){
 			$scope.activeConsole = _.find($scope.consoleLibrary, function(item){
@@ -40,20 +40,18 @@ angular
 
 			})
 			}
-			// console.log($scope.activeConsole)
-			// console.log($scope.gamesLibrary)
-			// console.log($scope.consoleLibrary)
-			// console.log($scope.bundles)
 
-			// $scope.getTopGames = function(req, res){
-			// 	$http.get('/getTopGames')
-			// 	.then(function(returnData){
-			// 		$scope.topGames = returnData.data
-			// 		console.log($scope.topGames)
-			// 	})
-			// }
+			$http.get('/api/me')
+			    .then(function(returnData){
+			        if(returnData.data.user){
+			           console.log(returnData)
+			        }
+			        else {
+			            // No user :(
+			           console.log("no user")
+			        }
+			    })
 
-			// $scope.getTopGames()
 
 			// MODALS MODALS MODALS
 			// For logging in
@@ -137,7 +135,7 @@ angular
 	                  data   : $scope.signupForm
 	              }).then(function(returnData){
 	                  console.log(returnData)
-	                  if ( returnData.data.success ) { window.location.href="/dashboard" }
+	                  if ( returnData.data.success ) { window.location.href="/#/" }
 	              })
 	          }
 
@@ -147,7 +145,15 @@ angular
 	                  url    : '/login',
 	                  data   : $scope.loginForm
 	              }).then(function(returnData){
-	                  if ( returnData.data.success ) { window.location.href="/dashboard" } 
+	              		console.log(returnData)
+	                  if ( returnData.data.user ) {
+	                  	$scope.user = returnData.data.user;
+	                 	$scope.currentUserSignedIn = true;
+	              		console.log($scope.user)
+	              		console.log($scope.currentUserSignedIn)
+	              		$mdDialog.hide();
+	              	}
+
 	                  else { console.log(returnData)}
 	              })
 	          }

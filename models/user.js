@@ -6,6 +6,16 @@ var userSchema = mongoose.Schema({
 	email : {type: String, required: true},
 	username : {type : String, required:true, unique : true},
 	password : {type : String, required:true},
+	address : {type : String},
+	city : {type : String},
+	zip_code : {type : String},
+	cart : {type : Array},
+	mobile_name : {type : Number},
+	purchase_history : {type : Array},
+	current_items : {type : Array},
+	permissions : {type : String},
+
+
 })
 
 module.exports = mongoose.model('User', userSchema)

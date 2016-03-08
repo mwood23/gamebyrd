@@ -87,7 +87,6 @@ app.post('/login_data', function(req, res, next){
 
 app.get('/', function(req, res){
   res.sendFile("index.html", {root: './public/html/'})
-  // =>  Mi nombre es Brandon
 })
 
 app.get('/admin', function(req, res){
@@ -111,8 +110,10 @@ app.get('/getAccessoriesList', custhomeController.getAccessoriesList);
 app.get('/getTopGames', custhomeController.getTopGames);
 app.get('/getTopConsoles', custhomeController.getTopConsoles);
 
-
-
+app.get('/api/me', function(req, res){
+    // Return the logged in user (or undefined if they are not logged in)
+    res.send({user:req.user})
+})
 
 
 

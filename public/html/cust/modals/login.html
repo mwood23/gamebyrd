@@ -22,6 +22,9 @@
         <md-tab label="Sign Up">
           <md-content class="md-padding">
             <form ng-submit="signup()">
+                <input type="text" ng-model="signupForm.first_name" placeholder="First Name"/>
+                <input type="text" ng-model="signupForm.last_name" placeholder="Last Name"/>
+                <input type="text" ng-model="signupForm.email" placeholder="email"/>
                 <input type="text" ng-model="signupForm.username" placeholder="Username"/>
                 <input type="password" ng-model="signupForm.password" placeholder="Password"/>
                 <input type="submit"/>

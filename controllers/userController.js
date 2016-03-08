@@ -6,6 +6,9 @@ function userSignup (req, res){
 	bcrypt.genSalt(11, function(error, salt){
         bcrypt.hash(req.body.password, salt, function(hashError, hash){
             var newUser = new User({
+                first_name : req.body.first_name,
+                last_name : req.body.last_name,
+                email : req.body.email,
                 username: req.body.username,
                 password: hash,
             });
@@ -31,7 +34,7 @@ function userLogin (req, res, next){
         if (!user) { return res.send({error : 'something went wrong :('}); }
         req.logIn(user, function(err) {
             if (err) { return next(err); }
-            return res.send({success:'success'});
+            return res.send({user:req.user});
         });
     })(req, res, next);
 }
