@@ -9,7 +9,7 @@ var userSchema = mongoose.Schema({
 	address : {type : String},
 	city : {type : String},
 	zip_code : {type : String},
-	cart : {type : Array},
+	cart : {type : Object},
 	mobile_name : {type : Number},
 	purchase_history : {type : Array},
 	current_items : {type : Array},

@@ -1,7 +1,7 @@
 var mongoose = require('mongoose')
 
 var consoleSchema = mongoose.Schema({
-	name : {         type : String, required : true, unique : true},
+	name : {         type : String, required : true, unique : true, index : "text"},
 	rating : {       type : Number, required : true},
 	picture : {      type : String, required : true},
 	description : {  type : String, required : true},

@@ -1,7 +1,7 @@
 var mongoose = require('mongoose')
 
 var accessorySchema = mongoose.Schema({
-	name : {            type : String, required : true},
+	name : {            type : String, required : true, index : "text"},
 	rating : {          type : Number, required : true},
 	picture : {         type : String, required : true},
 	quantity : {        type : Number, required : true},

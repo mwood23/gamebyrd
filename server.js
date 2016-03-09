@@ -97,6 +97,7 @@ app.get('/admin', function(req, res){
 var videogameController = require("./controllers/videogameController.js")
 var consoleController = require("./controllers/consoleController.js")
 var accessoryController = require("./controllers/accessoryController.js")
+var addToCartController = require("./controllers/addToCartController.js")
 
 app.post('/api/addGame', videogameController.addGame)
 app.post('/api/addConsole', consoleController.addConsole)
@@ -114,6 +115,8 @@ app.get('/api/me', function(req, res){
     // Return the logged in user (or undefined if they are not logged in)
     res.send({user:req.user})
 })
+
+app.post('/api/addToCart', addToCartController.addToCart)
 
 
 

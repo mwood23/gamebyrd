@@ -3,12 +3,12 @@ angular.module('cust', ['ngRoute', 'ngMaterial', 'ngMessages', 'util'] );
 
 angular
 	.module('cust')
-		.controller('main', ['$scope', '$http', 'inventory', '$route', '$routeParams', '$location', '$mdDialog', '$mdMedia', function($scope, $http, inventory, $route, $routeParams, $location, $mdDialog, $mdMedia){
+		.controller('main', ['$scope', '$rootScope', '$http', 'inventory', '$route', '$routeParams', '$location', '$mdDialog', '$mdMedia', function($scope, $rootScope, $http, inventory, $route, $routeParams, $location, $mdDialog, $mdMedia){
 
 			$scope.$route = $route;
 			$scope.$location = $location;
 			$scope.$routeParams = $routeParams;
-
+			
 			inventory.getGamesList().then(function(returnData){
 					$scope.gamesList = returnData.data
 					console.log($scope.gamesList)
@@ -41,16 +41,33 @@ angular
 			})
 			}
 
+			$scope.search = ""
+			console.log($scope.search)
+
+			// For async search
+			$http({
+				method: 'POST',
+				url   : 'api/search',
+				data  : $scope.search
+			}).then(function(returnData){
+				$scope.searchResults = returnData.data.items
+			}
+			)
+
 			$http.get('/api/me')
 			    .then(function(returnData){
 			        if(returnData.data.user){
 			           console.log(returnData)
+			           $rootScope.user = returnData.data.user;
+			           $rootScope.currentUserSignedIn = true;
 			        }
 			        else {
 			            // No user :(
 			           console.log("no user")
 			        }
 			    })
+
+
 
 
 			// MODALS MODALS MODALS
@@ -102,7 +119,6 @@ angular
 			// Controllers for MODALS MODALS MODALS
 			// Injected this item to give me access to it on modal
 			function topItemController($scope, $mdDialog, thisItem) {
-			console.log(thisItem)
 
 			// Make thisItem available on the modal
 			$scope.thisItem = thisItem
@@ -115,9 +131,24 @@ angular
 			    $mdDialog.cancel();
 			};
 
+			$scope.addToCart = function(item) {
+				var cartData = {
+					itemID : item._id,
+					user : $rootScope.user._id
+				}
+				console.log(cartData)
+				$http({
+					method : 'POST',
+					url    : '/api/addToCart',
+					data   : cartData,
+				}).then(function(returnData){
+					console.log(returnData.data.success)
+				})
 			}
 
-			function loginController($scope, $mdDialog) {
+			}
+
+			function loginController($scope, $rootScope, $mdDialog) {
 			  $scope.hide = function() {
 			    $mdDialog.hide();
 			  };
@@ -147,10 +178,12 @@ angular
 	              }).then(function(returnData){
 	              		console.log(returnData)
 	                  if ( returnData.data.user ) {
-	                  	$scope.user = returnData.data.user;
-	                 	$scope.currentUserSignedIn = true;
+	                  	$rootScope.user = returnData.data.user;
+	                 	$rootScope.currentUserSignedIn = true;
 	              		console.log($scope.user)
-	              		console.log($scope.currentUserSignedIn)
+	              		console.log($rootScope.currentUserSignedIn)
+	              		console.log($rootScope.currentUserSignedIn)
+
 	              		$mdDialog.hide();
 	              	}
 
