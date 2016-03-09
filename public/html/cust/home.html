@@ -2,7 +2,7 @@
 <ng-include src="'html/cust/cart.html'"></ng-include>
 
 <!-- HEADER -->
-		<div class="section no-pad-bot primary-color">
+<!-- 		<div class="section no-pad-bot primary-color">
 			<div class="container">
 				<h1 class="center-on-small-only white-text">GameByrd</h1>
 				<div class="row center">
@@ -12,7 +12,53 @@
 					<a ng-href="#/howitworks" class="btn-large waves-effect waves-light secondary-color">HOW IT WORKS</a>
 				</div>
 			</div>
-		</div>	
+		</div> -->
+<script type="text/javascript">
+  $('.grid').masonry({
+  itemSelector: '.grid-item',
+  columnWidth: '.grid-sizer',
+  percentPosition: true
+});
+  $(function(){
+    $('#scene').parallax();
+  });
+</script>
+
+ <div class="container-exp">
+    <ul id="scene" data-invert-x="true" class="scene">
+      <li class="layer" data-depth="0.00">
+      <div class="background"></div>
+      </li>
+      
+      <li class="layer grid" data-depth="1.40">
+          <div class="grid-sizer"></div>
+          <div class="grid-item"></div>
+          <div class="grid-item grid-item--width2 grid-item--height2"></div>
+          <div class="grid-item grid-item--height3"></div>
+          <div class="grid-item grid-item--height2"></div>
+          <div class="grid-item grid-item--width3"></div>
+          <div class="grid-item"></div>
+          <div class="grid-item"></div>
+          <div class="grid-item grid-item--height2"></div>
+          <div class="grid-item grid-item--width2 grid-item--height3"></div>
+          <div class="grid-item"></div>
+          <div class="grid-item grid-item--height2"></div>
+          <div class="grid-item"></div>
+          <div class="grid-item grid-item--width2 grid-item--height2"></div>
+          <div class="grid-item grid-item--width2"></div>
+          <div class="grid-item"></div>
+          <div class="grid-item grid-item--height2"></div>
+          <div class="grid-item"></div>
+          <div class="grid-item"></div>
+          <div class="grid-item grid-item--height3"></div>
+          <div class="grid-item grid-item--height2"></div>
+          <div class="grid-item"></div>
+          <div class="grid-item"></div>
+          <div class="grid-item grid-item--height2"></div>
+      </li>
+    
+    </ul>
+  </div>
 
 <!-- TOP CHARTS -->
 	<div class="container">
@@ -45,8 +91,8 @@
   <div class="container">
     <div class="row">
       <div class="input-field col s12">
-        <span>{{search}}</span>
-        <input ng-model="search" id="search" type="search">
+        <span>{{search.search}}</span>
+        <input ng-model="search.search" ng-change="searchQuery()" id="search" type="search">
         <label for="search">Search for consoles, games, or accessories</label>
       </div>
     </div>

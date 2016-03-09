@@ -41,18 +41,21 @@ angular
 			})
 			}
 
-			$scope.search = ""
-			console.log($scope.search)
+			$scope.search = {search : ""}
 
 			// For async search
-			$http({
-				method: 'POST',
-				url   : 'api/search',
-				data  : $scope.search
-			}).then(function(returnData){
-				$scope.searchResults = returnData.data.items
+			$scope.searchQuery = function(){
+				console.log('change documented')
+				$http({
+					method: 'POST',
+					url   : 'api/search',
+					data  : $scope.search
+				}).then(function(returnData, err){
+					$scope.searchResults = returnData.data.items
+					console.log($scope.searchResults, err)
+				})
 			}
-			)
+
 
 			$http.get('/api/me')
 			    .then(function(returnData){

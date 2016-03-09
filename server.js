@@ -98,6 +98,7 @@ var videogameController = require("./controllers/videogameController.js")
 var consoleController = require("./controllers/consoleController.js")
 var accessoryController = require("./controllers/accessoryController.js")
 var addToCartController = require("./controllers/addToCartController.js")
+var searchController = require("./controllers/searchController.js")
 
 app.post('/api/addGame', videogameController.addGame)
 app.post('/api/addConsole', consoleController.addConsole)
@@ -117,6 +118,7 @@ app.get('/api/me', function(req, res){
 })
 
 app.post('/api/addToCart', addToCartController.addToCart)
+app.post('/api/search', searchController.search)
 
 
 
