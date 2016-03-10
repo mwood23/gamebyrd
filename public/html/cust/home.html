@@ -14,24 +14,56 @@
 			</div>
 		</div> -->
 <script type="text/javascript">
-$('.grid').masonry({
-  itemSelector: '.grid-item',
-  columnWidth: 10
+// $('.grid').masonry({
+//   itemSelector: '.grid-item',
+//   columnWidth: 10
+// });
+// init Masonry
+
+// var $grid = $('.grid').masonry({
+//   itemSelector: '.grid-item',
+//   columnWidth: 10
+// });
+// // layout Isotope after each image loads
+// $grid.imagesLoaded().progress( function() {
+//   $grid.masonry();
+// });  
+
+var $grid = $('.grid').imagesLoaded( function() {
+  $grid.masonry({
+    itemSelector: '.grid-item',
+    columnWidth: 10
+  }); 
 });
-  $(function(){
-    $('#scene').parallax(
-      {clipRelativeInput: true,
-        limitX: 74,
-        limitY: 74
-      });
-  });
+
+// Parallax Stuff
+
+      // $(function(){
+      //   $('#scene').parallax(
+      //     {
+      //       clipRelativeInput: true,
+      //       limitX: 74,
+      //       limitY: 74
+      //     });
+      // });
+
+var scene = document.getElementById('scene');
+var parallax = new Parallax(scene);
+
+ $("#mouseenter")
+    .mouseenter(function () { 
+      console.log('mouseenter working')
+      parallax.enable()
+      parallax.limit(72, 72)
+  })
+    .mouseleave(function () { 
+        console.log('mouseleave working')
+        parallax.disable()
+    })
 </script>
 
- <div class="container-exp">
+ <div id="mouseenter" class="container-exp shadow">
     <ul id="scene" data-invert-x="true" class="scene">
-      <li class="layer" data-depth="0.00">
-      <div class="background"></div>
-      </li>
       
       <li class="layer grid" data-depth="1.40">
         <div class="grid-item new">
@@ -44,7 +76,7 @@ $('.grid').masonry({
           <img class="classic" src="http://ecx.images-amazon.com/images/I/516wluEIzmL.jpg" alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="https://upload.wikimedia.org/wikipedia/en/8/86/Sands_of_time_cover.jpg" alt="">
+          <img class="new" src="http://ecx.images-amazon.com/images/I/513sM13zpBL.jpg" alt="">
         </div>
         <div class="grid-item new">
           <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
@@ -179,42 +211,6 @@ $('.grid').masonry({
           <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
-        </div>
-        <div class="grid-item classic">
-          <img class="classic" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
-        </div>
-        <div class="grid-item classic">
-          <img class="classic" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
-        </div>
-        <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
-        </div>
-        <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
-        </div>
-        <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
-        </div>
-        <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
-        </div>
-        <div class="grid-item classic">
-          <img class="classic" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
-        </div>
-        <div class="grid-item classic">
-          <img class="classic" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
-        </div>
-        <div class="grid-item new">
-          <img class="new" src="http://www.hardcoregaming101.net/tracing/contra.jpg" alt="">
-        </div>
-        <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
-        </div>
-        <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
-        </div>
-        <div class="grid-item new">
           <img class="new" src="http://ecx.images-amazon.com/images/I/51sm9T0oDQL.jpg" alt="">
         </div>
         <div class="grid-item classic">
@@ -229,38 +225,14 @@ $('.grid').masonry({
         <div class="grid-item new">
           <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
         </div>
-        <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
-        </div>
-        <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
-        </div>
-        <div class="grid-item classic">
+         <div class="grid-item classic">
           <img class="classic" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
         </div>
         <div class="grid-item classic">
-          <img class="classic" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="classic" src="http://ecx.images-amazon.com/images/I/516wluEIzmL.jpg" alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
-        </div>
-        <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
-        </div>
-        <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
-        </div>
-        <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
-        </div>
-        <div class="grid-item classic">
-          <img class="classic" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
-        </div>
-        <div class="grid-item classic">
-          <img class="classic" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
-        </div>
-        <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="new" src="https://upload.wikimedia.org/wikipedia/en/8/86/Sands_of_time_cover.jpg" alt="">
         </div>
         <div class="grid-item new">
           <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
@@ -319,81 +291,10 @@ $('.grid').masonry({
         <div class="grid-item new">
           <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
         </div>
-        <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
-        </div>
-        <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
-        </div>
-        <div class="grid-item classic">
-          <img class="classic" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
-        </div>
-        <div class="grid-item classic">
-          <img class="classic" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
-        </div>
-        <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
-        </div>
-        <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
-        </div>
-        <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
-        </div>
-        <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
-        </div>
-        <div class="grid-item classic">
-          <img class="classic" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
-        </div>
-        <div class="grid-item classic">
-          <img class="classic" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
-        </div>
-        <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
-        </div>
-        <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
-        </div>
-        <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
-        </div>
-        <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
-        </div>
-        <div class="grid-item classic">
-          <img class="classic" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
-        </div>
-        <div class="grid-item classic">
-          <img class="classic" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
-        </div>
-        <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
-        </div>
-        <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
-        </div>
-        <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
-        </div>
-        <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
-        </div>
-        <div class="grid-item classic">
-          <img class="classic" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
-        </div>
-        <div class="grid-item classic">
-          <img class="classic" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
-        </div>
-        <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
-        </div>
-        <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
-        </div>
-        <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
-        </div>
+      </li>
+
+      <li class="layer background" data-depth="0.00">
+      <!-- <div class="background"></div> -->
       </li>
     
     </ul>
