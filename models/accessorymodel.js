@@ -13,4 +13,6 @@ var accessorySchema = mongoose.Schema({
 	comments : {        type : String}
 })
 
+accessorySchema.index({name : "text"})
+
 module.exports = mongoose.model('Accessory', accessorySchema)

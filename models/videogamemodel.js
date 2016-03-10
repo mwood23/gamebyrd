@@ -14,4 +14,6 @@ var videogameSchema = mongoose.Schema({
 
 })
 
+videogameSchema.index({title : "text"})
+
 module.exports = mongoose.model('Game', videogameSchema)

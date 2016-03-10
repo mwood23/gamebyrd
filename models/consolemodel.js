@@ -12,4 +12,6 @@ var consoleSchema = mongoose.Schema({
 	comments : {     type : String}
 })
 
+consoleSchema.index({name : "text"})
+
 module.exports = mongoose.model('GameConsole', consoleSchema)

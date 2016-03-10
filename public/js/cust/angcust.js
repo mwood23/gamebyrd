@@ -51,7 +51,7 @@ angular
 					url   : 'api/search',
 					data  : $scope.search
 				}).then(function(returnData, err){
-					$scope.searchResults = returnData.data.items
+					$scope.searchResults = returnData.data
 					console.log($scope.searchResults, err)
 				})
 			}
@@ -135,17 +135,25 @@ angular
 			};
 
 			$scope.addToCart = function(item) {
-				var cartData = {
-					itemID : item._id,
-					user : $rootScope.user._id
+				if (!$rootScope.user.cart){
+					$rootScope.user.cart = {}
 				}
-				console.log(cartData)
+
+				var cart = $rootScope.user.cart
+
+				if(cart[item._id]) {
+					cart[item._id] += 1
+				} else {
+					cart[item._id] = 1
+				}
+
+				console.log(cart)
 				$http({
 					method : 'POST',
 					url    : '/api/addToCart',
-					data   : cartData,
+					data   : cart,
 				}).then(function(returnData){
-					console.log(returnData.data.success)
+					console.log(returnData.data)
 				})
 			}
 
@@ -183,6 +191,7 @@ angular
 	                  if ( returnData.data.user ) {
 	                  	$rootScope.user = returnData.data.user;
 	                 	$rootScope.currentUserSignedIn = true;
+
 	              		console.log($scope.user)
 	              		console.log($rootScope.currentUserSignedIn)
 	              		console.log($rootScope.currentUserSignedIn)

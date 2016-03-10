@@ -117,8 +117,9 @@ header, .main, footer {
 .grid {
   background: #EEE;
   width: 200%;
-  margin-left: -500px;
-  margin-top: -300px;
+  height: 100%;
+  margin-left: 0px;
+  margin-top: 0px;
 }
 
 .background {
@@ -156,7 +157,21 @@ header, .main, footer {
 .grid-item--height2 { height: 200px; }
 .grid-item--height3 { height: 260px; }
 .grid-item--height4 { height: 360px; }
+/*
+.square {
+  height: 250px;
+  width: 400px;
+}*/
 
+.classic {
+  height: 266px;
+  width: 400px;
+}
+
+.new {
+  height: 400px;
+  width: 266px;
+}
 
 
 
@@ -242,15 +257,8 @@ header, .main, footer {
     height: 80vh;
     overflow: hidden;
     position: relative;
-    border: 10px solid #0B292D;
     background: #000;
 }
- 
-.background  {
-    background-color: blue;
-    width: 1024px;
-    height: 768px;
- }
  
 /* 
 .layer div  {

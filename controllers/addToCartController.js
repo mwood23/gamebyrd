@@ -3,8 +3,8 @@ var User = require('../models/user.js');
 
 function addToCart (req, res) {
 
-	User.update({_id: req.body.user},
-			{cart: {cart : req.body.itemID}},
+	User.update({_id: req.user._id},
+			{cart: req.body},
 			function(err, updated){
 				console.log(err, updated)
 			}
