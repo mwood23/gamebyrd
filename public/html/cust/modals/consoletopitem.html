@@ -1,7 +1,7 @@
 <md-dialog ng-cloak>
     <md-toolbar>
       <div class="md-toolbar-tools">
-        <h2>{{thisItem.title}}</h2>
+        <h2>{{thisItem.name}}</h2>
         <span flex></span>
         <md-button class="md-icon-button" ng-click="cancel()">
           <i class="material-icons">close</i>
@@ -14,10 +14,10 @@
       
       <div class="row">
             <div class="col m5 center-align">
-              <img class="lg-pic" src="{{thisItem.cover}}">
+              <img class="lg-pic" src="{{thisItem.picture}}">
             </div>
             <div class="col m7">
-              <h5>{{thisItem.title}}</h5>
+              <h5>{{thisItem.name}}</h5>
               <p>${{thisItem.price}}</p>
             </div>
       </div>

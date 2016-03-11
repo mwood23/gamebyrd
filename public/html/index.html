@@ -18,7 +18,7 @@ https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
 <!--NAVBAR -->
 
 			<nav>
-			<div class="nav-wrapper relative primary-color z-depth-5">
+			<div class="nav-wrapper relative primary-color">
 				<a class="modal-trigger waves-effect waves-light shopping-cart" href="#modal2"><i class="material-icons">shopping_cart</i></a>
 				<md-button class="" ng-click="showLogin($event)" ng-hide="currentUserSignedIn">Login</md-button>
 				<div ng-show="currentUserSignedIn">
@@ -29,11 +29,6 @@ https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
 					<div>
 					<img class="nav-logo" width="200px" src="img/gamebyrd.png">
 					</div>
-					<div class="search-wrapper-card searchbar z-depth-1">
-	    				<input id="search">
-	    				<i class="material-icons search-icon">search</i>
-	    			<div class="search-results"></div>
-	    	</div>
 
 
 	    			<li><a href="#/" >Home</a></li>	
@@ -42,10 +37,10 @@ https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
 					<li class="no-padding">
 	        	<ul class="collapsible collapsible-accordion">
 	          		<li>
-		            	<a class="collapsible-header">Consoles<i class="mdi-navigation-arrow-drop-down"></i></a>
+		            	<a class="collapsible-header waves-effect waves-light">Consoles<i class="mdi-navigation-arrow-drop-down"></i></a>
 		            	<div class="collapsible-body">
 		              	<ul>
-			                <li ng-repeat="console in consoleLibrary"><a ng-href="#/consoles/{{console.name}}">{{console.name}}</a></li>
+			                <li ng-repeat="console in consolesList"><a ng-href="#/consoles/{{console._id}}">{{console.name}}</a></li>
 		              	</ul>
 		            	</div>
 	          		</li>
@@ -56,21 +51,16 @@ https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
 
 		<ul id="slide-out" class="side-nav fixed z-depth-3">
 			<img class="nav-logo" width="200px" src="img/gamebyrd.png">
-	    	<div class="search-wrapper-card searchbar z-depth-1">
-	    		<input id="search">
-	    		<i class="material-icons search-icon">search</i>
-	    		<div class="search-results"></div>
-	    	</div>
 	    	<li><a href="#/">Home</a></li>
 	    	<li><a href="#/howitworks">How It Works</a></li>
 	    	<li><a href="#!">FAQs</a></li>
 	    	<li class="no-padding">
 	        	<ul class="collapsible collapsible-accordion">
 	        	<li>
-	        	<a class="collapsible-header waves-effect waves-light">Consoles</a>
+	        	<a class="collapsible-header waves-effect waves-light">Consoles<i class="mdi-navigation-arrow-drop-down"></i></a>
 	        	<div class="collapsible-body">
 	            	<ul>
-	                	<li ng-repeat="console in consoleLibrary"><a ng-href="#/consoles/{{console.name}}">{{console.name}}</a></li>
+	                	<li ng-repeat="console in consolesList"><a ng-href="#/consoles/{{console._id}}">{{console.name}}</a></li>
 	            	</ul>
 	            </div>
 	          	</li>

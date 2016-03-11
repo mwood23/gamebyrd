@@ -124,14 +124,11 @@ angular
 				'http://ecx.images-amazon.com/images/I/51RuKFbjiEL.jpg', 
 				'https://upload.wikimedia.org/wikipedia/en/1/13/Pikmin_cover_art.jpg', 
 				'https://upload.wikimedia.org/wikipedia/en/3/38/Pikmin_2_Case.jpg', 
-				'http://ecx.images-amazon.com/images/I/51D98VK2RWL.jpg', 
 				'http://ecx.images-amazon.com/images/I/51TlJtJf6hL.jpg', 
 				'http://ecx.images-amazon.com/images/I/51R06WW6A8L.jpg', 
-				'http://ecx.images-amazon.com/images/I/51GXYSKK0GL.jpg', 
 				'http://ecx.images-amazon.com/images/I/51sm9T0oDQL.jpg', 
 				'http://ecx.images-amazon.com/images/I/61Q05FCGB9L.jpg', 
 				'https://upload.wikimedia.org/wikipedia/en/7/78/Super_mario_sunshine.jpg', 
-				'http://ecx.images-amazon.com/images/I/51TRQA05HBL.jpg', 
 				'http://ecx.images-amazon.com/images/I/51W8C95QDDL.jpg', 
 				'http://ecx.images-amazon.com/images/I/51JVNG4P1DL.jpg', 
 				'https://upload.wikimedia.org/wikipedia/en/8/86/Sands_of_time_cover.jpg', 
@@ -164,7 +161,6 @@ angular
 				'http://ecx.images-amazon.com/images/I/51-TFvrGFHL.jpg', 
 				'https://upload.wikimedia.org/wikipedia/en/thumb/a/a7/Ffxboxart.jpg/250px-Ffxboxart.jpg', 
 				'http://ecx.images-amazon.com/images/I/51DJ5Y7GQQL.jpg', 
-				'http://ecx.images-amazon.com/images/I/6139QD2Z3ZL._SX385_.jpg', 
 				'http://www.rockstargames.com/sanandreas/image/FOB_pc.jpg', 
 				'http://s.emuparadise.org/fup/up/150757-Kingdom_Hearts_(USA)-1.jpg', 
 				'http://vignette4.wikia.nocookie.net/t__/images/3/3a/Shadow_and_the_Colossus_NTSC-U_Cover.jpg/revision/latest?cb=20130712213544&path-prefix=teamico', 
@@ -335,6 +331,37 @@ angular
 
 			};
 
+			$scope.showTopConsoleItem = function(ev, item) {
+				$scope.thisItem = item
+				console.log($scope)
+				console.log($scope.thisItem)
+				
+				// This code make the modal full screen on small devices
+				var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
+				// This code right here
+
+			  
+			// Using locals to pass an object into the dialog
+			$mdDialog.show({
+				locals:{thisItem: $scope.thisItem},
+			    controller: topItemController,
+			    templateUrl: '../../html/cust/modals/consoletopitem.html',
+			    parent: angular.element(document.body),
+			    targetEvent: ev,
+			    clickOutsideToClose:true,
+			    fullscreen: useFullScreen
+			})
+
+
+
+			$scope.$watch(function() {
+					return $mdMedia('xs') || $mdMedia('sm');
+				}, function(wantsFullScreen) {
+			    	$scope.customFullscreen = (wantsFullScreen === true);
+			  	});
+
+			};
+
 			// Controllers for MODALS MODALS MODALS
 			// Injected this item to give me access to it on modal
 			function topItemController($scope, $mdDialog, thisItem) {
@@ -423,29 +450,6 @@ angular
 
 			// End controller MODALS MODALS MODALS
 
-			// Add to Cart
-			$scope.orderBox = true;
-
-			$scope.basket = []
-			$scope.orderItem = {}
-			$scope.total = 0
-
-			$scope.addToOrder = function(item){
-				$scope.thisItem = item
-				console.log($scope)
-				console.log($scope.thisItem)
-			}
-
-			// Total Price
-			$scope.totalPrice = function() {
-			$scope.total = 0
-			for (var i=0; i < $scope.basket.length; i++) {
-				$scope.total += $scope.basket[i].price;
-			}
-				console.log($scope.total);
-				return $scope.total;
-			}
-
 
 
 		}])
@@ -462,36 +466,23 @@ angular
 
 			inventory.getConsolesList().then(function(returnData){
 				$scope.consolesList = returnData.data
-				console.log($scope.consolesList)
 				})	
 			inventory.getGamesList().then(function(returnData){
 					$scope.gamesList = returnData.data
-					console.log($scope.gamesList)
 				})	
 
 			if($scope.$routeParams.console){
 			$scope.activeConsole = _.find($scope.consolesList, function(item){
-				console.log(item)
-				console.log($scope.$routeParams)
 				return item._id === $scope.$routeParams.console
 
 			})}
 
 			if($scope.$routeParams.console){
 			$scope.gameList = _.filter($scope.gamesList, function(item){
-				console.log(item)
-				console.log($scope.$routeParams)
 				return item.console.indexOf($scope.$routeParams.console) > -1
 
 			})}
 
-			console.log($scope.gamesList)
-
-			// console.log($scope)
-			// console.log($scope.activeConsole)
-			// console.log($scope.gamesLibrary)
-			// console.log($scope.consoleLibrary)
-			// console.log($scope.bundles)
 		}])
 
 angular
@@ -506,27 +497,13 @@ angular
 
 			inventory.getGamesList().then(function(returnData){
 					$scope.gamesList = returnData.data
-					console.log($scope.gamesList)
 				})	
 
 			if($scope.$routeParams.game){
 			$scope.activeGame = _.find($scope.gamesList, function(item){
-				console.log(item)
-				console.log($scope.$routeParams)
 				return item.title === $scope.$routeParams.game
 
 			})
 			}
-			console.log($scope.activeConsole)
-			// console.log($scope.gamesLibrary)
-			// console.log($scope.consoleLibrary)
-			// console.log($scope.bundles)
-
-			// Add to Cart
-			$scope.orderBox = true;
-
-			$scope.basket = []
-			$scope.orderItem = {}
-			$scope.total = 0
 
 		}])

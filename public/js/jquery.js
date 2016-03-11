@@ -18,4 +18,5 @@
       setTimeout(function(){
         $('ul.tabs').tabs();
     },500)
+
   });
