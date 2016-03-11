@@ -118,7 +118,7 @@ header, .main, footer {
 .grid {
   position: relative !important;
   background: #EEE;
-  width: 3200px;
+  width: 3000px;
   margin-left: -400px;
   margin-top: -300px;
 }
@@ -248,7 +248,7 @@ header, .main, footer {
 /*  position: relative !important;*/
   /*background-color: pink;*/
   width: 100%;
-  height: 80vh;
+  height: 70vh;
   -webkit-box-shadow: inset 0px -1px 16px 2px rgba(0,0,0,1);
   -moz-box-shadow: inset 0px -1px 16px 2px rgba(0,0,0,1);
   box-shadow: inset 0px -1px 16px 2px rgba(0,0,0,1);
@@ -257,7 +257,7 @@ header, .main, footer {
 /*Experimental*/
 .container-exp {
     width: 100%;
-    height: 80vh;
+    height: 70vh;
     overflow: hidden;
     position: relative;
     background: pink;

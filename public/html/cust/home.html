@@ -14,20 +14,6 @@
 			</div>
 		</div> -->
 <script type="text/javascript">
-// $('.grid').masonry({
-//   itemSelector: '.grid-item',
-//   columnWidth: 10
-// });
-// init Masonry
-
-// var $grid = $('.grid').masonry({
-//   itemSelector: '.grid-item',
-//   columnWidth: 10
-// });
-// // layout Isotope after each image loads
-// $grid.imagesLoaded().progress( function() {
-//   $grid.masonry();
-// });  
 
 var $grid = $('.grid').imagesLoaded( function() {
   $grid.masonry({
@@ -36,30 +22,24 @@ var $grid = $('.grid').imagesLoaded( function() {
   }); 
 });
 
-// Parallax Stuff
-
-      // $(function(){
-      //   $('#scene').parallax(
-      //     {
-      //       clipRelativeInput: true,
-      //       limitX: 74,
-      //       limitY: 74
-      //     });
-      // });
-
 var scene = document.getElementById('scene');
 var parallax = new Parallax(scene);
+parallax.limit(72, 72)
 
  $("#mouseenter")
     .mouseenter(function () { 
       console.log('mouseenter working')
       parallax.enable()
-      parallax.limit(72, 72)
+      parallax.limit(89, 89)
   })
     .mouseleave(function () { 
         console.log('mouseleave working')
-        parallax.disable()
+        setTimeout(parallax.disable, 500)
+        
     })
+
+
+
 </script>
 
  <div id="mouseenter" class="container-exp shadow">
@@ -67,229 +47,229 @@ var parallax = new Parallax(scene);
       
       <li class="layer grid" data-depth="1.40">
         <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51sm9T0oDQL.jpg" alt="">
+          <img class="new" src={{newbies[0]}} alt="">
         </div>
         <div class="grid-item classic">
-          <img class="classic" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="classic" src={{classics[0]}} alt="">
         </div>
         <div class="grid-item classic">
-          <img class="classic" src="http://ecx.images-amazon.com/images/I/516wluEIzmL.jpg" alt="">
+          <img class="classic" src={{classics[1]}} alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/513sM13zpBL.jpg" alt="">
+          <img class="new" src={{newbies[1]}} alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="new" src={{newbies[2]}} alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="new" src={{newbies[3]}} alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="new" src={{newbies[4]}} alt="">
         </div>
         <div class="grid-item classic">
-          <img class="classic" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="classic" src={{classics[3]}} alt="">
         </div>
         <div class="grid-item classic">
-          <img class="classic" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="classic" src={{classics[4]}} alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="new" src={{newbies[5]}} alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="new" src={{newbies[6]}} alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="new" src={{newbies[7]}} alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="new" src={{newbies[8]}} alt="">
         </div>
         <div class="grid-item classic">
-          <img class="classic" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="classic" src={{classics[5]}} alt="">
         </div>
         <div class="grid-item classic">
-          <img class="classic" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="classic" src={{classics[6]}} alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="new" src={{newbies[9]}} alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="new" src={{newbies[10]}} alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="new" src={{newbies[11]}} alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="new" src={{newbies[12]}} alt="">
         </div>
         <div class="grid-item classic">
-          <img class="classic" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="classic" src={{classics[7]}} alt="">
         </div>
         <div class="grid-item classic">
-          <img class="classic" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="classic" src={{classics[8]}} alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="new" src={{newbies[13]}} alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="new" src={{newbies[14]}} alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="new" src={{newbies[15]}} alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="new" src={{newbies[16]}} alt="">
         </div>
         <div class="grid-item classic">
-          <img class="classic" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="classic" src={{classics[9]}} alt="">
         </div>
         <div class="grid-item classic">
-          <img class="classic" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="classic" src={{classics[10]}} alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="new" src={{newbies[17]}} alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="new" src={{newbies[18]}} alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="new" src={{newbies[19]}} alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51sm9T0oDQL.jpg" alt="">
+          <img class="new" src={{newbies[20]}} alt="">
         </div>
         <div class="grid-item classic">
-          <img class="classic" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="classic" src={{classics[11]}} alt="">
         </div>
         <div class="grid-item classic">
-          <img class="classic" src="http://ecx.images-amazon.com/images/I/516wluEIzmL.jpg" alt="">
+          <img class="classic" src={{classics[12]}} alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="https://upload.wikimedia.org/wikipedia/en/8/86/Sands_of_time_cover.jpg" alt="">
+          <img class="new" src={{newbies[21]}} alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="new" src={{newbies[22]}} alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="new" src={{newbies[23]}} alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="new" src={{newbies[24]}} alt="">
         </div>
         <div class="grid-item classic">
-          <img class="classic" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="classic" src={{classics[13]}} alt="">
         </div>
         <div class="grid-item classic">
-          <img class="classic" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="classic" src={{classics[14]}} alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="new" src={{newbies[25]}} alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="new" src={{newbies[26]}} alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="new" src={{newbies[27]}} alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="new" src={{newbies[28]}} alt="">
         </div>
         <div class="grid-item classic">
-          <img class="classic" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="classic" src={{classics[15]}} alt="">
         </div>
         <div class="grid-item classic">
-          <img class="classic" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="classic" src={{classics[16]}} alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="new" src={{newbies[29]}} alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="new" src={{newbies[30]}} alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="new" src={{newbies[31]}} alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51sm9T0oDQL.jpg" alt="">
+          <img class="new" src={{newbies[32]}} alt="">
         </div>
         <div class="grid-item classic">
-          <img class="classic" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="classic" src={{classics[17]}} alt="">
         </div>
         <div class="grid-item classic">
-          <img class="classic" src="http://ecx.images-amazon.com/images/I/516wluEIzmL.jpg" alt="">
+          <img class="classic" src={{classics[18]}} alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="https://upload.wikimedia.org/wikipedia/en/8/86/Sands_of_time_cover.jpg" alt="">
+          <img class="new" src={{newbies[33]}} alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="new" src={{newbies[34]}} alt="">
         </div>
          <div class="grid-item classic">
-          <img class="classic" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="classic" src={{classics[19]}} alt="">
         </div>
         <div class="grid-item classic">
-          <img class="classic" src="http://ecx.images-amazon.com/images/I/516wluEIzmL.jpg" alt="">
+          <img class="classic" src={{classics[20]}} alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="https://upload.wikimedia.org/wikipedia/en/8/86/Sands_of_time_cover.jpg" alt="">
+          <img class="new" src={{newbies[35]}} alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="new" src={{newbies[36]}} alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="new" src={{newbies[37]}} alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="new" src={{newbies[38]}} alt="">
         </div>
         <div class="grid-item classic">
-          <img class="classic" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="classic" src={{classics[21]}} alt="">
         </div>
         <div class="grid-item classic">
-          <img class="classic" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="classic" src={{classics[22]}} alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="new" src={{newbies[39]}} alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="new" src={{newbies[40]}} alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="new" src={{newbies[41]}} alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="new" src={{newbies[42]}} alt="">
         </div>
         <div class="grid-item classic">
-          <img class="classic" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="classic" src={{classics[23]}} alt="">
         </div>
         <div class="grid-item classic">
-          <img class="classic" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="classic" src={{classics[24]}} alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="new" src={{newbies[43]}} alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="new" src={{newbies[44]}} alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="new" src={{newbies[45]}} alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51sm9T0oDQL.jpg" alt="">
+          <img class="new" src={{newbies[46]}} alt="">
         </div>
         <div class="grid-item classic">
-          <img class="classic" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="classic" src={{classics[25]}} alt="">
         </div>
         <div class="grid-item classic">
-          <img class="classic" src="http://ecx.images-amazon.com/images/I/516wluEIzmL.jpg" alt="">
+          <img class="classic" src={{classics[26]}} alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="https://upload.wikimedia.org/wikipedia/en/8/86/Sands_of_time_cover.jpg" alt="">
+          <img class="new" src={{newbies[47]}} alt="">
         </div>
         <div class="grid-item new">
-          <img class="new" src="http://ecx.images-amazon.com/images/I/51ZGP0N3V9L.jpg" alt="">
+          <img class="new" src={{newbies[48]}} alt="">
         </div>
       </li>
 

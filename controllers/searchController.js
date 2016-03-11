@@ -49,6 +49,8 @@ function search (req, res) {
 	)
 }
 
+// Send back key vlaues pairs to make 3 different categories
+
 
 	
 
