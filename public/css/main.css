@@ -331,3 +331,7 @@ header, .main, footer {
   }
 
 }
+
+.img-border {
+  border-solid: black 5px;
+}

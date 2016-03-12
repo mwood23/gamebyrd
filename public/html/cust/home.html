@@ -284,28 +284,7 @@ parallax.limit(72, 72)
             <a ng-repeat="searchResults in searchResults" href="#!" class="collection-item">{{searchResults.name}}</a>
           </div>
         </div> -->
-        <md-content class="md-padding">
-              <md-autocomplete
-                  ng-model="search.search"
-                  ng-disabled="false"
-                  md-no-cache="true"
-                  md-selected-item="search.selectedItem"
-                  md-search-text="search.search"
-                  md-items="item in searchResults"
-                  md-item-text="item.name"
-                  md-min-length="0"
-                  placeholder="Search for consoles, games, and accessories">
-                <md-item-template>
-                  <span md-highlight-text="{{search.search}}" md-highlight-flags="^i">{{item.name}}</span>
-                </md-item-template>
-                <md-not-found>
-                  No states matching "{{search.search}}" were found.
-                  <a ng-click="ctrl.newState(ctrl.searchText)">Create a new one!</a>
-                </md-not-found>
-              </md-autocomplete>
-              <br/>
-            </form>
-          </md-content>
+
       </li>
     
     </ul>
@@ -328,6 +307,24 @@ parallax.limit(72, 72)
         <p>Request a return via text when you're done playing</p>
       </div>
     </div>
+  </div>
+
+<!-- Search -->
+  <div class="container">
+    <h4 class="center-align">Search</h4>
+    <!-- <form ng-submit="$event.preventDefault()"> -->
+<!--     <md-autocomplete 
+      md-selected-item="selectedItem" 
+      md-search-text="searchText" 
+      md-items="item in getMatches(searchText)" 
+      md-item-text="item.name">
+      <md-item-template>
+        <div ng-click="removeBlur(item)">
+          <div md-highlight-text="searchText">{{item.name[0].name}}</div>
+        </div>
+      </md-item-template>
+    </md-autocomplete> -->
+    <!-- </form> -->
   </div>
 
 
@@ -371,7 +368,7 @@ parallax.limit(72, 72)
           </md-card-title-text>
           <md-card-title-media>
             <div class="md-media-md card-media">
-              <a ng-href="#/games/{{game._id}}"><img src="{{game.cover}}" class="md-pic"></a>
+              <a ng-href="#/games/{{game._id}}"><img ng-src="{{game.cover}}" class="md-pic"></a>
             </div>
           </md-card-title-media>
         </md-card-title>
@@ -389,7 +386,7 @@ parallax.limit(72, 72)
             <span class="md-subhead">${{console.price}}</span>
           </md-card-title-text>
           <md-card-title-media>
-            <a ng-href="#/consoles/{{console._id}}"><img src="{{console.picture}}" width="300px" class="md-pic valign-wrapper"></a>
+            <a ng-href="#/consoles/{{console._id}}"><img ng-src="{{console.picture}}" width="300px" class="md-pic valign-wrapper"></a>
           </md-card-title-media>
         </md-card-title>
         <md-card-actions layout="row" layout-align="end center">

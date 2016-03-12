@@ -1,12 +1,12 @@
 <!-- CART -->
 <ng-include src="'html/cust/cart.html'"></ng-include>
 
-<div class="section no-pad-bot primary-color">
+<div class="section no-pad-bot">
 	<div class="container">
-		<h1 class="center-on-small-only white-text no-top-margin">{{activeConsole.name}}</h1>
+		<h1 class="center-on-small-only no-top-margin">{{activeConsole.name}}</h1>
 		<div class="row">
-			<img class="col m4 responsive-img" width="400px" src="{{activeConsole.picture}}">
-			<div class="col m8 white-text">
+			<img class="col m4 responsive-img img-border" width="400px" src="{{activeConsole.picture}}">
+			<div class="col m8">
 				<ul>
 					<li><h4>Product Description:</h4>{{activeConsole.description}}</li>
 					<li><h5>Price: ${{activeConsole.price}} per week</h5></li>
@@ -18,14 +18,11 @@
 		</div>
 	</div>	
 </div>
-	<div class="container">
-		<h4>Product Reviews</h4>
-	</div>
 
 	<div class="container">
 		<h4>Top Games</h4>
 		<div class="row">
-        <div class="col s12 m6">
+<!--         <div class="col m6">
           <div ng-repeat="game in gameList" class="card primary-color">
             <div class="card-content white-text">
             <img class="sm-pic" src="{{game.image}}">
@@ -35,7 +32,26 @@
             <div class="card-action">
               <a href="#">This is a link</a>
             </div>
-          </div>
+          </div> -->
+
+          <md-card ng-repeat="game in gameList">
+            <md-card-title>
+              <md-card-title-text>
+                <a ng-href="#/games/{{game._id}}" class="title">{{game.title}}</a>
+                <span class="md-subhead">${{game.price}}</span>
+                <span class="md-subhead">{{game.description | limitTo: 600 + "..."}}</span>
+              </md-card-title-text>
+              <md-card-title-media>
+                <a ng-href="#/games/{{game._id}}"><img ng-src="{{game.cover}}" width="300px" class="md-pic valign-wrapper"></a>
+              </md-card-title-media>
+            </md-card-title>
+            <md-card-actions layout="row" layout-align="end center">
+              <md-button ng-click="addToCart(thisItem)" style="margin-right:20px;">
+                Add to Cart
+              </md-button>
+            </md-card-actions>
+          </md-card>
+
         </div>
       </div>
             

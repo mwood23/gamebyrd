@@ -9,23 +9,30 @@ angular
 			$scope.$location = $location;
 			$scope.$routeParams = $routeParams;
 			
+			$scope.removeBlur = function (item) {
+				console.log('remove called')
+				$('#input-0').blur()
+				setTimeout(function() {
+				window.location.href = "#/consoles/" + item._id
+				document.body.scrollTop = document.documentElement.scrollTop = 0;
+				}, 300)
+
+				
+			}
+
 			inventory.getGamesList().then(function(returnData){
 					$scope.gamesList = returnData.data
-					console.log($scope.gamesList)
 				})	
 			inventory.getConsolesList().then(function(returnData){
 					$scope.consolesList = returnData.data
-					console.log($scope.consolesList)
 				})	
 
 			inventory.getTopGames().then(function(returnData){
 					$scope.topGames = returnData.data
-					console.log($scope.topGames)
 				})
 
 			inventory.getTopConsoles().then(function(returnData){
 					$scope.topConsoles = returnData.data
-					console.log($scope.topConsoles)
 				})
 
 
@@ -34,10 +41,7 @@ angular
 
 			if($scope.$routeParams.console){
 			$scope.activeConsole = _.find($scope.consoleLibrary, function(item){
-				// console.log(item)
-				// console.log($scope.$routeParams)
 				return item.name === $scope.$routeParams.console
-
 			})
 			}
 
@@ -52,11 +56,27 @@ angular
 					url   : 'api/search',
 					data  : $scope.search
 				}).then(function(returnData, err){
-					$scope.searchResults = returnData.data
+					// $scope.searchResults = returnData.data
 					console.log($scope.searchResults, err)
 				})
 			}
 		}
+
+			$scope.getMatches = function(searchString){
+				console.log("searchString fires", searchString)
+				if(searchString.length > 3) {
+				console.log('change documented')
+				return $http({
+					method: 'POST',
+					url   : 'api/search',
+					data  : {search: searchString}
+				}).then(function(returnData, err){
+					// $scope.searchResults = returnData.data
+					console.log(returnData.data, err)
+					return returnData.data
+				})
+			}
+			}
 
 
 			$http.get('/api/me')
@@ -64,13 +84,179 @@ angular
 			        if(returnData.data.user){
 			           console.log(returnData)
 			           $rootScope.user = returnData.data.user;
-			           $rootScope.currentUserSignedIn = true;
+			           $rootScope.currentUserSignedIn = true
+			           console.log($rootScope.user.cart)
 			        }
 			        else {
 			            // No user :(
 			           console.log("no user")
 			        }
 			    })
+
+
+
+			// MODALS MODALS MODALS
+			// For logging in
+			$scope.showLogin = function(ev) {
+				$mdDialog.show({
+					controller: loginController,
+					templateUrl: '../../html/cust/modals/login.html',
+					parent: angular.element(document.body),
+					targetEvent: ev,
+					clickOutsideToClose:true
+			    })
+			};
+
+
+
+			// For top charts
+			$scope.showTopItem = function(ev, item) {
+				$scope.thisItem = item
+				console.log($scope)
+				console.log($scope.thisItem)
+				
+				// This code make the modal full screen on small devices
+				var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
+				// This code right here
+
+			  
+			// Using locals to pass an object into the dialog
+			$mdDialog.show({
+				locals:{thisItem: $scope.thisItem},
+			    controller: topItemController,
+			    templateUrl: '../../html/cust/modals/topitem.html',
+			    parent: angular.element(document.body),
+			    targetEvent: ev,
+			    clickOutsideToClose:true,
+			    fullscreen: useFullScreen
+			})
+
+
+
+			$scope.$watch(function() {
+					return $mdMedia('xs') || $mdMedia('sm');
+				}, function(wantsFullScreen) {
+			    	$scope.customFullscreen = (wantsFullScreen === true);
+			  	});
+
+			};
+
+			$scope.showTopConsoleItem = function(ev, item) {
+				$scope.thisItem = item
+				console.log($scope)
+				console.log($scope.thisItem)
+				
+				// This code make the modal full screen on small devices
+				var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
+				// This code right here
+
+			  
+			// Using locals to pass an object into the dialog
+			$mdDialog.show({
+				locals:{thisItem: $scope.thisItem},
+			    controller: topItemController,
+			    templateUrl: '../../html/cust/modals/consoletopitem.html',
+			    parent: angular.element(document.body),
+			    targetEvent: ev,
+			    clickOutsideToClose:true,
+			    fullscreen: useFullScreen
+			})
+
+
+
+			$scope.$watch(function() {
+					return $mdMedia('xs') || $mdMedia('sm');
+				}, function(wantsFullScreen) {
+			    	$scope.customFullscreen = (wantsFullScreen === true);
+			  	});
+
+			};
+
+			// Controllers for MODALS MODALS MODALS
+			// Injected this item to give me access to it on modal
+			function topItemController($scope, $mdDialog, thisItem) {
+
+			// Make thisItem available on the modal
+			$scope.thisItem = thisItem
+
+			$scope.hide = function() {
+			    $mdDialog.hide();
+			};
+
+			$scope.cancel = function() {
+			    $mdDialog.cancel();
+			};
+
+			$scope.addToCart = function(item) {
+				if (!$rootScope.user.cart){
+					$rootScope.user.cart = {}
+				}
+
+				var cart = $rootScope.user.cart
+
+				if(cart[item._id]) {
+					cart[item._id] += 1
+				} else {
+					cart[item._id] = 1
+				}
+
+				console.log(cart)
+				$http({
+					method : 'POST',
+					url    : '/api/addToCart',
+					data   : cart,
+				}).then(function(returnData){
+					console.log(returnData.data)
+				})
+			}
+
+			}
+
+			function loginController($scope, $rootScope, $mdDialog) {
+			  $scope.hide = function() {
+			    $mdDialog.hide();
+			  };
+
+			  $scope.cancel = function() {
+			    $mdDialog.cancel();
+			  };
+
+	  		// Login and SignUp
+	  		$scope.signup = function(){
+	  			console.log('sign up before AJAX')
+	              $http({
+	                  method : 'POST',
+	                  url    : '/signup',
+	                  data   : $scope.signupForm
+	              }).then(function(returnData){
+	                  console.log(returnData)
+	                  if ( returnData.data.success ) { window.location.href="/#/" }
+	              })
+	          }
+
+	          $scope.login = function(){
+	              $http({
+	                  method : 'POST',
+	                  url    : '/login',
+	                  data   : $scope.loginForm
+	              }).then(function(returnData){
+	              		console.log(returnData)
+	                  if ( returnData.data.user ) {
+	                  	$rootScope.user = returnData.data.user;
+	                 	$rootScope.currentUserSignedIn = true;
+
+	              		console.log($rootScope.currentUserSignedIn)
+
+	              		$mdDialog.hide();
+	              	}
+
+	                  else { console.log(returnData)}
+	              })
+	          }
+
+			}
+
+			// End controller MODALS MODALS MODALS
 
 			// FOR RANDOM IMAGES ON PARALLAX
 			var classics = _.shuffle(['http://vignette3.wikia.nocookie.net/ssb/images/a/a8/Super_Smash_Bros._-_North_American_Boxart.png/revision/latest?cb=20120303165816', 
@@ -282,176 +468,6 @@ angular
 			$scope.classics = classics
 			$scope.newbies = newbies
 
-
-
-
-			// MODALS MODALS MODALS
-			// For logging in
-			$scope.showLogin = function(ev) {
-				$mdDialog.show({
-					controller: loginController,
-					templateUrl: '../../html/cust/modals/login.html',
-					parent: angular.element(document.body),
-					targetEvent: ev,
-					clickOutsideToClose:true
-			    })
-			};
-
-
-
-			// For top charts
-			$scope.showTopItem = function(ev, item) {
-				$scope.thisItem = item
-				console.log($scope)
-				console.log($scope.thisItem)
-				
-				// This code make the modal full screen on small devices
-				var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
-				// This code right here
-
-			  
-			// Using locals to pass an object into the dialog
-			$mdDialog.show({
-				locals:{thisItem: $scope.thisItem},
-			    controller: topItemController,
-			    templateUrl: '../../html/cust/modals/topitem.html',
-			    parent: angular.element(document.body),
-			    targetEvent: ev,
-			    clickOutsideToClose:true,
-			    fullscreen: useFullScreen
-			})
-
-
-
-			$scope.$watch(function() {
-					return $mdMedia('xs') || $mdMedia('sm');
-				}, function(wantsFullScreen) {
-			    	$scope.customFullscreen = (wantsFullScreen === true);
-			  	});
-
-			};
-
-			$scope.showTopConsoleItem = function(ev, item) {
-				$scope.thisItem = item
-				console.log($scope)
-				console.log($scope.thisItem)
-				
-				// This code make the modal full screen on small devices
-				var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
-				// This code right here
-
-			  
-			// Using locals to pass an object into the dialog
-			$mdDialog.show({
-				locals:{thisItem: $scope.thisItem},
-			    controller: topItemController,
-			    templateUrl: '../../html/cust/modals/consoletopitem.html',
-			    parent: angular.element(document.body),
-			    targetEvent: ev,
-			    clickOutsideToClose:true,
-			    fullscreen: useFullScreen
-			})
-
-
-
-			$scope.$watch(function() {
-					return $mdMedia('xs') || $mdMedia('sm');
-				}, function(wantsFullScreen) {
-			    	$scope.customFullscreen = (wantsFullScreen === true);
-			  	});
-
-			};
-
-			// Controllers for MODALS MODALS MODALS
-			// Injected this item to give me access to it on modal
-			function topItemController($scope, $mdDialog, thisItem) {
-
-			// Make thisItem available on the modal
-			$scope.thisItem = thisItem
-
-			$scope.hide = function() {
-			    $mdDialog.hide();
-			};
-
-			$scope.cancel = function() {
-			    $mdDialog.cancel();
-			};
-
-			$scope.addToCart = function(item) {
-				if (!$rootScope.user.cart){
-					$rootScope.user.cart = {}
-				}
-
-				var cart = $rootScope.user.cart
-
-				if(cart[item._id]) {
-					cart[item._id] += 1
-				} else {
-					cart[item._id] = 1
-				}
-
-				console.log(cart)
-				$http({
-					method : 'POST',
-					url    : '/api/addToCart',
-					data   : cart,
-				}).then(function(returnData){
-					console.log(returnData.data)
-				})
-			}
-
-			}
-
-			function loginController($scope, $rootScope, $mdDialog) {
-			  $scope.hide = function() {
-			    $mdDialog.hide();
-			  };
-
-			  $scope.cancel = function() {
-			    $mdDialog.cancel();
-			  };
-
-	  		// Login and SignUp
-	  		$scope.signup = function(){
-	  			console.log('sign up before AJAX')
-	              $http({
-	                  method : 'POST',
-	                  url    : '/signup',
-	                  data   : $scope.signupForm
-	              }).then(function(returnData){
-	                  console.log(returnData)
-	                  if ( returnData.data.success ) { window.location.href="/#/" }
-	              })
-	          }
-
-	          $scope.login = function(){
-	              $http({
-	                  method : 'POST',
-	                  url    : '/login',
-	                  data   : $scope.loginForm
-	              }).then(function(returnData){
-	              		console.log(returnData)
-	                  if ( returnData.data.user ) {
-	                  	$rootScope.user = returnData.data.user;
-	                 	$rootScope.currentUserSignedIn = true;
-
-	              		console.log($scope.user)
-	              		console.log($rootScope.currentUserSignedIn)
-	              		console.log($rootScope.currentUserSignedIn)
-
-	              		$mdDialog.hide();
-	              	}
-
-	                  else { console.log(returnData)}
-	              })
-	          }
-
-			}
-
-			// End controller MODALS MODALS MODALS
-
-
-
 		}])
 
 angular
@@ -480,7 +496,6 @@ angular
 			if($scope.$routeParams.console){
 			$scope.gameList = _.filter($scope.gamesList, function(item){
 				return item.console.indexOf($scope.$routeParams.console) > -1
-
 			})}
 
 		}])
@@ -493,6 +508,7 @@ angular
 			$scope.$location = $location;
 			$scope.$routeParams = $routeParams;
 
+
 			console.log($routeParams)
 
 			inventory.getGamesList().then(function(returnData){
@@ -501,7 +517,7 @@ angular
 
 			if($scope.$routeParams.game){
 			$scope.activeGame = _.find($scope.gamesList, function(item){
-				return item.title === $scope.$routeParams.game
+				return item._id === $scope.$routeParams.game
 
 			})
 			}
