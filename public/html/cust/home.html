@@ -278,12 +278,51 @@ parallax.limit(72, 72)
       </li>
 
       <li class="layer background" data-depth="0.00">
-<!--         <div class="input-field search-container col s12">
-          <input class="search-bar" placeholder="Search for games, consoles, or accessories" ng-model="search.search" ng-change="searchQuery()" id="search" type="search">
-          <div class="collection search-results">
-            <a ng-repeat="searchResults in searchResults" href="#!" class="collection-item">{{searchResults.name}}</a>
+        
+
+        <div class="input-field search-container col s12">
+          <input ng-blur="closeSearch()" class="search-bar" placeholder="Search for games, consoles, or accessories" ng-model="search.search" ng-change="searchQuery()" id="search" type="search">
+          <div ng-show="showSearch"class="collection search-results">
+            <div class="collection item-container">
+                <p>Consoles</p>
+                <div ng-repeat="(key, value) in searchResults.consoles" class="collection-item avatar results search-results-hover">
+                  <!-- <div ng-click="searchRedirect(value)"> -->
+                  <a class="block" href="#/consoles/{{value._id}}">
+                    <img ng-src="{{value.picture}}" alt="" class="circle">
+                    <span class="title">{{value.name}}</span>
+                    <p>Rating: {{value.rating}} <br>
+                    </p>
+                    <span href="#!" class="secondary-content">Add to Cart</span>
+                  </a>
+                  <!-- </div> -->
+                </div>
+              <div class="collection item-container">
+                  <p>Games</p>
+                  <div ng-repeat="(key, value) in searchResults.games" class="collection-item avatar results search-results-hover">
+                    <a class="block" href="#/games/{{value._id}}">
+                      <img ng-src="{{value.cover}}" alt="" class="circle">
+                      <span class="title">{{value.title}}</span>
+                      <p>Rating: {{value.rating}} <br>
+                      </p>
+                      <span href="#!" class="secondary-content">Add to Cart</span>
+                    </a>
+                  </div>
+              </div>
+              <div class="collection item-container">
+                  <p>Accessories</p>
+                  <div ng-repeat="(key, value) in searchResults.accessories" class="collection-item avatar results search-results-hover">
+                    <a class="block" href="#/accessories/{{value._id}}">
+                      <img ng-src="{{value.picture}}" alt="" class="circle">
+                      <span class="title">{{value.name}}</span>
+                      <p>Rating: {{value.rating}} <br>
+                      </p>
+                      <span href="#!" class="secondary-content">Add to Cart</span>
+                    </a>
+                  </div>
+              </div>
           </div>
-        </div> -->
+        </div>                
+
 
       </li>
     
@@ -306,6 +345,15 @@ parallax.limit(72, 72)
         <img src="https://placehold.it/150x150">
         <p>Request a return via text when you're done playing</p>
       </div>
+
+    <input type="text" name="city" list="cityname">
+        <datalist id="cityname">
+          <option value="Boston">
+          <option value="Cambridge">
+        </datalist>
+
+
+
     </div>
   </div>
 

@@ -39,7 +39,7 @@
               <md-card-title-text>
                 <a ng-href="#/games/{{game._id}}" class="title">{{game.title}}</a>
                 <span class="md-subhead">${{game.price}}</span>
-                <span class="md-subhead">{{game.description | limitTo: 600 + "..."}}</span>
+                <span class="md-subhead">{{game.description | limitTo: 600 + "..."}}...</span>
               </md-card-title-text>
               <md-card-title-media>
                 <a ng-href="#/games/{{game._id}}"><img ng-src="{{game.cover}}" width="300px" class="md-pic valign-wrapper"></a>

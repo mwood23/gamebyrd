@@ -20,7 +20,7 @@ https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
 
 			<nav>
 			<div class="nav-wrapper relative primary-color">
-				<a class="modal-trigger waves-effect waves-light shopping-cart" href="#modal2"><i class="material-icons">shopping_cart</i></a>
+				<a ng-show="currentUserSignedIn" class="modal-trigger waves-effect waves-light shopping-cart" href="#modal2"><i class="material-icons">shopping_cart</i></a>
 				<md-button class="" ng-click="showLogin($event)" ng-hide="currentUserSignedIn">Login</md-button>
 				<div ng-show="currentUserSignedIn">
 				<span >Hello {{user.first_name}}</span>

@@ -9,16 +9,19 @@ angular
 			$scope.$location = $location;
 			$scope.$routeParams = $routeParams;
 			
-			$scope.removeBlur = function (item) {
-				console.log('remove called')
-				$('#input-0').blur()
-				setTimeout(function() {
-				window.location.href = "#/consoles/" + item._id
-				document.body.scrollTop = document.documentElement.scrollTop = 0;
-				}, 300)
+			// $scope.removeBlur = function (item) {
+			// 	console.log('remove called')
+			// 	$('#input-0').blur()
+			// 	setTimeout(function() {
+			// 	window.location.href = "#/consoles/" + item._id
+			// 	document.body.scrollTop = document.documentElement.scrollTop = 0;
+			// 	}, 300)				
+			// }
 
-				
-			}
+			// $scope.searchRedirect = function (item) {
+			// 	console.log("searchRedirect called")
+			// 	window.location.href = "#/consoles/" + item._id
+			// }
 
 			inventory.getGamesList().then(function(returnData){
 					$scope.gamesList = returnData.data
@@ -35,6 +38,11 @@ angular
 					$scope.topConsoles = returnData.data
 				})
 
+			$scope.closeSearch = function() {
+				$scope.showSearch = false
+				$scope.search.search = ""
+			}
+
 
 			// console.log($scope.topGames)
 			// console.log($scope.topConsoles)
@@ -46,7 +54,7 @@ angular
 			}
 
 			$scope.search = {search : ""}
-
+			$scope.showSearch = false
 			// For async search
 			$scope.searchQuery = function(){
 				if($scope.search.search.length > 3) {
@@ -56,27 +64,35 @@ angular
 					url   : 'api/search',
 					data  : $scope.search
 				}).then(function(returnData, err){
-					// $scope.searchResults = returnData.data
+					$scope.searchResults = returnData.data
 					console.log($scope.searchResults, err)
-				})
-			}
-		}
+					$scope.showSearch = true
 
-			$scope.getMatches = function(searchString){
-				console.log("searchString fires", searchString)
-				if(searchString.length > 3) {
-				console.log('change documented')
-				return $http({
-					method: 'POST',
-					url   : 'api/search',
-					data  : {search: searchString}
-				}).then(function(returnData, err){
-					// $scope.searchResults = returnData.data
-					console.log(returnData.data, err)
-					return returnData.data
 				})
 			}
+			
+			if($scope.search.search.length <= 3){
+				$scope.searchResults = {}
+				$scope.showSearch = false
+				console.log($scope.searchResults, 'pls')
 			}
+			}
+
+			// $scope.getMatches = function(searchString){
+			// 	console.log("searchString fires", searchString)
+			// 	// if(searchString.length > 3) {
+			// 	console.log('change documented')
+			// 	return $http({
+			// 		method: 'POST',
+			// 		url   : 'api/search',
+			// 		data  : {search: searchString}
+			// 	}).then(function(returnData, err){
+			// 		// $scope.searchResults = returnData.data
+			// 		console.log(returnData.data, err)
+			// 		return returnData.data
+			// 	})
+			// // }
+			// }
 
 
 			$http.get('/api/me')
