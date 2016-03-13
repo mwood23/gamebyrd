@@ -22,6 +22,15 @@ function getUser(req, res){
 		       '_id' : { $in : cartItems }
 		    }, function(err, consoles){
 		    	
+		    	for(var i = 0; i < consoles.length; i++){
+		    		consoles[i].quantityOrdered = cartObject[consoles[i]._id]
+		    	}
+
+		    	for(var i = 0; i < consoles.length; i++) {
+		    		consoles[i].subTotal = (consoles[i].quantityOrdered * consoles[i].price)
+		    	}
+
+
 		    	console.log(consoles)
 		    	Game.find({ 
 		    		'_id' : { $in : cartItems }
@@ -30,15 +39,52 @@ function getUser(req, res){
 
 		    		for(var i = 0; i < games.length; i++){
 		    			games[i].quantityOrdered = cartObject[games[i]._id]
-		    			console.log('num ordered', cartObject[games[i]._id])
+		    			// console.log('num ordered', cartObject[games[i]._id])
 		    			// req.user.cart === games[i]._id 
 		    		}
 
-		    		console.log(games, 'game console')
+		    		for(var i = 0; i < games.length; i++) {
+		    			games[i].subTotal = (games[i].quantityOrdered * games[i].price)
+		    		}
+
+		    		// console.log(games, 'game console')
 		    		Accessory.find({
 		    			'_id' : { $in : cartItems }
 		    		}, function(err, accessories){
-		    			console.log(accessories)	
+		    			// console.log(accessories)	
+
+		    			for(var i = 0; i < accessories.length; i++){
+		    				accessories[i].quantityOrdered = cartObject[accessories[i]._id]
+		    			}
+
+		    			for(var i = 0; i < accessories.length; i++) {
+		    				accessories[i].subTotal = (accessories[i].quantityOrdered * accessories[i].price)
+		    			}
+
+		    			// Calculating subtotal of all items and assigning it to user
+		    			
+		    				var consoleSubTotal = 0
+		    				var gameSubTotal = 0
+		    				var accessorySubTotal = 0
+		    				
+		    				for (var i = 0; i < consoles.length; i++){
+		    					consoleSubTotal += consoles[i].subTotal
+		    					console.log(consoleSubTotal)
+		    				}
+
+		    				for (var i = 0; i < games.length; i++){
+		    					gameSubTotal += games[i].subTotal
+		    					console.log(gameSubTotal)
+		    				}
+
+		    				for (var i = 0; i < accessories.length; i++){
+		    					accessorySubTotal += accessories[i].subTotal
+		    					console.log(accessorySubTotal)
+		    				}
+
+		    				// Assign the subtotal to req.user.subTotal
+		    				req.user.subTotal = consoleSubTotal + gameSubTotal + accessorySubTotal
+		    				console.log('req.user', req.user.subTotal)
 		    			
 
 		    			res.send({user:req.user,

@@ -11,6 +11,7 @@ var videogameSchema = mongoose.Schema({
 	description : {   type : String, required : true},
 	received_by : {   type : String, required : true},
 	quantityOrdered : {type : Number},
+	subTotal : {	 type : Number},
 	comments : {      type : String}
 
 })

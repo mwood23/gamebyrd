@@ -9,6 +9,8 @@ var consoleSchema = mongoose.Schema({
 	quantity_sold : {type : Number, required : true},
 	price : {        type : Number, required : true},
 	received_by : {  type : String, required : true},
+	quantityOrdered : {type : Number},
+	subTotal : {	 type : Number},
 	comments : {     type : String}
 })
 

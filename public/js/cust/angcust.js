@@ -236,6 +236,8 @@ angular
 					    .then(function(returnData){
 					        if(returnData.data.user){
 					           $rootScope.cart = returnData.data
+					           $rootScope.user = returnData.data.user
+	                 	       console.log($rootScope.user, $rootScope.cart)
 					        }
 					    })
 				})
@@ -278,15 +280,12 @@ angular
 	                 	    	console.log(performance.now())
 	                 	        if(returnData.data.user){
 	                 	           $rootScope.cart = returnData.data
+	                 	           $rootScope.user = returnData.data.user
+	                 	           console.log($rootScope.user, $rootScope.cart)
 	                 	        }
 	                 	    })
 
-
-	                 	$rootScope.user = returnData.data.user;
 	                 	$rootScope.currentUserSignedIn = true;
-
-	              		console.log($rootScope.currentUserSignedIn)
-	              		console.log($rootScope.cart)
 	              		$mdDialog.hide();
 	              	}
 

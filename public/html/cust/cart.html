@@ -7,28 +7,32 @@
             <li ng-repeat="(console, value) in cart.consoles" class="collection-item avatar">
               <img ng-src="{{value.picture}}" alt="" class="circle">
               <span class="title">{{value.name}}</span>
-              <p>F<br>
-                 Second Line
+              <p>Quantity: {{value.quantityOrdered}}<br>
+                 
               </p>
-              <span class="secondary-content">{{value.price}}</span>
+              <span class="secondary-content">{{value.subTotal}}</span>
             </li>
             <li ng-repeat="(game, value) in cart.games" class="collection-item avatar">
               <img ng-src="{{value.cover}}" alt="" class="circle">
               <span class="title">{{value.title}}</span>
-              <p>F<br>
-                 Second Line
+              <p>Quantity: {{value.quantityOrdered}}<br>
+                 Console: {{value.console}}
               </p>
-              <span class="secondary-content">{{value.price}}</span>
+              <span class="secondary-content">{{value.subTotal}}</span>
             </li>
             <li ng-repeat="(accessory, value) in cart.accessories" class="collection-item avatar">
               <img ng-src="{{value.picture}}" alt="" class="circle">
               <span class="title">{{value.name}}</span>
               <p><br>
                  Second Line
+                 Console: {{value.console}}
               </p>
-              <span class="secondary-content">{{value.price}}</span>
+              <span class="secondary-content">{{value.subTotal}}</span>
             </li>
           </ul>
+          <div>
+            <span>Subtotal: {{user.subTotal}}</span>
+          </div>
       </div>
     </div>
     <div class="modal-footer">
