@@ -28,12 +28,10 @@ parallax.limit(72, 72)
 
  $("#mouseenter")
     .mouseenter(function () { 
-      console.log('mouseenter working')
       parallax.enable()
       parallax.limit(89, 89)
   })
     .mouseleave(function () { 
-        console.log('mouseleave working');
         // setTimeout(parallax.disable, 500)
         parallax.disable()
 
@@ -345,16 +343,6 @@ parallax.limit(72, 72)
         <img src="https://placehold.it/150x150">
         <p>Request a return via text when you're done playing</p>
       </div>
-
-    <input type="text" name="city" list="cityname">
-        <datalist id="cityname">
-          <option value="Boston">
-          <option value="Cambridge">
-        </datalist>
-
-
-
-    </div>
   </div>
 
 <!-- Search -->
@@ -404,7 +392,7 @@ parallax.limit(72, 72)
 		</div>
 	</div> -->
 
-  <div class="container">
+  <div>
     <div class="row">
     <div class="col m6">
     <h4>Top Games</h4>

@@ -302,7 +302,7 @@ header, .main, footer {
   margin: auto;
   padding-left: 15px;
   border-radius: 5px;
-  height: 300px;
+  max-height: 300px;
   padding: 0;
   overflow: auto;
   z-index: 10;

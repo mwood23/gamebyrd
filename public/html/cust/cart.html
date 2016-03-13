@@ -4,13 +4,29 @@
       <h4>Basket</h4>
       <div>
         <ul class="collection">
-            <li ng-repeat="cart in user.cart" class="collection-item avatar">
-              <img src="images/yuna.jpg" alt="" class="circle">
-              <span class="title">Title</span>
-              <p>First Line <br>
+            <li ng-repeat="(console, value) in cart.consoles" class="collection-item avatar">
+              <img ng-src="{{value.picture}}" alt="" class="circle">
+              <span class="title">{{value.name}}</span>
+              <p>F<br>
                  Second Line
               </p>
-              <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+              <span class="secondary-content">{{value.price}}</span>
+            </li>
+            <li ng-repeat="(game, value) in cart.games" class="collection-item avatar">
+              <img ng-src="{{value.cover}}" alt="" class="circle">
+              <span class="title">{{value.title}}</span>
+              <p>F<br>
+                 Second Line
+              </p>
+              <span class="secondary-content">{{value.price}}</span>
+            </li>
+            <li ng-repeat="(accessory, value) in cart.accessories" class="collection-item avatar">
+              <img ng-src="{{value.picture}}" alt="" class="circle">
+              <span class="title">{{value.name}}</span>
+              <p><br>
+                 Second Line
+              </p>
+              <span class="secondary-content">{{value.price}}</span>
             </li>
           </ul>
       </div>
@@ -19,6 +35,4 @@
       <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Checkout</a>
     </div>
   </div>
-
-  <!-- Angular Material Modal -->
   

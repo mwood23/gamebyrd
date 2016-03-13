@@ -99,6 +99,7 @@ var consoleController = require("./controllers/consoleController.js")
 var accessoryController = require("./controllers/accessoryController.js")
 var addToCartController = require("./controllers/addToCartController.js")
 var searchController = require("./controllers/searchController.js")
+var getcartController = require("./controllers/getcartController.js")
 
 app.post('/api/addGame', videogameController.addGame)
 app.post('/api/addConsole', consoleController.addConsole)
@@ -112,10 +113,8 @@ app.get('/getAccessoriesList', custhomeController.getAccessoriesList);
 app.get('/getTopGames', custhomeController.getTopGames);
 app.get('/getTopConsoles', custhomeController.getTopConsoles);
 
-app.get('/api/me', function(req, res){
-    // Return the logged in user (or undefined if they are not logged in)
-    res.send({user:req.user})
-})
+app.get('/api/me', getcartController.getUser)
+// app.get('/api/me', getcartController.getCart)
 
 app.post('/api/addToCart', addToCartController.addToCart)
 app.post('/api/search', searchController.search)

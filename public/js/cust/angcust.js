@@ -3,7 +3,7 @@ angular.module('cust', ['ngRoute', 'ngMaterial', 'ngMessages', 'util'] );
 
 angular
 	.module('cust')
-		.controller('main', ['$scope', '$rootScope', '$http', 'inventory', '$route', '$routeParams', '$location', '$mdDialog', '$mdMedia', function($scope, $rootScope, $http, inventory, $route, $routeParams, $location, $mdDialog, $mdMedia){
+		.controller('main', ['$scope', '$rootScope', '$timeout', '$http', 'inventory', '$route', '$routeParams', '$location', '$mdDialog', '$mdMedia', function($scope, $rootScope, $timeout, $http, inventory, $route, $routeParams, $location, $mdDialog, $mdMedia){
 
 			$scope.$route = $route;
 			$scope.$location = $location;
@@ -38,10 +38,12 @@ angular
 					$scope.topConsoles = returnData.data
 				})
 
-			$scope.closeSearch = function() {
+			$scope.closeSearch = function() {$timeout(function() {
 				$scope.showSearch = false
 				$scope.search.search = ""
-			}
+			}, 500)}
+
+
 
 
 			// console.log($scope.topGames)
@@ -74,7 +76,7 @@ angular
 			if($scope.search.search.length <= 3){
 				$scope.searchResults = {}
 				$scope.showSearch = false
-				console.log($scope.searchResults, 'pls')
+				console.log($scope.searchResults)
 			}
 			}
 
@@ -97,17 +99,24 @@ angular
 
 			$http.get('/api/me')
 			    .then(function(returnData){
+			    	console.log(returnData)
 			        if(returnData.data.user){
-			           console.log(returnData)
 			           $rootScope.user = returnData.data.user;
 			           $rootScope.currentUserSignedIn = true
-			           console.log($rootScope.user.cart)
+			           $rootScope.cart = returnData.data
 			        }
 			        else {
 			            // No user :(
 			           console.log("no user")
 			        }
 			    })
+
+			// $http.get('/api/cart', {
+			//    	params : {user : $rootScope.user}			 
+			//    	}).then(function(returnData){
+			//    		$scope.cart = returnData.data
+			//    		console.log($scope.cart)
+			//    	})
 
 
 
@@ -223,6 +232,12 @@ angular
 					data   : cart,
 				}).then(function(returnData){
 					console.log(returnData.data)
+					$http.get('/api/me')
+					    .then(function(returnData){
+					        if(returnData.data.user){
+					           $rootScope.cart = returnData.data
+					        }
+					    })
 				})
 			}
 
@@ -256,13 +271,22 @@ angular
 	                  url    : '/login',
 	                  data   : $scope.loginForm
 	              }).then(function(returnData){
-	              		console.log(returnData)
 	                  if ( returnData.data.user ) {
-	                  	$rootScope.user = returnData.data.user;
+	       				console.log('before api me', performance.now())
+	                 	$http.get('/api/me')
+	                 	    .then(function(returnData){
+	                 	    	console.log(performance.now())
+	                 	        if(returnData.data.user){
+	                 	           $rootScope.cart = returnData.data
+	                 	        }
+	                 	    })
+
+
+	                 	$rootScope.user = returnData.data.user;
 	                 	$rootScope.currentUserSignedIn = true;
 
 	              		console.log($rootScope.currentUserSignedIn)
-
+	              		console.log($rootScope.cart)
 	              		$mdDialog.hide();
 	              	}
 
