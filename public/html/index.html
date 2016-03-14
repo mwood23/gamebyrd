@@ -20,17 +20,57 @@ https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
 
 			<nav>
 			<div class="nav-wrapper relative primary-color">
+
+<!-- 				<div class="nav-search">
+			      <form>
+			        <div class="input-field">
+			          <input id="search-nav" type="search">
+			          <i class="material-icons">close</i>
+
+						<button class="toggle-search btn-floating btn-large waves-effect waves-light nav-wrapper primary-color" id="search-nav"><i class="material-icons">search</i></button>
+
+			        </div>
+			      </form>
+			    </div> -->
+
+
+				
+
+
+
+
+
+
+
+
+
+
+
 				<a ng-show="currentUserSignedIn" class="modal-trigger waves-effect waves-light shopping-cart" href="#modal2"><i class="material-icons">shopping_cart</i></a>
 				<md-button class="" ng-click="showLogin($event)" ng-hide="currentUserSignedIn">Login</md-button>
 
 				<!-- Dropdown Trigger -->
-				<a class='dropdown-button user-dropdown' ng-show="currentUserSignedIn" data-activates='dropdown1'>Hello {{user.first_name}} <i class="material-icons">arrow_drop_down</i></a>
+				<a class='dropdown-button user-dropdown' ng-show="currentUserSignedIn" data-activates='dropdown1'>Hello {{user.first_name}} <i class="material-icons down-arrow">arrow_drop_down</i></a>
 
 				<!-- Dropdown Structure -->
-				<ul id='dropdown1' class='dropdown-content'>
+				<ul id='dropdown1' class='dropdown-content dropdown'>
 				  <li><a href="">Account</a></li>
 				  <li><a href="/logout">Logout</a></li>
 				</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 				<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
 				<ul class="side-nav" id="mobile-demo">
@@ -40,7 +80,6 @@ https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
 
 
 	    			<li><a href="#/" >Home</a></li>	
-					<li><a href="#/howitworks">How It Works</a></li>
 					<li><a href="#">FAQs</a></li>				
 					<li class="no-padding">
 	        	<ul class="collapsible collapsible-accordion">
@@ -60,8 +99,7 @@ https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
 		<ul id="slide-out" class="side-nav fixed z-depth-3">
 			<img class="nav-logo" width="200px" src="img/gamebyrd.png">
 	    	<li><a href="#/">Home</a></li>
-	    	<li><a href="#/howitworks">How It Works</a></li>
-	    	<li><a href="#!">FAQs</a></li>
+	    	<li><a href="#/faqs">FAQs</a></li>
 	    	<li class="no-padding">
 	        	<ul class="collapsible collapsible-accordion">
 	        	<li>
@@ -106,6 +144,14 @@ https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
 	<script type="text/javascript" src="https://npmcdn.com/masonry-layout@4.0/dist/masonry.pkgd.min.js"></script>
 	<script src="https://npmcdn.com/imagesloaded@4.1/imagesloaded.pkgd.min.js"></script>
+
+	<!-- N3 Charts -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.min.js"></script>
+	<script type="text/javascript" src="../js/pie-chart.js"></script>
+
+
+
+
 	<script type="text/javascript" src="../js/cust/angcust.js"></script>
 	<script type="text/javascript" src="../js/cust/custconfig.js"></script>
 	<script type="text/javascript" src="../js/util/angutil.js"></script>

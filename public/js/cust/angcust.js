@@ -1,4 +1,4 @@
-angular.module('cust', ['ngRoute', 'ngMaterial', 'ngMessages', 'util'] );
+angular.module('cust', ['ngRoute', 'ngMaterial', 'ngMessages', 'n3-pie-chart', 'util'] );
 
 
 angular
@@ -42,6 +42,17 @@ angular
 				$scope.showSearch = false
 				$scope.search.search = ""
 			}, 500)}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -166,7 +177,37 @@ angular
 
 
 
+					$scope.addToCart = function(item) {
+						console.log('add to cart fired')
+						if (!$rootScope.user.cart){
+							$rootScope.user.cart = {}
+						}
 
+						var cart = $rootScope.user.cart
+
+						if(cart[item._id]) {
+							cart[item._id] += 1
+						} else {
+							cart[item._id] = 1
+						}
+
+						console.log(cart)
+						$http({
+							method : 'POST',
+							url    : '/api/addToCart',
+							data   : cart,
+						}).then(function(returnData){
+							console.log(returnData.data)
+							$http.get('/api/me')
+							    .then(function(returnData){
+							        if(returnData.data.user){
+							           $rootScope.cart = returnData.data
+							           $rootScope.user = returnData.data.user
+			                 	       console.log($rootScope.user, $rootScope.cart)
+							        }
+							    })
+						})
+					}
 
 
 
@@ -222,6 +263,7 @@ angular
 			    parent: angular.element(document.body),
 			    targetEvent: ev,
 			    clickOutsideToClose:true,
+			    focusOnOpen: false,
 			    fullscreen: useFullScreen
 			})
 
@@ -269,7 +311,7 @@ angular
 
 			// Controllers for MODALS MODALS MODALS
 			// Injected this item to give me access to it on modal
-			function topItemController($scope, $mdDialog, thisItem) {
+			function topItemController($scope, $rootScope, $mdDialog, thisItem) {
 
 			// Make thisItem available on the modal
 			$scope.thisItem = thisItem
@@ -283,6 +325,7 @@ angular
 			};
 
 			$scope.addToCart = function(item) {
+				console.log('add to cart fired')
 				if (!$rootScope.user.cart){
 					$rootScope.user.cart = {}
 				}
@@ -607,6 +650,12 @@ angular
 				return item.console.indexOf($scope.$routeParams.console) > -1
 			})}
 
+			$scope.gauge_data = [
+			  {label: "Rating", value: $scope.activeConsole.rating, suffix: "%", color: "steelblue"}
+			];
+
+			$scope.gauge_options = {thickness: 5, mode: "gauge", total: 100};
+
 		}])
 
 angular
@@ -617,8 +666,10 @@ angular
 			$scope.$location = $location;
 			$scope.$routeParams = $routeParams;
 
+			$scope.limit = 10
 
-			console.log($routeParams)
+
+			console.log($routeParams, $scope.activeGame)
 
 			inventory.getGamesList().then(function(returnData){
 					$scope.gamesList = returnData.data
@@ -627,8 +678,18 @@ angular
 			if($scope.$routeParams.game){
 			$scope.activeGame = _.find($scope.gamesList, function(item){
 				return item._id === $scope.$routeParams.game
+			})}
 
-			})
-			}
+			if($scope.$routeParams.game){
+			$scope.gameList = _.filter($scope.gamesList, function(item){
+				return item.console.indexOf($scope.activeGame.console) > -1
+			})}
+
+			$scope.gauge_data = [
+			  {label: "Rating", value: $scope.activeGame.rating, suffix: "%", color: "steelblue"}
+			];
+
+			$scope.gauge_options = {thickness: 5, mode: "gauge", total: 100};
+			
 
 		}])

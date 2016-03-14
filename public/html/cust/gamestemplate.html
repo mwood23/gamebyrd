@@ -1,28 +1,52 @@
 <!-- CART -->
 <ng-include src="'html/cust/cart.html'"></ng-include>
 
-<div class="section no-pad-bot primary-color">
+<div class="section no-pad-bot">
 	<div class="container">
-		<h1 class="center-on-small-only white-text no-top-margin">{{activeGame.title}}</h1>
+		<h1 class="center-on-small-only no-top-margin">{{activeGame.title}}</h1>
 		<div class="row">
-			<img class="col m4" width="300px" src="{{activeGame.cover}}">
-			<div class="col m8 white-text">
+			<img class="col m4 responsive-img img-border" width="400px" src="{{activeGame.cover}}">
+			<div class="col m8">
 				<ul>
-					<li><h4>Product Description:</h4>{{activeGame.description}}</li>
 					<li><h5>Price: ${{activeGame.price}} per week</h5></li>
+					<li>
+						<div class="ratings-chart">
+							<pie-chart data="gauge_data" options="gauge_options"></pie-chart>
+						</div>
+					</li>
+					<li>
+						<div class="buy-button">
+							<button ng-click="addToCart(activeGame)" class="btn-large waves-effect waves-light secondary-color">Add to Cart</button>
+						</div>
+					</li>
 				</ul>				
 			</div>
-		</div>
-		<div class="row center padding-bottom">
-			<a href="#" class="btn-large waves-effect waves-light secondary-color">Add to Cart</a>
 		</div>
 	</div>	
 </div>
 	<div class="container">
-		<h4>Product Reviews</h4>
+		<h4>Product Description</h4>
+		<p>{{activeGame.description}}</p>
 	</div>
 
 	<div class="container">
 		<h4>Similar Items</h4>
+		<md-card ng-repeat="game in gameList | limitTo:limit">
+		  <md-card-title>
+		    <md-card-title-text>
+		      <a ng-href="#/games/{{game._id}}" class="title">{{game.title}}</a>
+		      <span class="md-subhead">${{game.price}}</span>
+		      <span class="md-subhead">{{game.description | limitTo: 600 + "..."}}...</span>
+		    </md-card-title-text>
+		    <md-card-title-media>
+		      <a ng-href="#/games/{{game._id}}"><img ng-src="{{game.cover}}" width="300px" class="md-pic valign-wrapper"></a>
+		    </md-card-title-media>
+		  </md-card-title>
+		  <md-card-actions layout="row" layout-align="end center">
+		    <md-button ng-click="addToCart(thisItem)" style="margin-right:20px;">
+		      Add to Cart
+		    </md-button>
+		  </md-card-actions>
+		</md-card>
 	</div>
 	

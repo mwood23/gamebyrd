@@ -8,16 +8,27 @@
 			<img class="col m4 responsive-img img-border" width="400px" src="{{activeConsole.picture}}">
 			<div class="col m8">
 				<ul>
-					<li><h4>Product Description:</h4>{{activeConsole.description}}</li>
 					<li><h5>Price: ${{activeConsole.price}} per week</h5></li>
+          <li>
+            <div class="ratings-chart">
+              <pie-chart data="gauge_data" options="gauge_options"></pie-chart>
+            </div>
+          </li>
+          <li>
+            <div class="buy-button">
+              <button ng-click="addToCart(activeConsole)" class="btn-large waves-effect waves-light secondary-color">Add to Cart</button>
+            </div>
+          </li>
 				</ul>				
 			</div>
 		</div>
-		<div class="row center padding-bottom">
-			<a href="#" class="btn-large waves-effect waves-light secondary-color">Add to Cart</a>
-		</div>
 	</div>	
 </div>
+
+    <div class="container">
+      <h4>Product Description</h4>
+      <p>{{activeConsole.description}}</p>
+    </div>
 
 	<div class="container">
 		<h4>Top Games</h4>

@@ -9,9 +9,9 @@ angular.
 				controller: "main"
 			})
 			// Customer Routes
-			.when('/howitworks', 
+			.when('/faqs', 
 			{
-				templateUrl: "html/cust/howitworks.html",
+				templateUrl: "html/cust/faqs.html",
 				controller: "main"
 			})
 
@@ -30,7 +30,7 @@ angular.
 			.when('/checkout',
 			{
 				templateUrl: "html/cust/checkout.html",
-				controller: "main"
+				controller: "checkout"
 			})
 
 		})
