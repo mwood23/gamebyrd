@@ -27,5 +27,10 @@ angular.
 				controller: "game"
 			})
 
+			.when('/checkout',
+			{
+				templateUrl: "html/cust/checkout.html",
+				controller: "main"
+			})
 
 		})

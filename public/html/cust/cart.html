@@ -4,39 +4,40 @@
       <h4>Basket</h4>
       <div>
         <ul class="collection">
-            <li ng-repeat="(console, value) in cart.consoles" class="collection-item avatar">
-              <img ng-src="{{value.picture}}" alt="" class="circle">
-              <span class="title">{{value.name}}</span>
-              <p>Quantity: {{value.quantityOrdered}}<br>
-                 
-              </p>
-              <span class="secondary-content">{{value.subTotal}}</span>
+            <li ng-repeat="(console, value) in cart.consoles" class="collection-item avatar basket">
+              <img ng-src="{{value.picture}}" alt="" class="sm-pic">
+              <span class="title basket-title">{{value.name}}</span>
+              <span ng-hide="value.showEdit" class="basket-subhead">Quantity: {{value.quantityOrdered}}</span>
+              <input ng-show="value.showEdit" class="basket-input" placeholder="Update Quantity" ng-model="value.quantityOrdered"></input>
+              <md-button ng-click="editItem(value)" class="basket-edit" ng-hide="value.showEdit">Edit</md-button>
+              <md-button ng-click="saveItem(value)" class="basket-edit" ng-show="value.showEdit">Save</md-button>
+              <span class="secondary-content">${{value.subTotal}}/week</span>
+              <md-button class="basket-delete" ng-show="value.showEdit" >DELETE</md-button>
             </li>
-            <li ng-repeat="(game, value) in cart.games" class="collection-item avatar">
-              <img ng-src="{{value.cover}}" alt="" class="circle">
-              <span class="title">{{value.title}}</span>
-              <p>Quantity: {{value.quantityOrdered}}<br>
-                 Console: {{value.console}}
-              </p>
-              <span class="secondary-content">{{value.subTotal}}</span>
+            <li ng-repeat="(game, value) in cart.games" class="collection-item avatar basket">
+              <img ng-src="{{value.cover}}" alt="" class="sm-pic">
+              <span class="title basket-title">{{value.title}}</span>
+              <span class="basket-subhead">Quantity: {{value.quantityOrdered}}</span>
+              <md-button ng-click="editItem()" class="basket-edit">Edit</md-button>
+              <span class="secondary-content">${{value.subTotal}}/week</span>
             </li>
-            <li ng-repeat="(accessory, value) in cart.accessories" class="collection-item avatar">
-              <img ng-src="{{value.picture}}" alt="" class="circle">
-              <span class="title">{{value.name}}</span>
-              <p><br>
-                 Second Line
-                 Console: {{value.console}}
-              </p>
-              <span class="secondary-content">{{value.subTotal}}</span>
+            <li ng-repeat="(accessory, value) in cart.accessories" class="collection-item avatar basket">
+              <img ng-src="{{value.picture}}" alt="" class="sm-pic">
+              <span class="title basket-title">{{value.name}}</span>
+              <span class="basket-subhead">Quantity: {{value.quantity}}</span>
+              <md-button ng-click="editItem()" class="basket-edit">Edit</md-button>
+              <span class="secondary-content">${{value.subTotal}}/week</span>
             </li>
           </ul>
           <div>
-            <span>Subtotal: {{user.subTotal}}</span>
+            <span class="float-right">Subtotal: ${{user.subTotal}}</span>
           </div>
       </div>
     </div>
     <div class="modal-footer">
-      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Checkout</a>
+     <!--  <a href="#/checkout" class="modal-action modal-close waves-effect waves-green btn-flat ">Checkout</a> -->
+
+     <md-button ng-href="#/checkout" class="md-primary right-align" md-no-focus-style="false">Checkout</md-button>
     </div>
   </div>
   

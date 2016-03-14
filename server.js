@@ -100,6 +100,8 @@ var accessoryController = require("./controllers/accessoryController.js")
 var addToCartController = require("./controllers/addToCartController.js")
 var searchController = require("./controllers/searchController.js")
 var getcartController = require("./controllers/getcartController.js")
+var updateuserController = require("./controllers/updateuserController.js")
+var checkoutController = require("./controllers/checkoutController.js")
 
 app.post('/api/addGame', videogameController.addGame)
 app.post('/api/addConsole', consoleController.addConsole)
@@ -113,11 +115,21 @@ app.get('/getAccessoriesList', custhomeController.getAccessoriesList);
 app.get('/getTopGames', custhomeController.getTopGames);
 app.get('/getTopConsoles', custhomeController.getTopConsoles);
 
+
 app.get('/api/me', getcartController.getUser)
 // app.get('/api/me', getcartController.getCart)
 
 app.post('/api/addToCart', addToCartController.addToCart)
 app.post('/api/search', searchController.search)
+
+app.post('/api/updateUser', updateuserController.updateUser)
+
+app.post('/api/updateCart', checkoutController.updateCart)
+
+app.get('/logout', function(req, res){
+    req.logout();
+    res.redirect('/');
+});
 
 
 

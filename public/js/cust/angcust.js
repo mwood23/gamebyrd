@@ -119,6 +119,74 @@ angular
 			//    	})
 
 
+			// EDIT CART
+
+			$scope.editItem = function(value) {
+				value.showEdit = true
+				console.log(value.showEdit)
+
+			}
+
+			$scope.saveItem = function(value) {
+				value.showEdit = false
+				console.log(value)
+				$http.post('/api/updateCart', value)
+					.then(function(returnData, err){
+					console.log(returnData.data)
+				})
+			}
+
+
+
+			// CHECKOUT
+
+			// Confirm/update user information
+
+			$scope.tabTwoDisabled = true
+			$scope.tabThreeDisabled = true
+
+			$scope.max = 2;
+			$scope.selectedIndex = 0;
+			$scope.nextTab = function() {
+			   var index = ($scope.selectedIndex == $scope.max) ? 0 : $scope.selectedIndex + 1;
+			   $scope.selectedIndex = index;
+			 };
+			
+			$scope.updateUser = function() {
+				console.log("updateUser called", $rootScope.user)
+				$http.post('/api/updateUser', $rootScope.user)
+					.then(function(returnData){
+						console.log(returnData)
+						$scope.tabTwoDisabled = false
+						$scope.nextTab()
+
+						// Send to next part of form
+					})
+			}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 			// MODALS MODALS MODALS
 			// For logging in
@@ -128,7 +196,8 @@ angular
 					templateUrl: '../../html/cust/modals/login.html',
 					parent: angular.element(document.body),
 					targetEvent: ev,
-					clickOutsideToClose:true
+					clickOutsideToClose:true,
+					focusOnOpen: false
 			    })
 			};
 
@@ -184,6 +253,7 @@ angular
 			    parent: angular.element(document.body),
 			    targetEvent: ev,
 			    clickOutsideToClose:true,
+			    focusOnOpen: false,
 			    fullscreen: useFullScreen
 			})
 

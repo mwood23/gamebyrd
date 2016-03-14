@@ -22,9 +22,16 @@ https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
 			<div class="nav-wrapper relative primary-color">
 				<a ng-show="currentUserSignedIn" class="modal-trigger waves-effect waves-light shopping-cart" href="#modal2"><i class="material-icons">shopping_cart</i></a>
 				<md-button class="" ng-click="showLogin($event)" ng-hide="currentUserSignedIn">Login</md-button>
-				<div ng-show="currentUserSignedIn">
-				<span >Hello {{user.first_name}}</span>
-				</div>
+
+				<!-- Dropdown Trigger -->
+				<a class='dropdown-button user-dropdown' ng-show="currentUserSignedIn" data-activates='dropdown1'>Hello {{user.first_name}} <i class="material-icons">arrow_drop_down</i></a>
+
+				<!-- Dropdown Structure -->
+				<ul id='dropdown1' class='dropdown-content'>
+				  <li><a href="">Account</a></li>
+				  <li><a href="/logout">Logout</a></li>
+				</ul>
+
 				<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
 				<ul class="side-nav" id="mobile-demo">
 					<div>

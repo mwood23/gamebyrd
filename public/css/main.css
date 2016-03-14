@@ -30,8 +30,8 @@
 }
 
 .sm-pic {
-	max-height: 100px;
-	max-width: 100px;
+	max-height: 90px;
+	max-width: 70px;
 	height: auto;
 	width: auto;	
 }
@@ -49,6 +49,10 @@
 
 .float-left {
   float: left;
+}
+
+.float-right {
+  float: right;
 }
 
 .overflow-hidden {
@@ -219,6 +223,21 @@ header, .main, footer {
 	right: 12px;
 }
 
+/*USER DROPDOWN*/
+.user-dropdown {
+  position: absolute;
+  left: 30px;
+}
+
+.down-arrow {
+  position: absolute;
+  z-index: 10;
+  top: 3px;
+  left: 76px;
+}
+
+
+
 /*CONSOLE PAGE*/
 .no-top-margin {
 	margin-top: 0px;
@@ -231,6 +250,54 @@ header, .main, footer {
 /* CART */
 .cart-image {
 	float: left;
+}
+
+.basket {
+  padding-left: 10px !important;
+}
+
+.basket-title {
+  position: absolute;
+  top: 11px;
+  padding-left: 11px;
+}
+
+.basket-subhead {
+  position: absolute;
+  top: 32px;
+  padding-left: 11px;
+}
+
+.modal.bottom-sheet {
+  max-height: 60%;
+}
+
+.basket-edit {
+    position: absolute;
+    padding-left: 11px;
+    top: 52px;
+    margin: 0;
+    line-height: initial;
+    min-height: initial;
+    text-align: left;
+}
+
+.basket-delete {
+    position: absolute;
+    line-height: initial;
+    min-height: initial;
+    text-align: center;
+    margin: 0;
+    top: 46px;
+    right: 16px;
+}
+
+.basket-input {
+  position: absolute;
+  width: 15px !important;
+  height: initial !important;
+  top: 34px;
+  left: 150px;
 }
 
 /*TOP CHARTS*/
@@ -328,6 +395,14 @@ header, .main, footer {
   border: none;
   margin: 0;
 }
+
+.no-bottom-margin {
+  margin-bottom: 0;
+}
+
+.checkout-padding {
+  padding-right: 20px;
+}
  
 /* 
 .layer div  {
@@ -358,8 +433,31 @@ header, .main, footer {
     width: 71.5%;
   }
 
+  .user-dropdown {
+  left: 55px;
+}
+
 }
 
 .img-border {
   border-solid: black 5px;
+}
+
+
+/*overwriting angular material*/
+.md-toolbar-tools {
+  background-color: #3C3B82;
+}
+
+.mb-button {
+  background-color: #3C3B82;
+}
+
+.md-primary {
+  background-color: #3C3B82;
+}
+
+/*overwriting materialize*/
+.btn:hover {
+  background-color: rgba(158,158,158,0.2)
 }
