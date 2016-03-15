@@ -1,6 +1,16 @@
 <!-- CART -->
 <ng-include src="'html/cust/cart.html'"></ng-include>
 
+<!-- Script included here becuse of dynamic routing breaking jquery -->
+<script type="text/javascript">
+	 $(document).ready(function(){
+    setTimeout(function(){
+      $('.collapsible').collapsible({
+      accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+      });
+      },500)
+  });
+</script>
 
 	<div class="container">
 		<h1>FAQs</h1>

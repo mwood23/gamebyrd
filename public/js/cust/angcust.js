@@ -235,6 +235,7 @@ angular
 						           $rootScope.cart = returnData.data
 						           $rootScope.user = returnData.data.user
 		                 	       console.log($rootScope.user, $rootScope.cart)
+
 						        }
 						    })
 					})
@@ -385,6 +386,7 @@ angular
 							           $rootScope.cart = returnData.data
 							           $rootScope.user = returnData.data.user
 			                 	       console.log($rootScope.user, $rootScope.cart)
+			                 	       $mdDialog.hide()
 							        }
 
 
