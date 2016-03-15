@@ -134,7 +134,7 @@ app.get('/logout', function(req, res){
     res.redirect('/');
 });
 
-// Stripe Payments are fun
+// Stripe Payments
 app.post('/api/charge', paymentController.charge)
 
 
