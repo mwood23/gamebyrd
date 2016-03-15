@@ -42,6 +42,7 @@ angular
 				$scope.showSearch = false
 				$scope.search.search = ""
 			}, 500)}
+				
 
 
 
@@ -143,9 +144,34 @@ angular
 				console.log(value)
 				$http.post('/api/updateCart', value)
 					.then(function(returnData, err){
-					console.log(returnData.data)
+						$http.get('/api/me')
+						    .then(function(returnData){
+						        if(returnData.data.user){
+						           $rootScope.cart = returnData.data
+						           $rootScope.user = returnData.data.user
+		                 	       console.log($rootScope.user, $rootScope.cart)
+						        }
+						    })
 				})
 			}
+
+				$scope.deleteItem = function(value) {
+					value.showEdit = false
+					console.log(value)
+					$http.post('/api/deleteItem', value)
+						.then(function(returnData, err){
+							$http.get('/api/me')
+							    .then(function(returnData){
+							        if(returnData.data.user){
+							           $rootScope.cart = returnData.data
+							           $rootScope.user = returnData.data.user
+			                 	       console.log($rootScope.user, $rootScope.cart)
+							        }
+							    })
+					})
+				}
+
+
 
 
 
@@ -156,12 +182,17 @@ angular
 			$scope.tabTwoDisabled = true
 			$scope.tabThreeDisabled = true
 
-			$scope.max = 2;
+			$scope.max = 3;
 			$scope.selectedIndex = 0;
 			$scope.nextTab = function() {
 			   var index = ($scope.selectedIndex == $scope.max) ? 0 : $scope.selectedIndex + 1;
 			   $scope.selectedIndex = index;
 			 };
+
+			 $scope.confirmationTab = function() {
+			 	$scope.tabThreeDisabled = false
+			 	$scope.nextTab()
+			 }
 			
 			$scope.updateUser = function() {
 				console.log("updateUser called", $rootScope.user)
@@ -177,39 +208,37 @@ angular
 
 
 
-					$scope.addToCart = function(item) {
-						console.log('add to cart fired')
-						if (!$rootScope.user.cart){
-							$rootScope.user.cart = {}
-						}
-
-						var cart = $rootScope.user.cart
-
-						if(cart[item._id]) {
-							cart[item._id] += 1
-						} else {
-							cart[item._id] = 1
-						}
-
-						console.log(cart)
-						$http({
-							method : 'POST',
-							url    : '/api/addToCart',
-							data   : cart,
-						}).then(function(returnData){
-							console.log(returnData.data)
-							$http.get('/api/me')
-							    .then(function(returnData){
-							        if(returnData.data.user){
-							           $rootScope.cart = returnData.data
-							           $rootScope.user = returnData.data.user
-			                 	       console.log($rootScope.user, $rootScope.cart)
-							        }
-							    })
-						})
+				$scope.addToCart = function(item) {
+					console.log('add to cart fired')
+					if (!$rootScope.user.cart){
+						$rootScope.user.cart = {}
 					}
 
+					var cart = $rootScope.user.cart
 
+					if(cart[item._id]) {
+						cart[item._id] += 1
+					} else {
+						cart[item._id] = 1
+					}
+
+					console.log(cart)
+					$http({
+						method : 'POST',
+						url    : '/api/addToCart',
+						data   : cart,
+					}).then(function(returnData){
+						console.log(returnData.data)
+						$http.get('/api/me')
+						    .then(function(returnData){
+						        if(returnData.data.user){
+						           $rootScope.cart = returnData.data
+						           $rootScope.user = returnData.data.user
+		                 	       console.log($rootScope.user, $rootScope.cart)
+						        }
+						    })
+					})
+				}
 
 
 
@@ -326,35 +355,49 @@ angular
 
 			$scope.addToCart = function(item) {
 				console.log('add to cart fired')
-				if (!$rootScope.user.cart){
-					$rootScope.user.cart = {}
-				}
+				
+				if($rootScope.user) {
+					if (!$rootScope.user.cart){
+						$rootScope.user.cart = {}
+					}
 
-				var cart = $rootScope.user.cart
+					var cart = $rootScope.user.cart
 
-				if(cart[item._id]) {
-					cart[item._id] += 1
+					if(cart[item._id]) {
+						cart[item._id] += 1
+					} else {
+						cart[item._id] = 1
+					}
+
+					console.log(cart)
+					$http({
+						method : 'POST',
+						url    : '/api/addToCart',
+						data   : cart,
+					}).then(function(returnData){
+						console.log(returnData.data)
+						$http.get('/api/me')
+						    .then(function(returnData){
+						        
+						        
+
+							        if(returnData.data.user){
+							           $rootScope.cart = returnData.data
+							           $rootScope.user = returnData.data.user
+			                 	       console.log($rootScope.user, $rootScope.cart)
+							        }
+
+
+
+						    })
+					})
 				} else {
-					cart[item._id] = 1
+					$scope.errorMessage = 'Please sign in to add to cart'
 				}
 
-				console.log(cart)
-				$http({
-					method : 'POST',
-					url    : '/api/addToCart',
-					data   : cart,
-				}).then(function(returnData){
-					console.log(returnData.data)
-					$http.get('/api/me')
-					    .then(function(returnData){
-					        if(returnData.data.user){
-					           $rootScope.cart = returnData.data
-					           $rootScope.user = returnData.data.user
-	                 	       console.log($rootScope.user, $rootScope.cart)
-					        }
-					    })
-				})
 			}
+
+
 
 			}
 
@@ -651,7 +694,7 @@ angular
 			})}
 
 			$scope.gauge_data = [
-			  {label: "Rating", value: $scope.activeConsole.rating, suffix: "%", color: "steelblue"}
+			  {label: "Rating", value: $scope.activeConsole.rating, suffix: "%", color: "#3C3B82"}
 			];
 
 			$scope.gauge_options = {thickness: 5, mode: "gauge", total: 100};
@@ -686,7 +729,7 @@ angular
 			})}
 
 			$scope.gauge_data = [
-			  {label: "Rating", value: $scope.activeGame.rating, suffix: "%", color: "steelblue"}
+			  {label: "Rating", value: $scope.activeGame.rating, suffix: "%", color: "#3C3B82"}
 			];
 
 			$scope.gauge_options = {thickness: 5, mode: "gauge", total: 100};

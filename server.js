@@ -102,6 +102,7 @@ var searchController = require("./controllers/searchController.js")
 var getcartController = require("./controllers/getcartController.js")
 var updateuserController = require("./controllers/updateuserController.js")
 var checkoutController = require("./controllers/checkoutController.js")
+var paymentController = require("./controllers/paymentController.js")
 
 app.post('/api/addGame', videogameController.addGame)
 app.post('/api/addConsole', consoleController.addConsole)
@@ -124,12 +125,17 @@ app.post('/api/search', searchController.search)
 
 app.post('/api/updateUser', updateuserController.updateUser)
 
+// Add and delete cart items
 app.post('/api/updateCart', checkoutController.updateCart)
+app.post('/api/deleteItem', checkoutController.deleteItem)
 
 app.get('/logout', function(req, res){
     req.logout();
     res.redirect('/');
 });
+
+// Stripe Payments
+app.post('/api/charge', paymentController.charge)
 
 
 

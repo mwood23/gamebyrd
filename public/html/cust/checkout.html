@@ -57,31 +57,89 @@
 		                </div>
 		                  <md-button class="float-right" ng-disabled="userForm.$invalid" ng-click="updateUser()" type="submit">Next</md-button>
 	                  </form>
-	                </md-content>
-
-
-
-	             	            
+	                </md-content>        	            
             </div>
         </md-content>
       </md-tab>
 
+
+
       <md-tab label="Order Summary" ng-disabled="tabTwoDisabled">
         <md-content class="md-padding">
           <h1 class="md-display-2">Order Summary</h1>
-          <form ng-submit="newConsole()">
-
-          </form>
+            <span>Please confirm all information is correct before continuing</span>
+            <div>
+              <ul class="collection">
+                  <li ng-repeat="(console, value) in cart.consoles" class="collection-item avatar basket">
+                    <img ng-src="{{value.picture}}" alt="" class="sm-pic">
+                    <span class="title basket-title">{{value.name}}</span>
+                    <span ng-hide="value.showEdit" class="basket-subhead">Quantity: {{value.quantityOrdered}}</span>
+                    <input ng-show="value.showEdit" class="basket-input" placeholder="Update Quantity" type="number" ng-model="value.quantityOrdered"></input>
+                    <md-button ng-click="editItem(value)" class="basket-edit" ng-hide="value.showEdit">Edit</md-button>
+                    <md-button ng-click="saveItem(value)" class="basket-edit" ng-show="value.showEdit">Save</md-button>
+                    <span class="secondary-content">${{value.subTotal}}/week</span>
+                    <md-button ng-click="deleteItem(value)" class="basket-delete" ng-show="value.showEdit" >DELETE</md-button>
+                  </li>
+                  <li ng-repeat="(game, value) in cart.games" class="collection-item avatar basket">
+                    <img ng-src="{{value.cover}}" alt="" class="sm-pic">
+                    <span class="title basket-title">{{value.title}}</span>
+                    <span ng-hide="value.showEdit" class="basket-subhead">Quantity: {{value.quantityOrdered}}</span>
+                    <input ng-show="value.showEdit" class="basket-input" placeholder="Update Quantity" type="number" ng-model="value.quantityOrdered"></input>
+                    <md-button ng-click="editItem(value)" class="basket-edit" ng-hide="value.showEdit">Edit</md-button>
+                    <md-button ng-click="saveItem(value)" class="basket-edit" ng-show="value.showEdit">Save</md-button>
+                    <span class="secondary-content">${{value.subTotal}}/week</span>
+                    <md-button ng-click="deleteItem(value)" class="basket-delete" ng-show="value.showEdit" >DELETE</md-button>
+                  </li>
+                  <li ng-repeat="(accessory, value) in cart.accessories" class="collection-item avatar basket">
+                    <img ng-src="{{value.picture}}" alt="" class="sm-pic">
+                    <span class="title basket-title">{{value.name}}</span>
+                    <span ng-hide="value.showEdit" class="basket-subhead">Quantity: {{value.quantity}}</span>
+                    <input ng-show="value.showEdit" class="basket-input" placeholder="Update Quantity" type="number" ng-model="value.quantityOrdered"></input>
+                    <md-button ng-click="editItem(value)" class="basket-edit" ng-hide="value.showEdit">Edit</md-button>
+                    <md-button ng-click="saveItem(value)" class="basket-edit" ng-show="value.showEdit">Save</md-button>
+                    <span class="secondary-content">${{value.subTotal}}/week</span>
+                    <md-button ng-click="deleteItem(value)" class="basket-delete" ng-show="value.showEdit" >DELETE</md-button>
+                  </li>
+                </ul>
+                <div>
+                  <span class="float-right">Subtotal: ${{user.subTotal}}</span>
+				</div>
+                <div> 
+                  <form action="/api/charge" method="POST">
+                    <script
+                      src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                      data-key="pk_test_UAZRjNIu7TRnDkjCLMpIEAlf"
+                      data-image="../../img/gamebyrd.png"
+                      data-name="Gamebyrd"
+                      data-description="Rental"
+                      data-amount="{{user.subTotal * 100}}"
+                      data-locale="auto">
+                    </script>
+                  </form>
+                 </div>
+            </div>
         </md-content>
       </md-tab>
+
+
 
       <md-tab label="Confirmation" ng-disabled="tabThreeDisabled">
         <md-content class="md-padding">
           <h1 class="md-display-2">Confirmation</h1>
-          <span>After reviewing your order please click make payment to process your order</span>
-          <form ng-submit="newAccessory()">
-            
+          <span>Thank you for your order!</span>
+
+          <form action="/api/charge" method="POST">
+            <script
+              src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+              data-key="pk_test_UAZRjNIu7TRnDkjCLMpIEAlf"
+              data-image="../../img/gamebyrd.png"
+              data-name="Gamebyrd"
+              data-description="Rental"
+              data-amount="{{user.subTotal * 100}}"
+              data-locale="auto">
+            </script>
           </form>
+         
       </md-tab>
     </md-tabs>
   </md-content>

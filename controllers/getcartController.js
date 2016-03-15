@@ -83,15 +83,27 @@ function getUser(req, res){
 		    				}
 
 		    				// Assign the subtotal to req.user.subTotal
-		    				req.user.subTotal = consoleSubTotal + gameSubTotal + accessorySubTotal
+		    				var subTotal = consoleSubTotal + gameSubTotal + accessorySubTotal
 		    				console.log('req.user', req.user.subTotal)
+
+		    					User.findByIdAndUpdate(req.user._id, 
+		    						{ $set: {subTotal : subTotal,
+		    							}}, {upsert:true, new: true}, function (err, user){
+		    							console.log(err, user)
+		    							res.send({user:user,
+		    									  consoles: consoles,
+		    									  games: games,
+		    									  accessories: accessories,
+		    									})
+		    						})
+		    				
 		    			
 
-		    			res.send({user:req.user,
-		    					  consoles: consoles,
-		    					  games: games,
-		    					  accessories: accessories
-		    					})
+		    			// res.send({user:user,
+		    			// 		  consoles: consoles,
+		    			// 		  games: games,
+		    			// 		  accessories: accessories,
+		    			// 		})
 		    		})
 		    })
 	    })

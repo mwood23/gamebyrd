@@ -8,7 +8,7 @@
 }
 
 .primary-color-lighten {
-  background-color: #56559C
+  background-color: #56559C;
 }
 
 .secondary-color {
@@ -230,6 +230,10 @@ header, .main, footer {
   left: 30px;
 }
 
+.dropdown-text {
+  color: #3C3B82 !important
+}
+
 .down-arrow {
   position: absolute;
   z-index: 10;
@@ -299,8 +303,9 @@ header, .main, footer {
 
 .basket-input {
   position: absolute;
-  width: 15px !important;
+  width: 45px !important;
   height: initial !important;
+  text-align: center;
   top: 34px;
   left: 150px;
 }
@@ -458,4 +463,21 @@ header, .main, footer {
 /*overwriting materialize*/
 .btn:hover {
   background-color: #56559C !important;
+}
+
+.btn-large:hover {
+  background-color: #56559C !important;
+}
+
+input:focus {
+    border-bottom: 1px solid #E08545 !important;
+    box-shadow: 0 1px 0 0 #E08545 !important;
+}
+
+.btn:focus {
+  background-color: #56559C !important
+}
+
+button:focus {
+  background-color: #56559C !important
 }

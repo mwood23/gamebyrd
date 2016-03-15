@@ -30,7 +30,13 @@ angular.
 			.when('/checkout',
 			{
 				templateUrl: "html/cust/checkout.html",
-				controller: "checkout"
+				controller: "main"
+			})
+
+			.when('/contactus',
+			{
+				templateUrl: "html/cust/contactus.html",
+				controller: "main"
 			})
 
 		})
