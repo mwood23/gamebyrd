@@ -134,7 +134,7 @@ app.get('/logout', function(req, res){
     res.redirect('/');
 });
 
-// Stripe Payments
+// Stripe Payments test
 app.post('/api/charge', paymentController.charge)
 
 
