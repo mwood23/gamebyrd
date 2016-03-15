@@ -16,6 +16,7 @@ function getUser(req, res){
     // Return the logged in user (or undefined if they are not logged in)
     if(req.user) {
 	    var cartObject = req.user.cart
+	    console.log(cartObject)
 	    var cartItems = Object.keys(cartObject)
 	    console.log(cartObject)
 	    GameConsole.find({

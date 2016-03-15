@@ -421,8 +421,23 @@ angular
 	                  data   : $scope.signupForm
 	              }).then(function(returnData){
 	                  console.log(returnData)
-	                  if ( returnData.data.success ) { window.location.href="/#/" }
-	              })
+	                  if ( returnData.data.success ) {
+	                 	$http.get('/api/me')
+	                 	    .then(function(returnData){
+	                 	    	console.log(performance.now())
+	                 	        if(returnData.data.user){
+	                 	           $rootScope.cart = returnData.data
+	                 	           $rootScope.user = returnData.data.user
+	                 	           console.log($rootScope.user, $rootScope.cart)
+	                 	        }
+	                 	    })
+
+	                 	$rootScope.currentUserSignedIn = true;
+	              		$mdDialog.hide();
+						    } else {
+						    	console.log(returnData)
+						   } }) 
+	          	}
 	          }
 
 	          $scope.login = function(){
@@ -451,7 +466,7 @@ angular
 	              })
 	          }
 
-			}
+			
 
 			// End controller MODALS MODALS MODALS
 

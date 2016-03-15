@@ -10,7 +10,7 @@ var userSchema = mongoose.Schema({
 	city : {type : String},
 	state : {type : String},
 	zip_code : {type : String},
-	cart : {type : Object},
+	cart : {type : Object, required:true, default: {}},
 	subTotal : {type : Number},
 	mobile_phone : {type : Number},
 	purchase_history : {type : Array},
@@ -18,6 +18,6 @@ var userSchema = mongoose.Schema({
 	permissions : {type : String},
 
 
-})
+}, { minimize: false })
 
 module.exports = mongoose.model('User', userSchema)
