@@ -134,15 +134,14 @@ app.get('/logout', function(req, res){
     res.redirect('/');
 });
 
-// Stripe Payments
+// Stripe Payments are fun
 app.post('/api/charge', paymentController.charge)
 
 
 
 
 
-
-var port = 3000
+var port = 80
 app.listen(port, function(){
 	console.log('Server running on port ' + port)
 })
