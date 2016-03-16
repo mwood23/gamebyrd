@@ -510,8 +510,8 @@ html, body {
 }
 
 input:focus {
-    border-bottom: 1px solid #E08545 !important;
-    box-shadow: 0 1px 0 0 #E08545 !important;
+    border-bottom: 1px solid #56559C !important;
+    box-shadow: 0 1px 0 0 #56559C !important;
 }
 
 .btn:focus {
