@@ -13,8 +13,8 @@
         <md-tab label="Login">
           <md-content class="md-padding">
             <form ng-submit="login()">
-              <input type="text" ng-model="loginForm.username" placeholder="Username"/>
-              <input type="password" ng-model="loginForm.password" placeholder="Password"/>
+              <input type="text" ng-model="loginForm.username" autocorrect="off" autocapitalize="off" placeholder="Username"/>
+              <input type="password" ng-model="loginForm.password" autocorrect="off" placeholder="Password"/>
               <!-- <input type="submit"/> -->
               <button type="submit" md-no-focus-style=false class="btn primary-color float-right" style="margin-right:20px;">
                 Login
@@ -28,8 +28,8 @@
                 <input type="text" ng-model="signupForm.first_name" placeholder="First Name"/>
                 <input type="text" ng-model="signupForm.last_name" placeholder="Last Name"/>
                 <input type="text" ng-model="signupForm.email" placeholder="email"/>
-                <input type="text" ng-model="signupForm.username" placeholder="Username"/>
-                <input type="password" ng-model="signupForm.password" placeholder="Password"/>
+                <input type="text" ng-model="signupForm.username" autocapitalize="off" autocorrect="off" placeholder="Username"/>
+                <input type="password" ng-model="signupForm.password" autocorrect="off" placeholder="Password"/>
                 <button type="submit" md-no-focus-style=false class="btn primary-color float-right" style="margin-right:20px;">
                   Sign Up
                 </button>
