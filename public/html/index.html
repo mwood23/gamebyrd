@@ -49,11 +49,11 @@ https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
 				<md-button class="" ng-click="showLogin($event)" ng-hide="currentUserSignedIn">Login</md-button>
 
 				<!-- Dropdown Trigger -->
-				<a class='dropdown-button user-dropdown' ng-show="currentUserSignedIn" data-activates='dropdown1'>Hello {{user.first_name}} <i class="material-icons down-arrow">arrow_drop_down</i></a>
+				<a class='dropdown-button user-dropdown' ng-show="currentUserSignedIn" data-activates='dropdown1'>Hello, {{user.first_name}} &#x25BC</a>
 
 				<!-- Dropdown Structure -->
 				<ul id='dropdown1' class='dropdown-content dropdown'>
-				  <li><a class="dropdown-text" href="">Account</a></li>
+				  <li><a class="dropdown-text" href="#/account">Account</a></li>
 				  <li><a class="dropdown-text" href="/logout">Logout</a></li>
 				</ul>
 
@@ -114,19 +114,21 @@ https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
 	      	<li><a href="#/contactus">Contact Us</a></li>
 	    </ul>
 
-	    <div ng-view autoscroll="true"></div>
+	    <div class="view-content" ng-view autoscroll="true"></div>
+
+	    <!-- Footer -->
+	    <footer class="primary-color footer">
+	    		<div class="container center primary-color">
+	    			<a href="#" target="_blank"><img src="img/facebook.png" alt="Facebook"></a>
+	    			<a href="#" target="_blank"><img src="img/twitter.png" alt="Twitter"></a>
+	    		<p class="white-text">&copy; Copyright 2016</p>
+	    		</div><!--EndContainer-->
+	    </footer>
 
 
 </div>
 
-<!-- Footer -->
-<footer class="primary-color">
-		<div class="container center primary-color">
-			<a href="#" target="_blank"><img src="img/facebook.png" alt="Facebook"></a>
-			<a href="#" target="_blank"><img src="img/twitter.png" alt="Twitter"></a>
-		<p class="white-text">&copy; Copyright 2016</p>
-		</div><!--EndContainer-->
-</footer>
+
 
 	<!-- Placed at end of body so pages load faster -->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.1.min.js"></script>

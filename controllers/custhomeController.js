@@ -2,6 +2,8 @@ var Game = require('../models/videogamemodel.js');
 var Accessory = require('../models/accessorymodel.js');
 var GameConsole = require('../models/consolemodel.js');
 
+
+// Loads in all of the games, accessories, and consoles from the DB
 function getGamesList (req, res){
 	console.log('get games list fires')
 
@@ -26,6 +28,7 @@ function getAccessoriesList (req, res){
 	})
 }
 
+// Loads in the top 10 rated games and consoles using DB filters
 function getTopGames (req, res){
 	console.log('getTopGames fires')
 

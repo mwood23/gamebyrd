@@ -3,6 +3,8 @@ var User = require('../models/user.js');
 function updateUser(req, res) {
 	console.log("made it back here", req.body)
 
+
+	// Finds and updates user when at either account page or checkout
 	User.findByIdAndUpdate(req.user._id, 
 		{ $set: {first_name : req.body.first_name,
 				 last_name  : req.body.last_name,

@@ -2,6 +2,8 @@ angular.
 	module('cust').
 		config(function ($routeProvider){
 
+// Do not camel case, will ruin deployment
+
 			$routeProvider
 			.when('/',
 			{
@@ -27,6 +29,12 @@ angular.
 				controller: "game"
 			})
 
+			.when('/accessories/:accessory',
+			{
+				templateUrl: "html/cust/accessorytemplate.html",
+				controller: "accessory"
+			})
+
 			.when('/checkout',
 			{
 				templateUrl: "html/cust/checkout.html",
@@ -36,6 +44,12 @@ angular.
 			.when('/contactus',
 			{
 				templateUrl: "html/cust/contactus.html",
+				controller: "main"
+			})
+
+			.when('/account',
+			{
+				templateUrl: "html/cust/account.html",
 				controller: "main"
 			})
 

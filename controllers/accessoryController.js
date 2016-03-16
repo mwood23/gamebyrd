@@ -1,7 +1,7 @@
 var Accessory = require('../models/accessorymodel.js');
 
 
-// Need to fix
+// For backend use adding accessories to DB
 function addAccessory (req, res) {
 	var accessory = new Accessory ({
 		name : req.body.name,

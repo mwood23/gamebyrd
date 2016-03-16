@@ -1,0 +1,77 @@
+<!-- CART -->
+<ng-include src="'html/cust/cart.html'"></ng-include>
+
+<div class="section no-pad-bot">
+	<div class="container">
+		<h1 class="center-on-small-only no-top-margin">{{activeAccessory.name}}</h1>
+		<div class="row">
+			<img class="col m4 responsive-img img-border" width="400px" src="{{activeAccessory.picture}}">
+			<div class="col m8">
+				<ul>
+					<li><h5>Price: ${{activeAccessory.price}} per week</h5></li>
+					<li>
+						<div class="ratings-chart">
+							<pie-chart data="gauge_data" options="gauge_options"></pie-chart>
+						</div>
+					</li>
+					<li>
+						<div class="buy-button">
+							<button ng-click="addToCart(activeAccessory)" class="btn-large waves-effect waves-light secondary-color">Add to Cart</button>
+						</div>
+					</li>
+				</ul>				
+			</div>
+		</div>
+	</div>	
+</div>
+	<div class="container">
+		<h4>Product Description</h4>
+		<p>{{activeAccessory.description}}</p>
+	</div>
+
+	<div class="container">
+		<h4>Similar Items</h4>
+		<md-card ng-repeat="accessory in accessoryList | limitTo:limit">
+		  <md-card-title>
+		    <md-card-title-text>
+		      <a ng-href="#/accessories/{{accessory._id}}" class="title">{{accessory.name}}</a>
+		      <span class="md-subhead">${{accessory.price}}</span>
+		      <span class="md-subhead">{{accessory.description | limitTo: 600 + "..."}}...</span>
+		    </md-card-title-text>
+		    <md-card-title-media>
+		      <a ng-href="#/accessories/{{accessory._id}}"><img ng-src="{{accessory.picture}}" width="300px" class="md-pic valign-wrapper"></a>
+		    </md-card-title-media>
+		  </md-card-title>
+		  <md-card-actions layout="row" layout-align="end center">
+		    <md-button ng-click="addToCart(accessory)" class="btn primary-color" style="margin-right:20px;">
+		      Add to Cart
+		    </md-button>
+		  </md-card-actions>
+		</md-card>
+	</div>
+
+		<div class="container">
+			<h4>Games</h4>
+			<div class="row">
+
+
+	          <md-card ng-repeat="game in gameList">
+	            <md-card-title>
+	              <md-card-title-text>
+	                <a ng-href="#/games/{{game._id}}" class="title">{{game.title}}</a>
+	                <span class="md-subhead">${{game.price}}</span>
+	                <span class="md-subhead">{{game.description | limitTo: 600 + "..."}}...</span>
+	              </md-card-title-text>
+	              <md-card-title-media>
+	                <a ng-href="#/games/{{game._id}}"><img ng-src="{{game.cover}}" width="300px" class="md-pic valign-wrapper"></a>
+	              </md-card-title-media>
+	            </md-card-title>
+	            <md-card-actions layout="row" layout-align="end center">
+	              <md-button ng-click="addToCart(game)" class="btn primary-color" style="margin-right:20px;">
+	                Add to Cart
+	              </md-button>
+	            </md-card-actions>
+	          </md-card>
+
+	        </div>
+	      </div>

@@ -19,14 +19,20 @@ function charge(req, res) {
     },
     function(err, charge) {
      
+        // If error
     	if(err) {
     		res.send(500, err)
     	} else {
-    		var pushObject = {
+            // If successful push the cart object information to the purchased items object
+            // for purchases history and documentation
+    		
+            // Create object to make it dynamic
+            var pushObject = {
     			$push : {}
     		}
 
     		pushObject.$push['purchase_history'] = req.user.cart
+
     		console.log('push object and purchase history', pushObject, req.user.purchase_history)
     		User.findByIdAndUpdate(req.user._id,
     			pushObject, {upsert : true, new : true, safe : true}, function (err, user){
@@ -36,6 +42,8 @@ function charge(req, res) {
 
     				clearCart.$set['cart'] = {}
 
+                    // Updates the cart to an empty object after it's values have been
+                    // Pushed into the purchase history object
     				User.update({_id: req.user._id}, clearCart, function(err, user){
     					console.log(err, 'user', user)
     					// res.send(204)
@@ -44,48 +52,6 @@ function charge(req, res) {
 
     			})
     	}
-
-
-    	// var itemToDelete = "cart." + req.body._id
-
-    	// var deleteObject = {
-    	// 	$unset : {}
-    	// }
-
-    	// deleteObject.$unset[itemToDelete] = 1
-    	
-    	// 	User.update({_id: req.user._id}, deleteObject, function (err, user){
-    	// 		console.log(err, 'user', user.cart)
-    	// 				res.send(user)
-    	// 			})
-
-
-
-
-// 	var itemToUpdate = "cart." + req.body._id
-
-// 	var updateObject = {
-// 		$set : {}
-// 	}
-
-// 	updateObject.$set[itemToUpdate] = req.body.quantityOrdered
-	
-// 		User.findByIdAndUpdate(req.user._id,
-// 				updateObject, {upsert:true, new: true}, function (err, user){
-// 					console.log('user', user)
-// 					res.send(user)
-// 				})
-
-
-
-// Contact.findByIdAndUpdate(
-//         info._id,
-//         {$push: {"messages": {title: title, msg: msg}}},
-//         {safe: true, upsert: true, new : true},
-//         function(err, model) {
-//             console.log(err);
-//         }
-//     );
 
     });
 }

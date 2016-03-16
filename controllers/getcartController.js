@@ -11,22 +11,34 @@ function getCart(req, res) {
 	res.send({success : 'Item saved'})
 }
 
+
+// Ran everytime something happens with a user to make sure nothing happens during 
+// shopping process.
+
 function getUser(req, res){
 	console.log(new Date())
     // Return the logged in user (or undefined if they are not logged in)
     if(req.user) {
+
+    	// Set cart object to variable
 	    var cartObject = req.user.cart
 	    console.log(cartObject)
+
+	    // Use Object.keys to put the key names into an array
 	    var cartItems = Object.keys(cartObject)
 	    console.log(cartObject)
+	    
+	    // Finds game consoles with the id
 	    GameConsole.find({
 		       '_id' : { $in : cartItems }
 		    }, function(err, consoles){
 		    	
+		    	// Add quantity ordered property to the consoles object that will be returned
 		    	for(var i = 0; i < consoles.length; i++){
 		    		consoles[i].quantityOrdered = cartObject[consoles[i]._id]
 		    	}
 
+		    	// Add subtotal to the consoles object that will be returned
 		    	for(var i = 0; i < consoles.length; i++) {
 		    		consoles[i].subTotal = (consoles[i].quantityOrdered * consoles[i].price)
 		    	}
@@ -91,6 +103,8 @@ function getUser(req, res){
 		    						{ $set: {subTotal : subTotal,
 		    							}}, {upsert:true, new: true}, function (err, user){
 		    							console.log(err, user)
+		    							
+		    							// Returns the user, consoles, games, and accessories
 		    							res.send({user:user,
 		    									  consoles: consoles,
 		    									  games: games,
@@ -99,12 +113,6 @@ function getUser(req, res){
 		    						})
 		    				
 		    			
-
-		    			// res.send({user:user,
-		    			// 		  consoles: consoles,
-		    			// 		  games: games,
-		    			// 		  accessories: accessories,
-		    			// 		})
 		    		})
 		    })
 	    })

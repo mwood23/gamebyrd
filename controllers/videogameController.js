@@ -1,6 +1,6 @@
 var Game = require('../models/videogamemodel.js');
 
-
+// Adding games on admin side
 // need to fix
 function addGame (req, res) {
 	var game = new Game ({

@@ -2,6 +2,8 @@ var GameConsole = require('../models/consolemodel.js');
 
 
 // need to fix
+
+// For adding consoles on the admin side
 function addConsole (req, res) {
 	var gameConsole = new GameConsole ({
 		name : req.body.name,

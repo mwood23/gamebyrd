@@ -36,11 +36,15 @@ var Accessory = require('../models/accessorymodel.js');
 //  	console.log("At the end of search")
 // 	}
 
+
+// For search functionality
 function search (req, res) {
 	console.log(req.body.search)
+
+	// Creates a regular expression that is not case sensitive
 	var searchQuery = new RegExp(req.body.search + '+', 'i')
 	
-
+	// Nested finds to make all of the objects come back async
 	GameConsole.find({ name : {$regex : searchQuery}}, 
 		function (err, consoles) {
 
@@ -52,6 +56,7 @@ function search (req, res) {
 					Accessory.find({ name : {$regex : searchQuery}},
 						function(err, accessories){
 
+							// Returns one big object to categorize search results
 							res.send({consoles : consoles,
 									 games : games, 
 									 accessories : accessories})

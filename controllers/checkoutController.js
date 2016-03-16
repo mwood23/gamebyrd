@@ -3,6 +3,10 @@ var User = require('../models/user.js');
 function updateCart(req, res) {
 	// console.log('made it to updateCart', req.body, req.user)
 
+
+	// Creates an object so properties can be passed dynamically into DC
+	// Uses $set because the cart object will carry the other values that
+	// are in the cart.
 	var itemToUpdate = "cart." + req.body._id
 
 	var updateObject = {
@@ -21,6 +25,8 @@ function updateCart(req, res) {
 function deleteItem(req, res) {
 	console.log('made it to deleteItem')
 
+	// Similar to above, uses $unset to remove one object key
+	// Passed in as an object to keep it dynamic basked on the item's ID
 	var itemToDelete = "cart." + req.body._id
 
 	var deleteObject = {

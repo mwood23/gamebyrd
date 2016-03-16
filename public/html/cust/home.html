@@ -21,8 +21,8 @@ parallax.limit(72, 72)
       parallax.limit(89, 89)
   })
     .mouseleave(function () { 
-        setTimeout(function() {parallax.disable()}, 500)
-        // parallax.disable()
+        // setTimeout(function() {parallax.disable()}, 500)
+        parallax.disable()
 
 
         
@@ -268,7 +268,7 @@ parallax.limit(72, 72)
         
 
         <div class="input-field search-container col s12">
-          <input ng-blur="closeSearch()" class="search-bar" placeholder="Search for games, consoles, or accessories" ng-model="search.search" ng-change="searchQuery()" id="search" type="search">
+          <input ng-blur="closeSearch()" class="search-bar" placeholder="Games, Consoles, Accessories" ng-model="search.search" ng-change="searchQuery()" id="search" type="search">
           <div ng-show="showSearch"class="collection search-results">
             <div class="collection item-container">
                 <p>Consoles</p>

@@ -23,11 +23,17 @@ angular
 			// 	window.location.href = "#/consoles/" + item._id
 			// }
 
+
+			// Gets inventory to load single page app
 			inventory.getGamesList().then(function(returnData){
 					$scope.gamesList = returnData.data
 				})	
 			inventory.getConsolesList().then(function(returnData){
 					$scope.consolesList = returnData.data
+				})	
+
+			inventory.getAccessoriesList().then(function(returnData){
+					$scope.accessoriesList = returnData.data
 				})	
 
 			inventory.getTopGames().then(function(returnData){
@@ -38,6 +44,7 @@ angular
 					$scope.topConsoles = returnData.data
 				})
 
+			// Closes search after 1/2 second
 			$scope.closeSearch = function() {$timeout(function() {
 				$scope.showSearch = false
 				$scope.search.search = ""
@@ -67,6 +74,7 @@ angular
 			})
 			}
 
+			// Async search query on a ng-change. Runs for each character typed.
 			$scope.search = {search : ""}
 			$scope.showSearch = false
 			// For async search
@@ -85,6 +93,7 @@ angular
 				})
 			}
 			
+			// Closes search when string is less than 3 characters
 			if($scope.search.search.length <= 3){
 				$scope.searchResults = {}
 				$scope.showSearch = false
@@ -108,7 +117,8 @@ angular
 			// // }
 			// }
 
-
+			// Check to see if there is a user signed in
+			// If so show the basket and set data
 			$http.get('/api/me')
 			    .then(function(returnData){
 			    	console.log(returnData)
@@ -133,12 +143,14 @@ angular
 
 			// EDIT CART
 
+			// Buttons to edit cart
 			$scope.editItem = function(value) {
 				value.showEdit = true
 				console.log(value.showEdit)
 
 			}
 
+			// After edits are made saves to database so it has memory
 			$scope.saveItem = function(value) {
 				value.showEdit = false
 				console.log(value)
@@ -155,6 +167,7 @@ angular
 				})
 			}
 
+				// Removes from DB and updates cart to remove dynamically
 				$scope.deleteItem = function(value) {
 					value.showEdit = false
 					console.log(value)
@@ -179,11 +192,13 @@ angular
 
 			// Confirm/update user information
 
+			// Tabs for checkout flow
 			$scope.tabTwoDisabled = true
 			$scope.tabThreeDisabled = true
 
 			$scope.max = 3;
 			$scope.selectedIndex = 0;
+			// Activates next tab on button click
 			$scope.nextTab = function() {
 			   var index = ($scope.selectedIndex == $scope.max) ? 0 : $scope.selectedIndex + 1;
 			   $scope.selectedIndex = index;
@@ -194,6 +209,9 @@ angular
 			 	$scope.nextTab()
 			 }
 			
+			// Updates users information async
+			// Also used for the account dropdown button
+			// the next tab functions does not have any adverse side effects
 			$scope.updateUser = function() {
 				console.log("updateUser called", $rootScope.user)
 				$http.post('/api/updateUser', $rootScope.user)
@@ -201,44 +219,56 @@ angular
 						console.log(returnData)
 						$scope.tabTwoDisabled = false
 						$scope.nextTab()
-
+						Materialize.toast('Information updated!', 3000, 'success');
 						// Send to next part of form
 					})
 			}
 
 
-
+				// Add to cart
 				$scope.addToCart = function(item) {
 					console.log('add to cart fired')
-					if (!$rootScope.user.cart){
-						$rootScope.user.cart = {}
-					}
+					
 
-					var cart = $rootScope.user.cart
+					if($rootScope.user) {
+						// If there is not a user set cart to empty object
+						if (!$rootScope.user.cart){
+							$rootScope.user.cart = {}
+						}
 
-					if(cart[item._id]) {
-						cart[item._id] += 1
+						// Rootscope because of nested modals
+						var cart = $rootScope.user.cart
+
+						// If the item is already in cart increment it
+						if(cart[item._id]) {
+							cart[item._id] += 1
+						} else {
+							cart[item._id] = 1
+						}
+
+						console.log(cart)
+						$http({
+							method : 'POST',
+							url    : '/api/addToCart',
+							data   : cart,
+						}).then(function(returnData){
+							console.log(returnData.data)
+							$http.get('/api/me')
+							    .then(function(returnData){
+							        	
+							        	// Updates data to be reflected in cart and checkout
+								        if(returnData.data.user){
+								           $rootScope.cart = returnData.data
+								           $rootScope.user = returnData.data.user
+				                 	       console.log($rootScope.user, $rootScope.cart)
+				                 	       Materialize.toast('Item added to cart', 3000, 'success');
+								        }
+							    })
+						})
 					} else {
-						cart[item._id] = 1
+						Materialize.toast('Please sign in to add to cart', 3000);
 					}
 
-					console.log(cart)
-					$http({
-						method : 'POST',
-						url    : '/api/addToCart',
-						data   : cart,
-					}).then(function(returnData){
-						console.log(returnData.data)
-						$http.get('/api/me')
-						    .then(function(returnData){
-						        if(returnData.data.user){
-						           $rootScope.cart = returnData.data
-						           $rootScope.user = returnData.data.user
-		                 	       console.log($rootScope.user, $rootScope.cart)
-
-						        }
-						    })
-					})
 				}
 
 
@@ -354,6 +384,8 @@ angular
 			    $mdDialog.cancel();
 			};
 
+			// Same as above but needed it in here because modals create
+			// Their own controllers
 			$scope.addToCart = function(item) {
 				console.log('add to cart fired')
 				
@@ -380,21 +412,17 @@ angular
 						$http.get('/api/me')
 						    .then(function(returnData){
 						        
-						        
-
 							        if(returnData.data.user){
 							           $rootScope.cart = returnData.data
 							           $rootScope.user = returnData.data.user
-			                 	       console.log($rootScope.user, $rootScope.cart)
+			                 	       console.log($rootScope.user, $rootScope.cart)			                 	
 			                 	       $mdDialog.hide()
+			                 	       Materialize.toast('Item added to cart', 3000, 'success');
 							        }
-
-
-
 						    })
 					})
 				} else {
-					$scope.errorMessage = 'Please sign in to add to cart'
+					Materialize.toast('Please sign in to add to cart', 3000);
 				}
 
 			}
@@ -435,12 +463,13 @@ angular
 	                 	$rootScope.currentUserSignedIn = true;
 	              		$mdDialog.hide();
 						    } else {
-						    	console.log(returnData)
+						    	Materialize.toast('Username taken/Enter valid email', 3000);
 						   } }) 
 	          	}
-	          }
+	          
 
 	          $scope.login = function(){
+	          	console.log('login fired')
 	              $http({
 	                  method : 'POST',
 	                  url    : '/login',
@@ -460,13 +489,13 @@ angular
 
 	                 	$rootScope.currentUserSignedIn = true;
 	              		$mdDialog.hide();
+	              	} else {
+	                  Materialize.toast('Wrong username/password', 3000);
 	              	}
-
-	                  else { console.log(returnData)}
 	              })
 	          }
-
-			
+}
+			// console.log($scope.login)
 
 			// End controller MODALS MODALS MODALS
 
@@ -492,14 +521,14 @@ angular
 			'http://ecx.images-amazon.com/images/I/51cBGTEKKGL.jpg', 
 			'https://upload.wikimedia.org/wikipedia/en/3/36/GoldenEye007box.jpg', 
 			'http://ecx.images-amazon.com/images/I/51HJDRbM7mL.jpg', 
-			'https://upload.wikimedia.org/wikipedia/en/8/8e/The_Legend_of_Zelda_Ocarina_of_Time_box_art.png', 
+			'http://vignette3.wikia.nocookie.net/zelda/images/8/89/The_Legend_of_Zelda_-_Ocarina_of_Time_(North_America).png/revision/latest?cb=20100528184456', 
 			'https://upload.wikimedia.org/wikipedia/en/b/b1/Contra_III_game_cover.png', 
 			'http://starmen.net/mother2/images/official/ebBox.jpg', 
 			'https://upload.wikimedia.org/wikipedia/en/9/9b/SNES_F-Zero_boxart.jpg', 
-			'http://static.giantbomb.com/uploads/original/9/93770/2363812-snes_earthwormjim.jpg', 
+			'http://www.planetemu.net/php/articles/files/image/zapier/earthworm-jim/Eartworm-jim-supernes-boite.jpg', 
 			'http://ecx.images-amazon.com/images/I/512%2BC6LgkvL._SX385_.jpg', 
 			"https://upload.wikimedia.org/wikipedia/en/9/9a/Yoshi's_Island_(Super_Mario_World_2)_box_art.jpg", 
-			'http://static.giantbomb.com/uploads/original/9/93770/2364665-snes_tmnt4turtlesintime.jpg', 
+			'http://img1.game-oldies.com/sites/default/files/packshots/nintendo-super-nes/teenage-mutant-ninja-turtles-iv-turtles-in-time-usa.png', 
 			'https://upload.wikimedia.org/wikipedia/en/c/c1/Dkc_snes_boxart.jpg', 
 			'https://upload.wikimedia.org/wikipedia/en/c/c3/DK_Country_2.jpg', 
 			'https://upload.wikimedia.org/wikipedia/en/c/cc/Dkc3_snes_boxart.jpg', 
@@ -508,15 +537,15 @@ angular
 			'http://ecx.images-amazon.com/images/I/51BC8Mv-x2L._SX385_.jpg', 
 			'https://upload.wikimedia.org/wikipedia/en/thumb/e/e4/Smetroidbox.jpg/250px-Smetroidbox.jpg', 
 			'http://vignette4.wikia.nocookie.net/mario/images/8/86/Super_Mario_Kart_-_North_American_Cover.png/revision/latest?cb=20120612005722', 
-			'http://images.gamenguide.com/data/images/full/7403/super-mario-world.jpg', 
+			'http://images.nintendolife.com/games/snes/super_mario_world/cover_large.jpg', 
 			'http://ecx.images-amazon.com/images/I/513hbHV0T4L._SX385_.jpg', 
 			'https://upload.wikimedia.org/wikipedia/en/5/52/Star_Fox_SNES.jpg', 
 			'https://upload.wikimedia.org/wikipedia/en/thumb/8/8f/SNS-WD-USA.gif/250px-SNS-WD-USA.gif', 
 			'http://ecx.images-amazon.com/images/I/51nOnmOxOUL._SX385_.jpg'])
 			var newbies = _.shuffle([
 				'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRSdY-3n63aOnnlPaNB3P0I6eZ_lBUA4ZLLLimjQqXr0fydy_btyw', 
-				'http://static.giantbomb.com/uploads/original/9/93770/2367699-a2600_frogger_2.jpg', 
-				'http://static.giantbomb.com/uploads/original/9/93770/2367669-a2600_asteroids_au.jpg', 
+				'http://www.8-bitcentral.com/images/reviews/atari2600/frogger2600.jpg', 
+				'https://recollectionsofplay.files.wordpress.com/2013/10/asteroids-cover.jpg', 
 				'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTLOz9Yl8fo00JDZR43V6acmpsf9ncH1b_kNJDbW4v36Rc0-nOI', 
 				'http://ecx.images-amazon.com/images/I/6143M9T1B6L.jpg', 
 				'http://ecx.images-amazon.com/images/I/51RuKFbjiEL.jpg', 
@@ -543,8 +572,8 @@ angular
 				'http://ecx.images-amazon.com/images/I/51PQ8MJFQWL.jpg', 
 				'https://upload.wikimedia.org/wikipedia/en/b/b1/Kid_Icarus_NES_box_art.png', 
 				'http://img.gamefaqs.net/box/8/3/7/21837_front.jpg', 
-				'http://static.giantbomb.com/uploads/original/9/93770/2362059-nes_metalgear.jpg', 
-				'http://static.giantbomb.com/uploads/original/9/93770/2361165-nes_battletoads.jpg', 
+				'http://vignette4.wikia.nocookie.net/metalgear/images/5/54/-Metal-Gear-NES-_.jpg/revision/latest?cb=20120127011312', 
+				'http://img.gamefaqs.net/box/7/7/6/44776_front.jpg', 
 				'http://vignette2.wikia.nocookie.net/nintendo/images/f/f1/Dr._Mario_(NES)_(NA).png/revision/latest?cb=20121203224336&path-prefix=en', 
 				'http://img.gamefaqs.net/box/1/0/9/23109_front.jpg', 
 				'https://upload.wikimedia.org/wikipedia/en/1/14/DuckHuntBox.jpg', 
@@ -568,32 +597,31 @@ angular
 				'http://www.rockstargames.com/sanandreas/image/FOB_pc.jpg', 
 				'http://images.pushsquare.com/games/ps3/bioshock/cover_large.jpg', 
 				'http://cdn.slashgear.com/wp-content/uploads/2013/04/Heavy-Rain-proves-experimental-games-arent-always-unprofitable.jpg', 
-				'http://ecx.images-amazon.com/images/I/A1Er5NlA3eL._SL1500_.jpg', 
+				"http://vignette3.wikia.nocookie.net/uncharted/images/3/3d/Uncharted_Drake's_Fortune_cover-3.png/revision/latest?cb=20100821095209&path-prefix=it", 
 				'http://cdn2-b.examiner.com/sites/default/files/styles/image_content_width/hash/89/58/8958c60628ed93a1467fbfea19d38ad9.jpg?itok=ysvemxgY', 
-				'https://d8kyhhndkm363.cloudfront.net/8/224240/936fulllittlebigplanet2cover.jpg', 
+				'http://www.playstationtrophies.org/images/game/533/cover_orig.jpg', 
 				'http://vignette1.wikia.nocookie.net/metalgear/images/b/be/MGS4_PS3_2D_FOB_psd_jpgcopy.jpg/revision/latest?cb=20120812155146&path-prefix=es', 
-				'http://ecx.images-amazon.com/images/I/A1dXfW1yPNL._SL1500_.jpg', 
-				'http://ecx.images-amazon.com/images/I/A1Zd014LSTS._SL1500_.jpg', 
+				'http://www.allertonave.com/webhook-uploads/1410658379650_lastofusboxart.jpg', 
+				'http://i41.tinypic.com/jt9ceh.jpg', 
 				'http://images2.wikia.nocookie.net/__cb20111218032555/uncharted/images/0/02/Uncharted_3_Boxart.jpg', 
 				'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXYsGoxS1AYfs9k0Y0e1_lIPzLOUA9pqF2B4zb-QtBNfliDsqd', 
-				'http://charlieintel.com/wp-content/uploads/2015/04/image1.jpg', 
+				'http://images.pushsquare.com/games/ps4/call_of_duty_black_ops_iii/cover_large.jpg', 
 				'http://images.pushsquare.com/games/ps4/bloodborne/cover_large.jpg', 
 				'http://images.esellerpro.com/2365/I/183/85/PS4WI01.jpg', 
 				'http://images.pushsquare.com/news/2015/03/yes_metal_gear_solid_v_the_phantom_pain_sneaks_to_ps4_ps3_on_1st_september/attachment/1/large.jpg', 
-				'http://ecx.images-amazon.com/images/I/81GjYy3kF1L._SL1500_.jpg', 
+				'http://www.adminpanel.com.ve/pedidos/img_productos_7/foto_1_207.jpg', 
 				'http://www.gengame.net/wp-content/gallery/watch_dogs-box-art/watch-dogs-ps3-boxart.jpg', 
 				'http://s1.thcdn.com/productimg/0/600/600/99/10958799-1424770017-724172.jpg', 
-				'http://www.lightninggamingnews.com/wp-content/gallery/fresh-screenshots-box-art-and-trailer-for-supermassives-until-dawn/Fresh-screenshots-box-art-and-trailer-for-Supermassive%E2%80%99s-Until-Dawn-9.jpg', 
+				'https://jfgame5.files.wordpress.com/2014/08/until-dawn.jpg', 
 				'http://www.gamingbus.com/wp-content/uploads/2012/10/Phantasy-Star-IV.jpg', 
 				'https://upload.wikimedia.org/wikipedia/en/8/80/Gunstar_Heroes.jpg', 
 				'http://ecx.images-amazon.com/images/I/51u4Tbrv%2B1L.jpg', 
 				'https://upload.wikimedia.org/wikipedia/en/e/ea/Contra_-_Hard_Corps_Coverart.png', 
-				'http://img2.game-oldies.com/sites/default/files/packshots/sega-genesis/altered-beast-usa-europe.png', 
-				'http://img1.game-oldies.com/sites/default/files/packshots/sega-genesis/toe-jam-earl-world-rev-a.png', 
+				'http://img2.game-oldies.com/sites/default/files/packshots/sega-genesis/altered-beast-usa-europe.png',  
 				'http://img2.game-oldies.com/sites/default/files/packshots/sega-genesis/double-dragon-v-the-shadow-falls-usa.png', 
 				'https://upload.wikimedia.org/wikipedia/en/1/16/The_Lion_King_Coverart.png', 
 				'http://img1.game-oldies.com/sites/default/files/packshots/sega-genesis/battletoads-double-dragon-usa.png', 
-				'http://img1.game-oldies.com/sites/default/files/packshots/sega-genesis/golden-axe-world-v1-1.png', 
+				'http://www.hardcoregaming101.net/goldenaxe/goldenaxe.jpg', 
 				'http://ecx.images-amazon.com/images/I/513sM13zpBL.jpg', 
 				'http://img2.game-oldies.com/sites/default/files/packshots/sega-genesis/nba-jam-tournament-edition-world.png', 
 				'https://upload.wikimedia.org/wikipedia/en/a/a3/Streets_Of_Rage_2_-EUR-.PNG', 
@@ -613,15 +641,15 @@ angular
 				'https://upload.wikimedia.org/wikipedia/en/b/b6/Sonic_R.jpg', 
 				'http://ecx.images-amazon.com/images/I/519LgOv9z7L.jpg', 
 				'https://upload.wikimedia.org/wikipedia/en/0/04/Punch-Out!!.jpg', 
-				'http://wiimedia.ign.com/wii/image/object/748/748589/TwilightPrincessRatingTFinalBox.jpg', 
+				'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcT0E1z7kFtLXbo-bstPet8_UuOWncW-fhgXClvXHzZkcgZtchCZuA', 
 				'http://ecx.images-amazon.com/images/I/61hsaXfwE3L.jpg', 
 				'http://media.ign.com/games/image/object/748/748547/MetroidPrime3Corruption_Wii_US_Trated.jpg', 
 				'http://vignette1.wikia.nocookie.net/geekyest-geeks/images/6/6b/MKW.png/revision/latest?cb=20150415120707', 
 				'http://pcmedia.ign.com/pc/image/object/075/075624/sonic_colors_wii_esrb.jpg', 
-				'http://ps3media.ign.com/ps3/image/object/143/14354707/donkeykongcuontryreturns.jpg', 
-				'http://pcmedia.ign.com/pc/image/object/872/872155/skyward_sword_wii_final1.jpg', 
+				'http://images.nintendolife.com/games/wii/donkey_kong_country_returns/cover_medium.jpg', 
+				'http://pcmedia.ign.com/pc/image/object/116/116779/skyward_sword_remote_final1boxart_160w.jpg', 
 				'https://upload.wikimedia.org/wikipedia/en/8/8f/NewSuperMarioBrosWiiBoxart.png', 
-				'http://wiimedia.ign.com/wii/image/object/748/748588/MarioGalaxyFinalBox.jpg', 
+				'https://wiiconsumer.files.wordpress.com/2008/08/super-mario-galaxy1.jpg', 
 				'http://ecx.images-amazon.com/images/I/81iCVhLDJFL._SL1500_.jpg', 
 				'http://www.gamestop.com/common/images/lbox/917584bm.jpg', 
 				'https://upload.wikimedia.org/wikipedia/en/e/e0/Wii_Sports_Europe.jpg', 
@@ -630,9 +658,8 @@ angular
 				'https://sickr.files.wordpress.com/2015/02/splatoon_us_box_art.jpg', 
 				'http://ecx.images-amazon.com/images/I/51dtJVp2BjL._AC_UL320_SR224,320_.jpg', 
 				'http://www.mariowiki.com/images/thumb/e/e2/Box_NA_-_Super_Mario_3D_World.png/250px-Box_NA_-_Super_Mario_3D_World.png', 
-				'http://i2.wp.com/shoryuken.com/wp-content/uploads/2014/06/WiiU_SuperSmashBros_pkg.png', 
-				'http://farm9.staticflickr.com/8126/8657462745_05cf3f76ee_o.jpg', 
-				'https://senseofrightalliance.files.wordpress.com/2015/03/zombiu-box.jpg', 
+				'http://ecx.images-amazon.com/images/I/A1M9vDLg1DL._SY606_.jpg', 
+				'http://mtv.com/news/wp-content/uploads/multi/2013/04/pikmin3_cover.jpg', 
 				'http://images.vg247.com/current//2012/09/nintendo-land-boxart.jpg', 
 				'http://louis-denizet.fr/wp-content/uploads/2014/05/soul-calibur-ii-4e260dad44be1.jpg', 
 				'https://upload.wikimedia.org/wikipedia/en/8/86/Sands_of_time_cover.jpg', 
@@ -644,7 +671,7 @@ angular
 				'http://ecx.images-amazon.com/images/I/71E9UxOXovL.gif',  
 				'http://ecx.images-amazon.com/images/I/515NVQBw61L._AC_UL320_SR224,320_.jpg', 
 				'http://ecx.images-amazon.com/images/I/517TWAB6W6L.jpg', 
-				'http://static1.gamespot.com/uploads/scale_medium/mig/0/3/8/5/2210385-box_fable.png', 
+				'http://iv1.lisimg.com/image/196310/600full-fable-cover.jpg', 
 				'https://upload.wikimedia.org/wikipedia/en/2/23/Project_Gotham_Racing_2_Coverart.png', 
 				'http://img.gamefaqs.net/box/1/0/6/54106_front.jpg', 
 				'http://www.lukiegames.com/assets/images/XBOX/xbox_halo-110214.jpg', 
@@ -654,13 +681,13 @@ angular
 				'http://ecx.images-amazon.com/images/I/71KEygwJ6aL._SL1081_.jpg', 
 				'http://vignette3.wikia.nocookie.net/blurgame/images/9/93/Blur_Cover_Xbox360.jpg/revision/latest?cb=20100528195348', 
 				'http://ecx.images-amazon.com/images/I/51cKx1N2jRL.jpg', 
-				'http://static.giantbomb.com/uploads/original/8/87790/1789576-360_gow2.jpg', 
+				'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcROqdw__4pqT1-699z9GREPTBwYlV_ItEG_O3EP0afbgj43gN-p', 
 				'http://www.gigabytesistemas.com/images/productos/xbox-360-gears-of-war-3-1-5146.jpeg', 
 				'http://ps2media.ign.com/ps2/image/object/850/850816/burnout_paradise_xbox360.jpg', 
-				'http://ecx.images-amazon.com/images/I/91gJTd3RMJL._SL1500_.jpg', 
+				'http://ecx.images-amazon.com/images/I/71n-CWYEuQL._SY550_.jpg', 
 				'http://old.gamegrin.com/files/images/games/p/portal_2/standard_PORTAL_3_Boxart_NA_Xbox_360.png', 
 				'http://www.mobygames.com/images/covers/l/297114-the-elder-scrolls-v-skyrim-xbox-360-front-cover.jpg', 
-				'http://media.ign.com/games/image/object/143/14320288/red_dead_redemption_360.jpg', 
+				'http://www.gry-online.pl/galeria/gry13/506668065.jpg', 
 				'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXYsGoxS1AYfs9k0Y0e1_lIPzLOUA9pqF2B4zb-QtBNfliDsqd', 
 				'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXYsGoxS1AYfs9k0Y0e1_lIPzLOUA9pqF2B4zb-QtBNfliDsqd', 
 				'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXYsGoxS1AYfs9k0Y0e1_lIPzLOUA9pqF2B4zb-QtBNfliDsqd', 
@@ -672,7 +699,7 @@ angular
 				'http://master.usfine.biz/upload/userfiles/images/20150725/1437808152_Oscar%20Will%20Share%20FIFA%2016%20Cover%20with%20Messi%20in%20Brazilian%20-%20XBOX%20ONE.jpg', 
 				'http://images.purexbox.com/games/xbox-one/forza_motorsport_6/cover_large.jpg', 
 				'http://s2.thcdn.com/productimg/600/600/11121020-1554301773570251.jpg', 
-				'http://www.eggplante.com/wp-content/uploads/2013/10/Battlefield-4-Xbox-One-Box-Art.jpg', 
+				'http://xboxonegamesfree.com/upload/pic/battlefield-4_XboxOne_cover.jpg', 
 				'http://www.gamestop.com/common/images/lbox/210036b.jpg', 
 				'http://ecx.images-amazon.com/images/I/51jL2oBgc4L.jpg', 
 				'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT4_mMQDX_ssZLqogsbauKZGIvCsXB-HxRBN_wBx3i-Iz124RGm'
@@ -695,21 +722,40 @@ angular
 			inventory.getConsolesList().then(function(returnData){
 				$scope.consolesList = returnData.data
 				})	
+			
 			inventory.getGamesList().then(function(returnData){
 					$scope.gamesList = returnData.data
 				})	
 
+			inventory.getAccessoriesList().then(function(returnData){
+					$scope.accessoriesList = returnData.data
+				})	
+
+			// Sets active console by searcing through the consoleslist
+			// and seeing what one equals the routeparams
 			if($scope.$routeParams.console){
 			$scope.activeConsole = _.find($scope.consolesList, function(item){
 				return item._id === $scope.$routeParams.console
 
 			})}
 
+			// Finds all games that pertain to that console
 			if($scope.$routeParams.console){
 			$scope.gameList = _.filter($scope.gamesList, function(item){
 				return item.console.indexOf($scope.$routeParams.console) > -1
 			})}
 
+			// Accessories
+			// Same as active console
+			if($scope.$routeParams.console){
+			$scope.accessoryList = _.filter($scope.accessoriesList, function(item){
+				return item.console.indexOf($scope.$routeParams.console) > -1
+			})}
+
+
+
+
+			// n-3 pie charts data
 			$scope.gauge_data = [
 			  {label: "Rating", value: $scope.activeConsole.rating, suffix: "%", color: "#3C3B82"}
 			];
@@ -735,18 +781,84 @@ angular
 					$scope.gamesList = returnData.data
 				})	
 
+			inventory.getAccessoriesList().then(function(returnData){
+					$scope.accessoriesList = returnData.data
+				})	
+
+			// Same as active console
 			if($scope.$routeParams.game){
 			$scope.activeGame = _.find($scope.gamesList, function(item){
 				return item._id === $scope.$routeParams.game
 			})}
 
+			// Same as active console
 			if($scope.$routeParams.game){
 			$scope.gameList = _.filter($scope.gamesList, function(item){
 				return item.console.indexOf($scope.activeGame.console) > -1
 			})}
 
+			// Accessories
+			// Same as active console
+			if($scope.$routeParams.game){
+			$scope.accessoryList = _.filter($scope.accessoriesList, function(item){
+				return item.console.indexOf($scope.activeGame.console) > -1
+			})}
+
+			// Same as above
 			$scope.gauge_data = [
 			  {label: "Rating", value: $scope.activeGame.rating, suffix: "%", color: "#3C3B82"}
+			];
+
+			$scope.gauge_options = {thickness: 5, mode: "gauge", total: 100};
+			
+
+		}])
+
+angular
+	.module('cust')
+		.controller('accessory', ['$scope', 'inventory', '$route', '$routeParams', '$location', function($scope, inventory, $route, $routeParams, $location){
+
+			$scope.$route = $route;
+			$scope.$location = $location;
+			$scope.$routeParams = $routeParams;
+
+			$scope.limit = 10
+
+
+			console.log($routeParams, $scope.activeGame)
+
+			inventory.getGamesList().then(function(returnData){
+					$scope.gamesList = returnData.data
+				})	
+
+			inventory.getAccessoriesList().then(function(returnData){
+					$scope.accessoriesList = returnData.data
+				})	
+
+			// Same as active console
+			if($scope.$routeParams.accessory){
+			$scope.activeAccessory = _.find($scope.accessoriesList, function(item){
+				return item._id === $scope.$routeParams.accessory
+			})}
+
+			console.log($scope.activeAccessory)
+
+			// Same as active console
+			if($scope.$routeParams.accessory){
+			$scope.gameList = _.filter($scope.gamesList, function(item){
+				return item.console.indexOf($scope.activeAccessory.console) > -1
+			})}
+
+			// Accessories
+			// Same as active console
+			if($scope.$routeParams.accessory){
+			$scope.accessoryList = _.filter($scope.accessoriesList, function(item){
+				return item.console.indexOf($scope.activeAccessory.console) > -1
+			})}
+
+			// Same as above
+			$scope.gauge_data = [
+			  {label: "Rating", value: $scope.activeAccessory.rating, suffix: "%", color: "#3C3B82"}
 			];
 
 			$scope.gauge_options = {thickness: 5, mode: "gauge", total: 100};

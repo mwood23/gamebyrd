@@ -24,10 +24,11 @@
               <span class="secondary-content">${{value.subTotal}}/week</span>
               <md-button ng-click="deleteItem(value)" class="basket-delete" ng-show="value.showEdit" >DELETE</md-button>
             </li>
+
             <li ng-repeat="(accessory, value) in cart.accessories" class="collection-item avatar basket">
               <img ng-src="{{value.picture}}" alt="" class="sm-pic">
               <span class="title basket-title">{{value.name}}</span>
-              <span ng-hide="value.showEdit" class="basket-subhead">Quantity: {{value.quantity}}</span>
+              <span ng-hide="value.showEdit" class="basket-subhead">Quantity: {{value.quantityOrdered}}</span>
               <input ng-show="value.showEdit" class="basket-input" placeholder="Update Quantity" type="number" ng-model="value.quantityOrdered"></input>
               <md-button ng-click="editItem(value)" class="basket-edit" ng-hide="value.showEdit">Edit</md-button>
               <md-button ng-click="saveItem(value)" class="basket-edit" ng-show="value.showEdit">Save</md-button>

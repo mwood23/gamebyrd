@@ -76,6 +76,10 @@
 	padding-left: 210px;
 }
 
+.success {
+  background-color: #19B52D;
+}
+
 /*LANDING PAGE*/
 
 video#bgvid { 
@@ -130,6 +134,35 @@ header, .main, footer {
   max-width: 100%;
   overflow-x: hidden;
 }
+
+/*For fixing the footer*/
+
+html, body {
+  height: 100%;
+}
+
+.main {
+  min-height: 100%;
+  position: relative;
+}
+
+.view-content {
+  padding-bottom: 100px;
+}
+
+.footer {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  padding: 1rem;
+  height: 100px;
+  overflow-y: hidden;
+  text-align: center;
+}
+
+
+
+
 
 
 
@@ -218,20 +251,20 @@ header, .main, footer {
 
 /*USER DROPDOWN*/
 .user-dropdown {
-  position: absolute;
-  left: 30px;
+  padding-left: 10px;
+  position: relative;
 }
 
 .dropdown-text {
   color: #3C3B82 !important
 }
 
-.down-arrow {
+/*.down-arrow {
   position: absolute;
   z-index: 10;
   top: 1px;
   left: 76px;
-}
+}*/
 
 .ratings-chart {
   width: 100px;
@@ -424,10 +457,6 @@ header, .main, footer {
     width: 71.5%;
   }
 
-  .user-dropdown {
-  left: 55px;
-}
-
 .classic {
   height: 100px;
   width: 150px;
@@ -443,6 +472,14 @@ header, .main, footer {
   margin-top: -150px;
  }
 }
+
+
+
+
+
+
+
+
 
 
 .img-border {

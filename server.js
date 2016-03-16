@@ -10,6 +10,8 @@ var passportconfig = require('./config/passportconfig.js')
 var app = express();
 
 /** Express Session Setup **/
+
+// Middleware for sessions
 var session = require('express-session')
 app.sessionMiddleware = session({
   secret: 'keyboard cat',
@@ -141,7 +143,7 @@ app.post('/api/charge', paymentController.charge)
 
 
 
-var port = 80
+var port = 3000
 app.listen(port, function(){
 	console.log('Server running on port ' + port)
 })

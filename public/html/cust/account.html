@@ -1,2 +1,62 @@
 <!-- CART -->
 <ng-include src="'html/cust/cart.html'"></ng-include>
+
+<div class="container">
+          <div class="row">
+              <h1 class="md-display-2">Account</h1>
+              <span>Click to edit account information</span>
+              
+	              <md-content class="md-no-momentum">
+	                  <form name="userForm" ngSubmit=updateUser()>
+		                <div layout='row'>
+		                  <md-input-container flex="50" class="no-bottom-margin md-icon-float md-block">
+		                    <!-- Use floating label instead of placeholder -->
+		                    <label>First Name</label>
+		                    <md-icon class="name"><i class="material-icons">person</i></md-icon>
+		                    <input ng-model=user.first_name type="text" ng-required="true">
+		                  </md-input-container>
+		                  <md-input-container flex="50" class="no-bottom-margin md-icon-float md-block">
+		                    <!-- Use floating label instead of placeholder -->
+		                    <label>Last Name</label>
+		                    <md-icon md-svg-src="" class="name"></md-icon>
+		                    <input ng-model="user.last_name" type="text" ng-required="true">
+		                  </md-input-container>
+		                </div>
+		                  <md-input-container md-no-float class="md-block">
+		                  	<label>Phone</label>
+		                    <md-icon><i class="material-icons">phone</i></md-icon>
+		                    <input ng-model="user.mobile_phone" type="text" ng-required="true">
+		                  </md-input-container>
+		                  <md-input-container class="md-block">
+		                    <!-- Use floating placeholder instead of label -->
+		                    <md-icon class="email"><i class="material-icons">email</i></md-icon>
+		                    <input ng-model="user.email" type="email" placeholder="Email (required)" ng-required="true">
+		                  </md-input-container>
+		                  <md-input-container md-no-float class="md-block">
+		                  	<label>Address</label>
+		                    <input ng-model="user.address" type="text" ng-required="true">
+		                    <md-icon style="display:inline-block;"><i class="material-icons">location_on</i></md-icon>
+		                  </md-input-container>
+		                <div layout='row'>
+		                  <md-input-container md-no-float flex="50" class="no-bottom-margin md-block">
+		                  	<label>City</label>
+		                    <input ng-model="user.city" type="text" ng-required="true">
+		                    <md-icon md-svg-icon="" style="display:inline-block;"></md-icon>
+		                  </md-input-container>
+		                  <md-input-container md-no-float flex="20" class="no-bottom-margin md-block">
+		                  	<label>State</label>
+		                    <input ng-model="user.state" type="text" ng-required="true">
+		                    <md-icon md-svg-icon="" style="display:inline-block;"></md-icon>
+		                  </md-input-container>
+		                  <md-input-container md-no-float flex="30" class="no-bottom-margin md-block">
+		                  	<label>Zip Code</label>
+		                    <input ng-model="user.zip_code" type="text" ng-required="true">
+		                    <md-icon md-svg-src="" style="display:inline-block;"></md-icon>
+		                  </md-input-container>
+		                </div>
+		                  <md-button class="float-right" ng-disabled="userForm.$invalid" ng-click="updateUser()" type="submit">Save</md-button>
+	                  </form>
+	                </md-content>        	            
+            </div>
+
+</div>
