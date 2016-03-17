@@ -52,7 +52,7 @@ function charge(req, res) {
                         //Send an SMS text message
                         twilio.sendMessage({
 
-                            to:'+' + req.user.mobile_phone, // Any number Twilio can deliver to
+                            to: '+12769528365', // Any number Twilio can deliver to
                             from: '+13364432018', // A number you bought from Twilio and can use for outbound communication
                             body: 'Hey ' + req.user.first_name + ', thank you for your order! Your order number is <test>. Be on the lookout for your order around 4:30! We will send another message with a tracking link when it ships' // body of the SMS message
 
