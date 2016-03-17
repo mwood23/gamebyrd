@@ -26,7 +26,7 @@
 		                  <md-input-container md-no-float class="md-block">
 		                  	<label>Phone</label>
 		                    <md-icon><i class="material-icons">phone</i></md-icon>
-		                    <input ng-model="user.mobile_phone" type="text" ng-required="true">
+		                    <input ng-model="user.mobile_phone" type="tel" class="validate" ng-required="true">
 		                  </md-input-container>
 		                  <md-input-container class="md-block">
 		                    <!-- Use floating placeholder instead of label -->
@@ -123,7 +123,7 @@
 
 
 
-      <md-tab label="Confirmation" ng-disabled="tabThreeDisabled">
+<!--       <md-tab label="Confirmation" ng-disabled="tabThreeDisabled">
         <md-content class="md-padding">
           <h1 class="md-display-2">Confirmation</h1>
           <span>Thank you for your order!</span>
@@ -140,7 +140,7 @@
             </script>
           </form>
          
-      </md-tab>
+      </md-tab> -->
     </md-tabs>
   </md-content>
 </div>

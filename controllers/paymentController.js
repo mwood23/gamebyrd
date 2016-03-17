@@ -1,6 +1,7 @@
 var User = require('../models/user.js');
 var config = require('../config.js')
 var stripe = require('stripe')(config.testSecretKey)
+var twilio = require('twilio')(config.account_sid, config.auth_token)
 
 
 
@@ -46,8 +47,33 @@ function charge(req, res) {
                     // Pushed into the purchase history object
     				User.update({_id: req.user._id}, clearCart, function(err, user){
     					console.log(err, 'user', user)
-    					// res.send(204)
-    					res.redirect('/')
+    					
+
+                        //Send an SMS text message
+                        twilio.sendMessage({
+
+                            to:'+' + req.user.mobile_phone, // Any number Twilio can deliver to
+                            from: '+13364432018', // A number you bought from Twilio and can use for outbound communication
+                            body: 'Hey ' + req.user.first_name + ', thank you for your order! Your order number is <test>. Be on the lookout for your order around 4:30! We will send another message with a tracking link when it ships' // body of the SMS message
+
+                        }, function(err, responseData) { //this function is executed when a response is received from Twilio
+
+                            if (!err) { // "err" is an error received during the request, if any
+
+                                // "responseData" is a JavaScript object containing data received from Twilio.
+                                // A sample response from sending an SMS message is here (click "JSON" to see how the data appears in JavaScript):
+                                // http://www.twilio.com/docs/api/rest/sending-sms#example-1
+
+                                res.redirect('/success')
+                                console.log(responseData.from); // outputs "+14506667788"
+                                console.log(responseData.body); // outputs "word to your mother."
+
+                            } else {
+                                console.log(err)
+                                res.send({error : "Something went wrong!"})
+                            }
+                        });
+
     				})
 
     			})

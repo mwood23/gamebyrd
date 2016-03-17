@@ -91,6 +91,10 @@ app.get('/', function(req, res){
   res.sendFile("index.html", {root: './public/html/'})
 })
 
+app.get('/success', function(req, res){
+  res.sendFile("success.html", {root: './public/html/cust'})
+})
+
 app.get('/admin', function(req, res){
     res.sendFile("admin.html", {root: './public/html'})
 })
@@ -105,6 +109,7 @@ var getcartController = require("./controllers/getcartController.js")
 var updateuserController = require("./controllers/updateuserController.js")
 var checkoutController = require("./controllers/checkoutController.js")
 var paymentController = require("./controllers/paymentController.js")
+var twilioController = require("./controllers/twilioController.js")
 
 app.post('/api/addGame', videogameController.addGame)
 app.post('/api/addConsole', consoleController.addConsole)
@@ -139,11 +144,13 @@ app.get('/logout', function(req, res){
 // Stripe Payments test
 app.post('/api/charge', paymentController.charge)
 
+app.post('/api/twilio', twilioController.tight)
 
 
 
 
-var port = 80
+
+var port = 3000
 app.listen(port, function(){
 	console.log('Server running on port ' + port)
 })

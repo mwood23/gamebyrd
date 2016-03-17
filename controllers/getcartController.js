@@ -15,6 +15,13 @@ function getCart(req, res) {
 // Ran everytime something happens with a user to make sure nothing happens during 
 // shopping process.
 
+
+// The cart is actually an object stored on the user. That is to make sure
+// there are no duplicate items. In order to get the cart to show in a user
+// Friendly way this function runs which parses out the object's keys (_ids)
+// And returns the object plus the quantity order to be ng-repeated over on
+// the front end.
+
 function getUser(req, res){
 	console.log(new Date())
     // Return the logged in user (or undefined if they are not logged in)

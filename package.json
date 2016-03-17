@@ -13,7 +13,8 @@
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "request": "^2.69.0",
-    "stripe": "^4.4.0"
+    "stripe": "^4.4.0",
+    "twilio": "^2.9.0"
   },
   "devDependencies": {},
   "scripts": {
