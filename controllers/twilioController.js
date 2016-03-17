@@ -6,9 +6,13 @@ function tight (req, res) {
 	var x = req.body.Body.toLowerCase()
 	var twiml = new twilio.TwimlResponse();
 
+	console.log(x, twiml)
+
 	if (x == "tight") {		
+			console.log('inside tight')
 		    twiml.message("Oh it be ultra tight. About as tight as this quote from Kanye West, -- Super inspired by my visit to Ikea today , really amazing company… my mind is racing with the possibilities…");
 	} else {
+			console.log('inside else')
 		    twiml.message("Sorry, I don't work dat good yet");
 
 	} 		
