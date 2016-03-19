@@ -5,6 +5,7 @@ function tight (req, res) {
 	
 
 	console.log('made it to twilio', req.body, req.body.Body)
+	var twiml = new twilio.TwimlResponse();
 	var x = req.body.Body.toLowerCase()
 	console.log(x)
 	
@@ -13,10 +14,9 @@ function tight (req, res) {
 
 	if (x == "tight") {		
 			console.log('inside tight')
-			var twiml = new twilio.TimlResponse();
+			
 		    twiml.message("Oh it be ultra tight. About as tight as this quote from Kanye West, -- Super inspired by my visit to Ikea today , really amazing company… my mind is racing with the possibilities…");
 	} else {
-			var twiml = new twilio.TimlResponse();
 			console.log('inside else')
 		    twiml.message("Sorry, I don't work dat good yet");
 
