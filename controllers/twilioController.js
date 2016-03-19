@@ -1,8 +1,8 @@
 var config = require('../config.js')
-var twilio = require('twilio')(config.account_sid, config.auth_token)
+var twilio = require('twilio')(config.interface_sid, config.auth_token)
 
 function tight (req, res) {
-	var twiml = new twilio.TwimlResponse();
+	var twiml = new twilio.TimlResponse();
 
 	console.log('made it to twilio', req.body, req.body.Body)
 	var x = req.body.Body.toLowerCase()
