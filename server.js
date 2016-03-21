@@ -150,7 +150,7 @@ app.post('/api/twilio', twilioController.tight)
 
 
 
-var port = 4000
+var port = 80
 app.listen(port, function(){
 	console.log('Server running on port ' + port)
 })
