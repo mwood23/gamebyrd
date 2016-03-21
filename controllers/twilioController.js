@@ -1,6 +1,5 @@
 var config = require('../config.js');
 var twilio = require('twilio');
-// (config.account_sid, config.auth_token)
 
 function tight (req, res) {
 	
