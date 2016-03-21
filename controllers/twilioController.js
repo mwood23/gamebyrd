@@ -16,9 +16,11 @@ function tight (req, res) {
 			console.log('inside tight')
 			
 		    resp.message("Oh it be ultra tight. About as tight as this quote from Kanye West, -- Super inspired by my visit to Ikea today , really amazing company… my mind is racing with the possibilities…");
+	} else if (x == "a flight of swallows") {
+			resp.message("Thank you for your interest! This company isn't real yet, but if it ever becomes a reality we will be sure to reach out!!");
 	} else {
 			console.log('inside else')
-		    resp.message("Sorry, I don't work dat good yet");
+		    resp.message("Sorry, I don't understand");
 
 	} 		
 
