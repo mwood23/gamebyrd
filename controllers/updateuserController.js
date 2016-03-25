@@ -1,8 +1,6 @@
 var User = require('../models/user.js');
 
 function updateUser(req, res) {
-	console.log("made it back here", req.body)
-
 
 	// Finds and updates user when at either account page or checkout
 	User.findByIdAndUpdate(req.user._id, 
@@ -15,7 +13,6 @@ function updateUser(req, res) {
 				 zip_code   : req.body.zip_code,
 				 mobile_phone : req.body.mobile_phone
 		}}, {upsert:true, new: true}, function (err, user){
-			console.log(err, user)
 			res.send(user)
 		})
 }

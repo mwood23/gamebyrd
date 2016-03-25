@@ -17,13 +17,12 @@ function updateCart(req, res) {
 	
 		User.findByIdAndUpdate(req.user._id,
 				updateObject, {upsert:true, new: true}, function (err, user){
-					console.log('user', user)
+
 					res.send(user)
 				})
 }
 
 function deleteItem(req, res) {
-	console.log('made it to deleteItem')
 
 	// Similar to above, uses $unset to remove one object key
 	// Passed in as an object to keep it dynamic basked on the item's ID
@@ -36,7 +35,6 @@ function deleteItem(req, res) {
 	deleteObject.$unset[itemToDelete] = 1
 	
 		User.update({_id: req.user._id}, deleteObject, function (err, user){
-			console.log(err, 'user', user.cart)
 					res.send(user)
 				})
 	

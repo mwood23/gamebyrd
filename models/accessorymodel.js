@@ -10,8 +10,8 @@ var accessorySchema = mongoose.Schema({
 	price : {           type : Number, required : true},
 	received_by : {     type : String, required : true},
 	console : {         type : String, required : true},
-	quantityOrdered : {type : Number},
-	subTotal : {	 type : Number},
+	quantityOrdered : { type : Number},
+	subTotal : {	    type : Number},
 	comments : {        type : String}
 })
 

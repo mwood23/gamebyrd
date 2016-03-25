@@ -5,8 +5,6 @@ var Accessory = require('../models/accessorymodel.js');
 
 
 function getCart(req, res) {
-	console.log('get cart fired')
-	console.log(req.body)
 
 	res.send({success : 'Item saved'})
 }
@@ -23,17 +21,14 @@ function getCart(req, res) {
 // the front end.
 
 function getUser(req, res){
-	console.log(new Date())
     // Return the logged in user (or undefined if they are not logged in)
     if(req.user) {
 
     	// Set cart object to variable
 	    var cartObject = req.user.cart
-	    console.log(cartObject)
 
 	    // Use Object.keys to put the key names into an array
 	    var cartItems = Object.keys(cartObject)
-	    console.log(cartObject)
 	    
 	    // Finds game consoles with the id
 	    GameConsole.find({
@@ -51,7 +46,6 @@ function getUser(req, res){
 		    	}
 
 
-		    	console.log(consoles)
 		    	Game.find({ 
 		    		'_id' : { $in : cartItems }
 		    	},	function(err, games){
@@ -89,27 +83,22 @@ function getUser(req, res){
 		    				
 		    				for (var i = 0; i < consoles.length; i++){
 		    					consoleSubTotal += consoles[i].subTotal
-		    					console.log(consoleSubTotal)
 		    				}
 
 		    				for (var i = 0; i < games.length; i++){
 		    					gameSubTotal += games[i].subTotal
-		    					console.log(gameSubTotal)
 		    				}
 
 		    				for (var i = 0; i < accessories.length; i++){
 		    					accessorySubTotal += accessories[i].subTotal
-		    					console.log(accessorySubTotal)
 		    				}
 
 		    				// Assign the subtotal to req.user.subTotal
 		    				var subTotal = consoleSubTotal + gameSubTotal + accessorySubTotal
-		    				console.log('req.user', req.user.subTotal)
 
 		    					User.findByIdAndUpdate(req.user._id, 
 		    						{ $set: {subTotal : subTotal,
 		    							}}, {upsert:true, new: true}, function (err, user){
-		    							console.log(err, user)
 		    							
 		    							// Returns the user, consoles, games, and accessories
 		    							res.send({user:user,

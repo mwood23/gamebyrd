@@ -11,7 +11,6 @@ function charge(req, res) {
 	// Stripe token on the body to the post
     var stripeToken = req.body.stripeToken;
     var amount = req.user.subTotal * 100;
-    console.log('made it charge', req.body, amount, req.user)
 
     stripe.charges.create({
         card: stripeToken,
@@ -34,7 +33,6 @@ function charge(req, res) {
 
     		pushObject.$push['purchase_history'] = req.user.cart
 
-    		console.log('push object and purchase history', pushObject, req.user.purchase_history)
     		User.findByIdAndUpdate(req.user._id,
     			pushObject, {upsert : true, new : true, safe : true}, function (err, user){
     				var clearCart = {
@@ -46,13 +44,12 @@ function charge(req, res) {
                     // Updates the cart to an empty object after it's values have been
                     // Pushed into the purchase history object
     				User.update({_id: req.user._id}, clearCart, function(err, user){
-    					console.log(err, 'user', user)
     					
 
                         //Send an SMS text message
                         twilio.sendMessage({
 
-                            to: '+12769528365', // Any number Twilio can deliver to
+                            to: '+1' + req.user.mobile_phone, // Any number Twilio can deliver to
                             from: '+13364432018', // A number you bought from Twilio and can use for outbound communication
                             body: 'Hey ' + req.user.first_name + ', thank you for your order! Your order number is <test>. Be on the lookout for your order around 4:30! We will send another message with a tracking link when it ships' // body of the SMS message
 
@@ -65,11 +62,8 @@ function charge(req, res) {
                                 // http://www.twilio.com/docs/api/rest/sending-sms#example-1
 
                                 res.redirect('/success')
-                                console.log(responseData.from); // outputs "+14506667788"
-                                console.log(responseData.body); // outputs "word to your mother."
 
                             } else {
-                                console.log(err)
                                 res.send({error : "Something went wrong!"})
                             }
                         });

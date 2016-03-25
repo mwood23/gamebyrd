@@ -20,10 +20,8 @@ function addConsole (req, res) {
 	})
 	gameConsole.save(function(err, savedgameConsole){
 			res.send(savedgameConsole)
-			console.log(savedgameConsole)
 		})
 
-	console.log('at end of saved console controller')
 	}
 	
 

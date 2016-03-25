@@ -5,7 +5,6 @@ var GameConsole = require('../models/consolemodel.js');
 
 // Loads in all of the games, accessories, and consoles from the DB
 function getGamesList (req, res){
-	console.log('get games list fires')
 
 	Game.find({}, function(err, docs){
 		res.send(docs)
@@ -13,7 +12,6 @@ function getGamesList (req, res){
 }
 
 function getConsolesList (req, res){
-	console.log('get consoles list fires')
 
 	GameConsole.find({}, function(err, docs){
 		res.send(docs)
@@ -21,7 +19,6 @@ function getConsolesList (req, res){
 }
 
 function getAccessoriesList (req, res){
-	console.log('get accessories list fires')
 
 	Accessory.find({}, function(err, docs){
 		res.send(docs)
@@ -30,8 +27,6 @@ function getAccessoriesList (req, res){
 
 // Loads in the top 10 rated games and consoles using DB filters
 function getTopGames (req, res){
-	console.log('getTopGames fires')
-
 	Game.find().sort({ rating: -1 }).limit(10).exec( function (err, docs) {
 		res.send(docs)
 	})
@@ -39,7 +34,6 @@ function getTopGames (req, res){
 }
 
 function getTopConsoles (req, res){
-	console.log('getTopConsoles fires')
 
 	GameConsole.find().sort({ rating: -1 }).limit(10).exec( function (err, docs) {
 		res.send(docs)

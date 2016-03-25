@@ -19,10 +19,7 @@ function addAccessory (req, res) {
 	})
 	accessory.save(function(err, savedAccessory){
 			res.send(savedAccessory)
-			console.log(savedAccessory)
 		})
-
-	console.log('at end of saved accessory controller')
 	}
 	
 

@@ -19,10 +19,7 @@ function addGame (req, res) {
 	})
 	game.save(function(err, savedGame){
 			res.send(savedGame)
-			console.log(savedGame)
 		})
-
-	console.log('at end of saved game controller')
 	}
 	
 

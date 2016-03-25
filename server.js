@@ -4,9 +4,7 @@ var logger = require('morgan');
 var mongoose = require('mongoose');
 var passport = require('passport')
 var config = require('./config.js');
-
 var passportconfig = require('./config/passportconfig.js')
-
 var app = express();
 
 /** Express Session Setup **/
@@ -42,7 +40,6 @@ app.isAuthenticated = function(req, res, next){
         return next();
     }
     // If not, redirect to login
-    console.log('get outta here!')
     res.redirect('/login');
 }
 
@@ -150,7 +147,7 @@ app.post('/api/twilio', twilioController.tight)
 
 
 
-var port = 80
+var port = 4000
 app.listen(port, function(){
 	console.log('Server running on port ' + port)
 })
