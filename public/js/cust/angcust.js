@@ -158,46 +158,7 @@ angular
 			}
 
 
-				// Add to cart
-				$scope.addToCart = function(item) {
-
-					if($rootScope.user) {
-						// If there is not a user set cart to empty object
-						if (!$rootScope.user.cart){
-							$rootScope.user.cart = {}
-						}
-
-						// Rootscope because of nested modals
-						var cart = $rootScope.user.cart
-
-						// If the item is already in cart increment it
-						if(cart[item._id]) {
-							cart[item._id] += 1
-						} else {
-							cart[item._id] = 1
-						}
-
-						$http({
-							method : 'POST',
-							url    : '/api/addToCart',
-							data   : cart,
-						}).then(function(returnData){
-							$http.get('/api/me')
-							    .then(function(returnData){
-							        	
-							        	// Updates data to be reflected in cart and checkout
-								        if(returnData.data.user){
-								           $rootScope.cart = returnData.data
-								           $rootScope.user = returnData.data.user
-				                 	       Materialize.toast('Item added to cart', 3000, 'success');
-								        }
-							    })
-						})
-					} else {
-						Materialize.toast('Please sign in to add to cart', 3000);
-					}
-
-				}
+			$scope.addToCart = inventory.addToCart
 
 			// MODALS MODALS MODALS
 			// For logging in
@@ -288,44 +249,8 @@ angular
 			    $mdDialog.cancel();
 			};
 
-			// Same as above but needed it in here because modals create
-			// Their own controllers
-			$scope.addToCart = function(item) {
-				
-				if($rootScope.user) {
-					if (!$rootScope.user.cart){
-						$rootScope.user.cart = {}
-					}
-
-					var cart = $rootScope.user.cart
-
-					if(cart[item._id]) {
-						cart[item._id] += 1
-					} else {
-						cart[item._id] = 1
-					}
-
-					$http({
-						method : 'POST',
-						url    : '/api/addToCart',
-						data   : cart,
-					}).then(function(returnData){
-						$http.get('/api/me')
-						    .then(function(returnData){
-						        
-							        if(returnData.data.user){
-							           $rootScope.cart = returnData.data
-							           $rootScope.user = returnData.data.user		                 	
-			                 	       $mdDialog.hide()
-			                 	       Materialize.toast('Item added to cart', 3000, 'success');
-							        }
-						    })
-					})
-				} else {
-					Materialize.toast('Please sign in to add to cart', 3000);
-				}
-
-			}
+			// Imported from inventory factory
+			$scope.addToCart = inventory.addToCart
 
 
 

@@ -1,6 +1,6 @@
 angular.
 	module('util').
-		factory('inventory', ['$http', function($http) {
+		factory('inventory', ['$http', '$rootScope', function($http, $rootScope) {
 
 			var topGames = []
 			var topConsoles = []
@@ -8,28 +8,68 @@ angular.
 			var consolesList = []
 			var accessoriesList = []
 
-			getGamesList = function(){
+			var getGamesList = function(){
 				return $http.get('/getGamesList')
 			}
 
-			getConsolesList = function(){
+			var getConsolesList = function(){
 				return $http.get('/getConsolesList')
 			}
 
-			getAccessoriesList = function(){
+			var getAccessoriesList = function(){
 				return $http.get('/getAccessoriesList')
 			}
 
-			getTopGames = function(){
+			var getTopGames = function(){
 				return $http.get('/getTopGames')
 				
 			}
 
-			getTopConsoles = function(){
+			var getTopConsoles = function(){
 				return $http.get('/getTopConsoles')
 			}
 
-			// Bundles
+			// Shopping Cart for Inventory
+			// Add to cart
+			var addToCart = function(item) {
+
+				if($rootScope.user) {
+					// If there is not a user set cart to empty object
+					if (!$rootScope.user.cart){
+						$rootScope.user.cart = {}
+					}
+
+					// Rootscope because of nested modals
+					var cart = $rootScope.user.cart
+
+					// If the item is already in cart increment it
+					if(cart[item._id]) {
+						cart[item._id] += 1
+					} else {
+						cart[item._id] = 1
+					}
+
+					$http({
+						method : 'POST',
+						url    : '/api/addToCart',
+						data   : cart,
+					}).then(function(returnData){
+						$http.get('/api/me')
+						    .then(function(returnData){
+						        	
+						        	// Updates data to be reflected in cart and checkout
+							        if(returnData.data.user){
+							           $rootScope.cart = returnData.data
+							           $rootScope.user = returnData.data.user
+			                 	       Materialize.toast('Item added to cart', 3000, 'success');
+							        }
+						    })
+					})
+				} else {
+					Materialize.toast('Please sign in to add to cart', 3000);
+				}
+
+			}
 
 
 			// FOR RANDOM IMAGES ON PARALLAX
@@ -244,6 +284,7 @@ angular.
 				getAccessoriesList : getAccessoriesList,
 				getTopGames : getTopGames,
 				getTopConsoles : getTopConsoles,
+				addToCart : addToCart,
 				classics : classics,
 				newbies : newbies
 			}
